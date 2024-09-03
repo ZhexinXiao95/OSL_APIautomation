@@ -1,0 +1,725 @@
+{
+  "uid" : "f2212955cf755e9f",
+  "name" : "4.SOL-USD 100 settlementCurrency sell test",
+  "fullName" : "testcase.test_RFQorder#test_makeRFQorder",
+  "historyId" : "8c12fafa121b030f7c6e7e458c5dd3c4",
+  "time" : {
+    "start" : 1725334112462,
+    "stop" : 1725334124366,
+    "duration" : 11904
+  },
+  "status" : "failed",
+  "statusMessage" : "AssertionError: original_aggregated_balance_dict, new_aggregated_balance_dict, change [{'tradeCcy': 'BTC', 'residualPosition': -0.00211726, 'minRfsClientTradeId': 35532, 'maxRfsClientTradeId': 58247, 'countRfsClientTradeId': 432}, {'tradeCcy': 'USDT', 'residualPosition': 0.14, 'minRfsClientTradeId': 41418, 'maxRfsClientTradeId': 41418, 'countRfsClientTradeId': 1}, {'tradeCcy': 'ETH', 'residualPosition': -0.00582343, 'minRfsClientTradeId': 41693, 'maxRfsClientTradeId': 57565, 'countRfsClientTradeId': 3492}, {'tradeCcy': 'LINK', 'residualPosition': 4.16e-06, 'minRfsClientTradeId': 44625, 'maxRfsClientTradeId': 44625, 'countRfsClientTradeId': 1}, {'tradeCcy': 'BCH', 'residualPosition': 3.9e-07, 'minRfsClientTradeId': 45529, 'maxRfsClientTradeId': 45529, 'countRfsClientTradeId': 1}, {'tradeCcy': 'LTC', 'residualPosition': 2.28e-06, 'minRfsClientTradeId': 46031, 'maxRfsClientTradeId': 46031, 'countRfsClientTradeId': 1}, {'tradeCcy': 'USDTTRC', 'residualPosition': 3.172e-05, 'minRfsClientTradeId': 57463, 'maxRfsClientTradeId': 57463, 'countRfsClientTradeId': 1}, {'tradeCcy': 'SOL', 'residualPosition': 1e-06, 'minRfsClientTradeId': 57476, 'maxRfsClientTradeId': 58257, 'countRfsClientTradeId': 37}], [{'tradeCcy': 'BTC', 'residualPosition': -0.00211726, 'minRfsClientTradeId': 35532, 'maxRfsClientTradeId': 58247, 'countRfsClientTradeId': 432}, {'tradeCcy': 'USDT', 'residualPosition': 0.14, 'minRfsClientTradeId': 41418, 'maxRfsClientTradeId': 41418, 'countRfsClientTradeId': 1}, {'tradeCcy': 'ETH', 'residualPosition': -0.00582343, 'minRfsClientTradeId': 41693, 'maxRfsClientTradeId': 57565, 'countRfsClientTradeId': 3492}, {'tradeCcy': 'LINK', 'residualPosition': 4.16e-06, 'minRfsClientTradeId': 44625, 'maxRfsClientTradeId': 44625, 'countRfsClientTradeId': 1}, {'tradeCcy': 'BCH', 'residualPosition': 3.9e-07, 'minRfsClientTradeId': 45529, 'maxRfsClientTradeId': 45529, 'countRfsClientTradeId': 1}, {'tradeCcy': 'LTC', 'residualPosition': 2.28e-06, 'minRfsClientTradeId': 46031, 'maxRfsClientTradeId': 46031, 'countRfsClientTradeId': 1}, {'tradeCcy': 'USDTTRC', 'residualPosition': 3.172e-05, 'minRfsClientTradeId': 57463, 'maxRfsClientTradeId': 57463, 'countRfsClientTradeId': 1}, {'tradeCcy': 'SOL', 'residualPosition': 7.9e-07, 'minRfsClientTradeId': 57476, 'maxRfsClientTradeId': 58257, 'countRfsClientTradeId': 37}], True",
+  "statusTrace" : "case_type = 'Positive'\ncase_title = '4.SOL-USD 100 settlementCurrency sell test'\nquote_param = {'quoteRequest': {'buyTradedCurrency': False, 'settlementCurrency': 'USD', 'settlementCurrencyAmount': 100, 'tradedCurrency': 'SOL'}}\nquote_expected = 'FULL_QUOTE', execute_expected = 'EXECUTED'\n\n    @pytest.mark.usefixtures(\"rfq_order_before_check\")\n    @pytest.mark.parametrize('case_type,case_title,quote_param,quote_expected,execute_expected',\n                             rfq_data_output(testdata))\n    @allure.parent_suite(\"RFQ API TEST\")\n    @allure.suite(\"IPA Test Cases\")\n    @allure.epic('RFQ API TEST')\n    @allure.feature(\"IPA Test Cases\")\n    @allure.title(\"{case_title}\")\n    @pytest.mark.flaky(reruns=reruns, reason='Quote Or Execute may Fail')\n    def test_makeRFQorder(case_type, case_title, quote_param, quote_expected, execute_expected):\n        allure.dynamic.story(f\"{case_type} Test Cases\")\n        allure.dynamic.sub_suite(f\"{case_type} Test Cases\")\n        logger.log(case_type)\n        try:\n            check_ccy_pair(quote_param)\n            client = RFQorder()\n            client.check_aggregated_balance_dic_before_trade()\n            client.quote_request(quote_param, quote_expected)\n            client.check_before_trade()\n            client.execute_request(execute_expected)\n            client.compare_quote_execute_details()\n            client.check_after_trade()\n            client.check_user_tran()\n            client.check_RFS_console_tran()\n            client.assertion_ops_tran_RFQ()\n    \n        except AssertionError or Exception as e:\n            # 如果失败，等待一段时间再重试\n            time.sleep(2)  # 等待 2 秒\n>           raise e\n\ntestcase/test_RFQorder.py:194: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \ntestcase/test_RFQorder.py:188: in test_makeRFQorder\n    client.check_RFS_console_tran()\ntestcase/test_RFQorder.py:158: in check_RFS_console_tran\n    self.hedge_amount, self.trade_amount, self.rate = check_RFS_console_transaction(self.quote_res['res']['quoteResponse'], self.execute_res['res']['tradeResponse'], self.aggregated_balance_dic)\nutils/RFQ_relates_function.py:521: in check_RFS_console_transaction\n    raise e\nutils/RFQ_relates_function.py:461: in check_RFS_console_transaction\n    check_aggregated_position_after_trade(Position['TradeCcy'], Position['ResidualPosition'], ClientTrade['ClientTradeId'], original_aggregated_balance_dic, change=True)\nutils/RFQ_relates_function.py:285: in check_aggregated_position_after_trade\n    raise e\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nccy = 'SOL', amount = 1.3e-07, client_id = 58257\noriginal_aggregated_balance_dic = [{'countRfsClientTradeId': 432, 'maxRfsClientTradeId': 58247, 'minRfsClientTradeId': 35532, 'residualPosition': -0.002...ClientTradeId': 1, 'maxRfsClientTradeId': 46031, 'minRfsClientTradeId': 46031, 'residualPosition': 2.28e-06, ...}, ...]\nchange = True\n\n    @allure.step(\"check_aggregated_position\")\n    def check_aggregated_position_after_trade(ccy, amount, client_id, original_aggregated_balance_dic, change):\n        logger.log('<===== check_aggregated_position_after_trade start =====>')\n        try:\n            original_aggregated_balance_dict = original_aggregated_balance_dic\n            if change:\n                new_aggregated_balance_dict = RFS_API(env).aggregated_positions()\n                for balance in original_aggregated_balance_dict:\n                    if balance['tradeCcy'] == ccy:\n                        balance['residualPosition'] = float(round_to_decimal(Decimal(str(balance['residualPosition'])) + Decimal(str(amount))))\n                        balance['maxRfsClientTradeId'] = client_id\n                        logger.log(f\"{balance['maxRfsClientTradeId']}\", 'debug')\n                        balance['countRfsClientTradeId'] += 1\n>                       assert original_aggregated_balance_dict == new_aggregated_balance_dict, f\"original_aggregated_balance_dict, new_aggregated_balance_dict, change {original_aggregated_balance_dict}, {new_aggregated_balance_dict}, {change}\"\nE                       AssertionError: original_aggregated_balance_dict, new_aggregated_balance_dict, change [{'tradeCcy': 'BTC', 'residualPosition': -0.00211726, 'minRfsClientTradeId': 35532, 'maxRfsClientTradeId': 58247, 'countRfsClientTradeId': 432}, {'tradeCcy': 'USDT', 'residualPosition': 0.14, 'minRfsClientTradeId': 41418, 'maxRfsClientTradeId': 41418, 'countRfsClientTradeId': 1}, {'tradeCcy': 'ETH', 'residualPosition': -0.00582343, 'minRfsClientTradeId': 41693, 'maxRfsClientTradeId': 57565, 'countRfsClientTradeId': 3492}, {'tradeCcy': 'LINK', 'residualPosition': 4.16e-06, 'minRfsClientTradeId': 44625, 'maxRfsClientTradeId': 44625, 'countRfsClientTradeId': 1}, {'tradeCcy': 'BCH', 'residualPosition': 3.9e-07, 'minRfsClientTradeId': 45529, 'maxRfsClientTradeId': 45529, 'countRfsClientTradeId': 1}, {'tradeCcy': 'LTC', 'residualPosition': 2.28e-06, 'minRfsClientTradeId': 46031, 'maxRfsClientTradeId': 46031, 'countRfsClientTradeId': 1}, {'tradeCcy': 'USDTTRC', 'residualPosition': 3.172e-05, 'minRfsClientTradeId': 57463, 'maxRfsClientTradeId': 57463, 'countRfsClientTradeId': 1}, {'tradeCcy': 'SOL', 'residualPosition': 1e-06, 'minRfsClientTradeId': 57476, 'maxRfsClientTradeId': 58257, 'countRfsClientTradeId': 37}], [{'tradeCcy': 'BTC', 'residualPosition': -0.00211726, 'minRfsClientTradeId': 35532, 'maxRfsClientTradeId': 58247, 'countRfsClientTradeId': 432}, {'tradeCcy': 'USDT', 'residualPosition': 0.14, 'minRfsClientTradeId': 41418, 'maxRfsClientTradeId': 41418, 'countRfsClientTradeId': 1}, {'tradeCcy': 'ETH', 'residualPosition': -0.00582343, 'minRfsClientTradeId': 41693, 'maxRfsClientTradeId': 57565, 'countRfsClientTradeId': 3492}, {'tradeCcy': 'LINK', 'residualPosition': 4.16e-06, 'minRfsClientTradeId': 44625, 'maxRfsClientTradeId': 44625, 'countRfsClientTradeId': 1}, {'tradeCcy': 'BCH', 'residualPosition': 3.9e-07, 'minRfsClientTradeId': 45529, 'maxRfsClientTradeId': 45529, 'countRfsClientTradeId': 1}, {'tradeCcy': 'LTC', 'residualPosition': 2.28e-06, 'minRfsClientTradeId': 46031, 'maxRfsClientTradeId': 46031, 'countRfsClientTradeId': 1}, {'tradeCcy': 'USDTTRC', 'residualPosition': 3.172e-05, 'minRfsClientTradeId': 57463, 'maxRfsClientTradeId': 57463, 'countRfsClientTradeId': 1}, {'tradeCcy': 'SOL', 'residualPosition': 7.9e-07, 'minRfsClientTradeId': 57476, 'maxRfsClientTradeId': 58257, 'countRfsClientTradeId': 37}], True\n\nutils/RFQ_relates_function.py:278: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "rfq_order_before_check",
+    "time" : {
+      "start" : 1725334109987,
+      "stop" : 1725334112459,
+      "duration" : 2472
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "rfs_authToken",
+      "time" : {
+        "start" : 1725334109987,
+        "stop" : 1725334110659,
+        "duration" : 672
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "ops_authToken",
+      "time" : {
+        "start" : 1725334110659,
+        "stop" : 1725334111293,
+        "duration" : 634
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "check_rfs_trading_status",
+      "time" : {
+        "start" : 1725334111293,
+        "stop" : 1725334111873,
+        "duration" : 580
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "rfs_status",
+        "time" : {
+          "start" : 1725334111294,
+          "stop" : 1725334111872,
+          "duration" : 578
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "status",
+        "value" : "True"
+      } ],
+      "stepsCount" : 1,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "check_rfs_LP_gateway",
+      "time" : {
+        "start" : 1725334111873,
+        "stop" : 1725334112459,
+        "duration" : 586
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "rfs_status_venue",
+        "time" : {
+          "start" : 1725334111873,
+          "stop" : 1725334112459,
+          "duration" : 586
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "status",
+        "value" : "True"
+      } ],
+      "stepsCount" : 1,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 6,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "setup_and_teardown",
+    "time" : {
+      "start" : 1725334109987,
+      "stop" : 1725334109987,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "failed",
+    "statusMessage" : "AssertionError: original_aggregated_balance_dict, new_aggregated_balance_dict, change [{'tradeCcy': 'BTC', 'residualPosition': -0.00211726, 'minRfsClientTradeId': 35532, 'maxRfsClientTradeId': 58247, 'countRfsClientTradeId': 432}, {'tradeCcy': 'USDT', 'residualPosition': 0.14, 'minRfsClientTradeId': 41418, 'maxRfsClientTradeId': 41418, 'countRfsClientTradeId': 1}, {'tradeCcy': 'ETH', 'residualPosition': -0.00582343, 'minRfsClientTradeId': 41693, 'maxRfsClientTradeId': 57565, 'countRfsClientTradeId': 3492}, {'tradeCcy': 'LINK', 'residualPosition': 4.16e-06, 'minRfsClientTradeId': 44625, 'maxRfsClientTradeId': 44625, 'countRfsClientTradeId': 1}, {'tradeCcy': 'BCH', 'residualPosition': 3.9e-07, 'minRfsClientTradeId': 45529, 'maxRfsClientTradeId': 45529, 'countRfsClientTradeId': 1}, {'tradeCcy': 'LTC', 'residualPosition': 2.28e-06, 'minRfsClientTradeId': 46031, 'maxRfsClientTradeId': 46031, 'countRfsClientTradeId': 1}, {'tradeCcy': 'USDTTRC', 'residualPosition': 3.172e-05, 'minRfsClientTradeId': 57463, 'maxRfsClientTradeId': 57463, 'countRfsClientTradeId': 1}, {'tradeCcy': 'SOL', 'residualPosition': 1e-06, 'minRfsClientTradeId': 57476, 'maxRfsClientTradeId': 58257, 'countRfsClientTradeId': 37}], [{'tradeCcy': 'BTC', 'residualPosition': -0.00211726, 'minRfsClientTradeId': 35532, 'maxRfsClientTradeId': 58247, 'countRfsClientTradeId': 432}, {'tradeCcy': 'USDT', 'residualPosition': 0.14, 'minRfsClientTradeId': 41418, 'maxRfsClientTradeId': 41418, 'countRfsClientTradeId': 1}, {'tradeCcy': 'ETH', 'residualPosition': -0.00582343, 'minRfsClientTradeId': 41693, 'maxRfsClientTradeId': 57565, 'countRfsClientTradeId': 3492}, {'tradeCcy': 'LINK', 'residualPosition': 4.16e-06, 'minRfsClientTradeId': 44625, 'maxRfsClientTradeId': 44625, 'countRfsClientTradeId': 1}, {'tradeCcy': 'BCH', 'residualPosition': 3.9e-07, 'minRfsClientTradeId': 45529, 'maxRfsClientTradeId': 45529, 'countRfsClientTradeId': 1}, {'tradeCcy': 'LTC', 'residualPosition': 2.28e-06, 'minRfsClientTradeId': 46031, 'maxRfsClientTradeId': 46031, 'countRfsClientTradeId': 1}, {'tradeCcy': 'USDTTRC', 'residualPosition': 3.172e-05, 'minRfsClientTradeId': 57463, 'maxRfsClientTradeId': 57463, 'countRfsClientTradeId': 1}, {'tradeCcy': 'SOL', 'residualPosition': 7.9e-07, 'minRfsClientTradeId': 57476, 'maxRfsClientTradeId': 58257, 'countRfsClientTradeId': 37}], True",
+    "statusTrace" : "case_type = 'Positive'\ncase_title = '4.SOL-USD 100 settlementCurrency sell test'\nquote_param = {'quoteRequest': {'buyTradedCurrency': False, 'settlementCurrency': 'USD', 'settlementCurrencyAmount': 100, 'tradedCurrency': 'SOL'}}\nquote_expected = 'FULL_QUOTE', execute_expected = 'EXECUTED'\n\n    @pytest.mark.usefixtures(\"rfq_order_before_check\")\n    @pytest.mark.parametrize('case_type,case_title,quote_param,quote_expected,execute_expected',\n                             rfq_data_output(testdata))\n    @allure.parent_suite(\"RFQ API TEST\")\n    @allure.suite(\"IPA Test Cases\")\n    @allure.epic('RFQ API TEST')\n    @allure.feature(\"IPA Test Cases\")\n    @allure.title(\"{case_title}\")\n    @pytest.mark.flaky(reruns=reruns, reason='Quote Or Execute may Fail')\n    def test_makeRFQorder(case_type, case_title, quote_param, quote_expected, execute_expected):\n        allure.dynamic.story(f\"{case_type} Test Cases\")\n        allure.dynamic.sub_suite(f\"{case_type} Test Cases\")\n        logger.log(case_type)\n        try:\n            check_ccy_pair(quote_param)\n            client = RFQorder()\n            client.check_aggregated_balance_dic_before_trade()\n            client.quote_request(quote_param, quote_expected)\n            client.check_before_trade()\n            client.execute_request(execute_expected)\n            client.compare_quote_execute_details()\n            client.check_after_trade()\n            client.check_user_tran()\n            client.check_RFS_console_tran()\n            client.assertion_ops_tran_RFQ()\n    \n        except AssertionError or Exception as e:\n            # 如果失败，等待一段时间再重试\n            time.sleep(2)  # 等待 2 秒\n>           raise e\n\ntestcase/test_RFQorder.py:194: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \ntestcase/test_RFQorder.py:188: in test_makeRFQorder\n    client.check_RFS_console_tran()\ntestcase/test_RFQorder.py:158: in check_RFS_console_tran\n    self.hedge_amount, self.trade_amount, self.rate = check_RFS_console_transaction(self.quote_res['res']['quoteResponse'], self.execute_res['res']['tradeResponse'], self.aggregated_balance_dic)\nutils/RFQ_relates_function.py:521: in check_RFS_console_transaction\n    raise e\nutils/RFQ_relates_function.py:461: in check_RFS_console_transaction\n    check_aggregated_position_after_trade(Position['TradeCcy'], Position['ResidualPosition'], ClientTrade['ClientTradeId'], original_aggregated_balance_dic, change=True)\nutils/RFQ_relates_function.py:285: in check_aggregated_position_after_trade\n    raise e\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nccy = 'SOL', amount = 1.3e-07, client_id = 58257\noriginal_aggregated_balance_dic = [{'countRfsClientTradeId': 432, 'maxRfsClientTradeId': 58247, 'minRfsClientTradeId': 35532, 'residualPosition': -0.002...ClientTradeId': 1, 'maxRfsClientTradeId': 46031, 'minRfsClientTradeId': 46031, 'residualPosition': 2.28e-06, ...}, ...]\nchange = True\n\n    @allure.step(\"check_aggregated_position\")\n    def check_aggregated_position_after_trade(ccy, amount, client_id, original_aggregated_balance_dic, change):\n        logger.log('<===== check_aggregated_position_after_trade start =====>')\n        try:\n            original_aggregated_balance_dict = original_aggregated_balance_dic\n            if change:\n                new_aggregated_balance_dict = RFS_API(env).aggregated_positions()\n                for balance in original_aggregated_balance_dict:\n                    if balance['tradeCcy'] == ccy:\n                        balance['residualPosition'] = float(round_to_decimal(Decimal(str(balance['residualPosition'])) + Decimal(str(amount))))\n                        balance['maxRfsClientTradeId'] = client_id\n                        logger.log(f\"{balance['maxRfsClientTradeId']}\", 'debug')\n                        balance['countRfsClientTradeId'] += 1\n>                       assert original_aggregated_balance_dict == new_aggregated_balance_dict, f\"original_aggregated_balance_dict, new_aggregated_balance_dict, change {original_aggregated_balance_dict}, {new_aggregated_balance_dict}, {change}\"\nE                       AssertionError: original_aggregated_balance_dict, new_aggregated_balance_dict, change [{'tradeCcy': 'BTC', 'residualPosition': -0.00211726, 'minRfsClientTradeId': 35532, 'maxRfsClientTradeId': 58247, 'countRfsClientTradeId': 432}, {'tradeCcy': 'USDT', 'residualPosition': 0.14, 'minRfsClientTradeId': 41418, 'maxRfsClientTradeId': 41418, 'countRfsClientTradeId': 1}, {'tradeCcy': 'ETH', 'residualPosition': -0.00582343, 'minRfsClientTradeId': 41693, 'maxRfsClientTradeId': 57565, 'countRfsClientTradeId': 3492}, {'tradeCcy': 'LINK', 'residualPosition': 4.16e-06, 'minRfsClientTradeId': 44625, 'maxRfsClientTradeId': 44625, 'countRfsClientTradeId': 1}, {'tradeCcy': 'BCH', 'residualPosition': 3.9e-07, 'minRfsClientTradeId': 45529, 'maxRfsClientTradeId': 45529, 'countRfsClientTradeId': 1}, {'tradeCcy': 'LTC', 'residualPosition': 2.28e-06, 'minRfsClientTradeId': 46031, 'maxRfsClientTradeId': 46031, 'countRfsClientTradeId': 1}, {'tradeCcy': 'USDTTRC', 'residualPosition': 3.172e-05, 'minRfsClientTradeId': 57463, 'maxRfsClientTradeId': 57463, 'countRfsClientTradeId': 1}, {'tradeCcy': 'SOL', 'residualPosition': 1e-06, 'minRfsClientTradeId': 57476, 'maxRfsClientTradeId': 58257, 'countRfsClientTradeId': 37}], [{'tradeCcy': 'BTC', 'residualPosition': -0.00211726, 'minRfsClientTradeId': 35532, 'maxRfsClientTradeId': 58247, 'countRfsClientTradeId': 432}, {'tradeCcy': 'USDT', 'residualPosition': 0.14, 'minRfsClientTradeId': 41418, 'maxRfsClientTradeId': 41418, 'countRfsClientTradeId': 1}, {'tradeCcy': 'ETH', 'residualPosition': -0.00582343, 'minRfsClientTradeId': 41693, 'maxRfsClientTradeId': 57565, 'countRfsClientTradeId': 3492}, {'tradeCcy': 'LINK', 'residualPosition': 4.16e-06, 'minRfsClientTradeId': 44625, 'maxRfsClientTradeId': 44625, 'countRfsClientTradeId': 1}, {'tradeCcy': 'BCH', 'residualPosition': 3.9e-07, 'minRfsClientTradeId': 45529, 'maxRfsClientTradeId': 45529, 'countRfsClientTradeId': 1}, {'tradeCcy': 'LTC', 'residualPosition': 2.28e-06, 'minRfsClientTradeId': 46031, 'maxRfsClientTradeId': 46031, 'countRfsClientTradeId': 1}, {'tradeCcy': 'USDTTRC', 'residualPosition': 3.172e-05, 'minRfsClientTradeId': 57463, 'maxRfsClientTradeId': 57463, 'countRfsClientTradeId': 1}, {'tradeCcy': 'SOL', 'residualPosition': 7.9e-07, 'minRfsClientTradeId': 57476, 'maxRfsClientTradeId': 58257, 'countRfsClientTradeId': 37}], True\n\nutils/RFQ_relates_function.py:278: AssertionError",
+    "steps" : [ {
+      "name" : "check_ccy_pair",
+      "time" : {
+        "start" : 1725334112463,
+        "stop" : 1725334113079,
+        "duration" : 616
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "rfs_cc_pair_status",
+        "time" : {
+          "start" : 1725334112463,
+          "stop" : 1725334113078,
+          "duration" : 615
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "quote_req",
+        "value" : "{'quoteRequest': {'buyTradedCurrency': False, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USD', 'settlementCurrencyAmount': 100}}"
+      } ],
+      "stepsCount" : 1,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "record aggregated_balance_before trade",
+      "time" : {
+        "start" : 1725334113079,
+        "stop" : 1725334113703,
+        "duration" : 624
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "rfs_aggregated_positions",
+        "time" : {
+          "start" : 1725334113080,
+          "stop" : 1725334113702,
+          "duration" : 622
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 1,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Asking QuoteId Request",
+      "time" : {
+        "start" : 1725334113703,
+        "stop" : 1725334115138,
+        "duration" : 1435
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "5236a49c4500d21",
+        "name" : "Asking QuoteId Details",
+        "source" : "5236a49c4500d21.json",
+        "type" : "application/json",
+        "size" : 1092
+      } ],
+      "parameters" : [ {
+        "name" : "quote_param",
+        "value" : "{'quoteRequest': {'buyTradedCurrency': False, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USD', 'settlementCurrencyAmount': 100}}"
+      }, {
+        "name" : "quote_expected",
+        "value" : "'FULL_QUOTE'"
+      } ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Check Balance Before Trade",
+      "time" : {
+        "start" : 1725334115138,
+        "stop" : 1725334116607,
+        "duration" : 1469
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "brokerage_balance_order_before_check",
+        "time" : {
+          "start" : 1725334115139,
+          "stop" : 1725334116607,
+          "duration" : 1468
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "get_account_information",
+          "time" : {
+            "start" : 1725334115139,
+            "stop" : 1725334115960,
+            "duration" : 821
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "currency",
+            "value" : "'SOL'"
+          }, {
+            "name" : "wallet",
+            "value" : "'Wallets'"
+          }, {
+            "name" : "account",
+            "value" : "'Brokerage_Available_Balance'"
+          }, {
+            "name" : "multiple",
+            "value" : "False"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        }, {
+          "name" : "get_account_information",
+          "time" : {
+            "start" : 1725334115961,
+            "stop" : 1725334116606,
+            "duration" : 645
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "currency",
+            "value" : "'USD'"
+          }, {
+            "name" : "wallet",
+            "value" : "'Wallets'"
+          }, {
+            "name" : "account",
+            "value" : "'Brokerage_Available_Balance'"
+          }, {
+            "name" : "multiple",
+            "value" : "False"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "res",
+          "value" : "{'response': <Response [200]>, 'res': {'quoteResponse': {'responseCode': 'FULL_QUOTE', 'buyTradedCurrency': False, 'settlementCurrency': 'USD', 'tradedCurrency': 'SOL', 'quotedSettlementCurrencyAmount': '100', 'quotedTradedCurrencyAmount': '0.75099413', 'executedPrice': '133.156832', 'retailRateInSettlementCurrency': '133.156832', 'quoteId': 'DENjd+ttVqGQjHU8ebcji6OnH4T2fHpSmdw6dtDwI9lNJu+TGwNj/4woV+dVU0N1ybR7TwlvxK+1DFXpXBNALEh3k/iGrKKrOcvpmhvyHghzis0OUUtCE6s5ZSeExsOrhDT1cLeR0fOmWki0Jbbs2geSYsRZk7sf7CHvgsug1YPaeHiJFbr/VQtTE1SUzCY51GIuQ7zzMRDotl2YnJ/FXBpbI8/KolStTGwhRszFDVDlpzlfgy+KAkLSGY706Tt9hxRTO7r/kAuG4BOSNHi/4MSQaXQ1kp5cq02xJKqaQlNZocUWUQJFraaXvgKp0R8meg8W/RNhmg61VL/TwUNUsiIxuQk=', 'quoteExpiresAt': 1725334122043, 'quoteCreatedAt': 1725334115043, 'dealerSettlementCurrency': 'USD', 'dealerSettlementCurrencyAmount': '100', 'isInvoice': False, 'isCardLoad': False, 'isPtsSufficient': False, 'isMtPreDealPreCheckSuccess': False}, 'timestamp': 1725334115043, 'resultCode': 'OK'}, 'req_msg': \"<Request> [e044c7c0-5715-4ea4-b632-bdd7c2a6e732] => POST api/3/retail/quote <Param> => {'quoteRequest': {'buyTradedCurrency': False, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USD', 'settlementCurrencyAmount': 100}, 'tonce': 1725334113703118}\", 'res_msg': \"<Response> [e044c7c0-5715-4ea4-b632-bdd7c2a6e732] => {'quoteResponse': {'responseCode': 'FULL_QUOTE', 'buyTradedCurrency': False, 'settlementCurrency': 'USD', 'tradedCurrency': 'SOL', 'quotedSettlementCurrencyAmount': '100', 'quotedTradedCurrencyAmount': '0.75099413', 'executedPrice': '133.156832', 'retailRateInSettlementCurrency': '133.156832', 'quoteId': 'DENjd+ttVqGQjHU8ebcji6OnH4T2fHpSmdw6dtDwI9lNJu+TGwNj/4woV+dVU0N1ybR7TwlvxK+1DFXpXBNALEh3k/iGrKKrOcvpmhvyHghzis0OUUtCE6s5ZSeExsOrhDT1cLeR0fOmWki0Jbbs2geSYsRZk7sf7CHvgsug1YPaeHiJFbr/VQtTE1SUzCY51GIuQ7zzMRDotl2YnJ/FXBpbI8/KolStTGwhRszFDVDlpzlfgy+KAkLSGY706Tt9hxRTO7r/kAuG4BOSNHi/4MSQaXQ1kp5cq02xJKqaQlNZocUWUQJFraaXvgKp0R8meg8W/RNhmg61VL/TwUNUsiIxuQk=', 'quoteExpiresAt': 1725334122043, 'quoteCreatedAt': 1725334115043, 'dealerSettlementCurrency': 'USD', 'dealerSettlementCurrencyAmount': '100', 'isInvoice': False, 'isCardLoad': False, 'isPtsSufficient': False, 'isMtPreDealPreCheckSuccess': False}, 'timestamp': 1725334115043, 'resultCode': 'OK'}\"}"
+        } ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 3,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Make Execute Request",
+      "time" : {
+        "start" : 1725334116607,
+        "stop" : 1725334117501,
+        "duration" : 894
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "d4acc6b93ff0b322",
+        "name" : "Make Execute Details",
+        "source" : "d4acc6b93ff0b322.json",
+        "type" : "application/json",
+        "size" : 1153
+      } ],
+      "parameters" : [ {
+        "name" : "execute_expected",
+        "value" : "'EXECUTED'"
+      } ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Compare Quote And Execute API Response Details",
+      "time" : {
+        "start" : 1725334117501,
+        "stop" : 1725334117502,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "quote_execute_apiDetail_assert",
+        "time" : {
+          "start" : 1725334117502,
+          "stop" : 1725334117502,
+          "duration" : 0
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "quote_res",
+          "value" : "{'response': <Response [200]>, 'res': {'quoteResponse': {'responseCode': 'FULL_QUOTE', 'buyTradedCurrency': False, 'settlementCurrency': 'USD', 'tradedCurrency': 'SOL', 'quotedSettlementCurrencyAmount': '100', 'quotedTradedCurrencyAmount': '0.75099413', 'executedPrice': '133.156832', 'retailRateInSettlementCurrency': '133.156832', 'quoteId': 'DENjd+ttVqGQjHU8ebcji6OnH4T2fHpSmdw6dtDwI9lNJu+TGwNj/4woV+dVU0N1ybR7TwlvxK+1DFXpXBNALEh3k/iGrKKrOcvpmhvyHghzis0OUUtCE6s5ZSeExsOrhDT1cLeR0fOmWki0Jbbs2geSYsRZk7sf7CHvgsug1YPaeHiJFbr/VQtTE1SUzCY51GIuQ7zzMRDotl2YnJ/FXBpbI8/KolStTGwhRszFDVDlpzlfgy+KAkLSGY706Tt9hxRTO7r/kAuG4BOSNHi/4MSQaXQ1kp5cq02xJKqaQlNZocUWUQJFraaXvgKp0R8meg8W/RNhmg61VL/TwUNUsiIxuQk=', 'quoteExpiresAt': 1725334122043, 'quoteCreatedAt': 1725334115043, 'dealerSettlementCurrency': 'USD', 'dealerSettlementCurrencyAmount': '100', 'isInvoice': False, 'isCardLoad': False, 'isPtsSufficient': False, 'isMtPreDealPreCheckSuccess': False}, 'timestamp': 1725334115043, 'resultCode': 'OK'}, 'req_msg': \"<Request> [e044c7c0-5715-4ea4-b632-bdd7c2a6e732] => POST api/3/retail/quote <Param> => {'quoteRequest': {'buyTradedCurrency': False, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USD', 'settlementCurrencyAmount': 100}, 'tonce': 1725334113703118}\", 'res_msg': \"<Response> [e044c7c0-5715-4ea4-b632-bdd7c2a6e732] => {'quoteResponse': {'responseCode': 'FULL_QUOTE', 'buyTradedCurrency': False, 'settlementCurrency': 'USD', 'tradedCurrency': 'SOL', 'quotedSettlementCurrencyAmount': '100', 'quotedTradedCurrencyAmount': '0.75099413', 'executedPrice': '133.156832', 'retailRateInSettlementCurrency': '133.156832', 'quoteId': 'DENjd+ttVqGQjHU8ebcji6OnH4T2fHpSmdw6dtDwI9lNJu+TGwNj/4woV+dVU0N1ybR7TwlvxK+1DFXpXBNALEh3k/iGrKKrOcvpmhvyHghzis0OUUtCE6s5ZSeExsOrhDT1cLeR0fOmWki0Jbbs2geSYsRZk7sf7CHvgsug1YPaeHiJFbr/VQtTE1SUzCY51GIuQ7zzMRDotl2YnJ/FXBpbI8/KolStTGwhRszFDVDlpzlfgy+KAkLSGY706Tt9hxRTO7r/kAuG4BOSNHi/4MSQaXQ1kp5cq02xJKqaQlNZocUWUQJFraaXvgKp0R8meg8W/RNhmg61VL/TwUNUsiIxuQk=', 'quoteExpiresAt': 1725334122043, 'quoteCreatedAt': 1725334115043, 'dealerSettlementCurrency': 'USD', 'dealerSettlementCurrencyAmount': '100', 'isInvoice': False, 'isCardLoad': False, 'isPtsSufficient': False, 'isMtPreDealPreCheckSuccess': False}, 'timestamp': 1725334115043, 'resultCode': 'OK'}\"}"
+        }, {
+          "name" : "execute_res",
+          "value" : "{'response': <Response [200]>, 'res': {'tradeResponse': {'responseCode': 'EXECUTED', 'tradeId': '14ba482a4c10455685857008f6b7dac6', 'tradeRef': '14ba482a4c10455685857008f6b7dac6', 'quoteId': 'DENjd+ttVqGQjHU8ebcji6OnH4T2fHpSmdw6dtDwI9lNJu+TGwNj/4woV+dVU0N1ybR7TwlvxK+1DFXpXBNALEh3k/iGrKKrOcvpmhvyHghzis0OUUtCE6s5ZSeExsOrhDT1cLeR0fOmWki0Jbbs2geSYsRZk7sf7CHvgsug1YPaeHiJFbr/VQtTE1SUzCY51GIuQ7zzMRDotl2YnJ/FXBpbI8/KolStTGwhRszFDVDlpzlfgy+KAkLSGY706Tt9hxRTO7r/kAuG4BOSNHi/4MSQaXQ1kp5cq02xJKqaQlNZocUWUQJFraaXvgKp0R8meg8W/RNhmg61VL/TwUNUsiIxuQk=', 'buyTradedCurrency': False, 'settlementCurrency': 'USD', 'tradedCurrency': 'SOL', 'quotedSettlementCurrencyAmount': '100', 'quotedTradedCurrencyAmount': '0.75099413', 'executedPrice': '133.156832'}, 'timestamp': 1725334117448, 'resultCode': 'OK'}, 'req_msg': \"<Request> [e044c7c0-5715-4ea4-b632-bdd7c2a6e732] => POST api/3/retail/trade <Param> => {'tradeRequest': {'quoteId': 'DENjd+ttVqGQjHU8ebcji6OnH4T2fHpSmdw6dtDwI9lNJu+TGwNj/4woV+dVU0N1ybR7TwlvxK+1DFXpXBNALEh3k/iGrKKrOcvpmhvyHghzis0OUUtCE6s5ZSeExsOrhDT1cLeR0fOmWki0Jbbs2geSYsRZk7sf7CHvgsug1YPaeHiJFbr/VQtTE1SUzCY51GIuQ7zzMRDotl2YnJ/FXBpbI8/KolStTGwhRszFDVDlpzlfgy+KAkLSGY706Tt9hxRTO7r/kAuG4BOSNHi/4MSQaXQ1kp5cq02xJKqaQlNZocUWUQJFraaXvgKp0R8meg8W/RNhmg61VL/TwUNUsiIxuQk='}, 'tonce': 1725334116607408}\", 'res_msg': \"<Response> [e044c7c0-5715-4ea4-b632-bdd7c2a6e732] => {'tradeResponse': {'responseCode': 'EXECUTED', 'tradeId': '14ba482a4c10455685857008f6b7dac6', 'tradeRef': '14ba482a4c10455685857008f6b7dac6', 'quoteId': 'DENjd+ttVqGQjHU8ebcji6OnH4T2fHpSmdw6dtDwI9lNJu+TGwNj/4woV+dVU0N1ybR7TwlvxK+1DFXpXBNALEh3k/iGrKKrOcvpmhvyHghzis0OUUtCE6s5ZSeExsOrhDT1cLeR0fOmWki0Jbbs2geSYsRZk7sf7CHvgsug1YPaeHiJFbr/VQtTE1SUzCY51GIuQ7zzMRDotl2YnJ/FXBpbI8/KolStTGwhRszFDVDlpzlfgy+KAkLSGY706Tt9hxRTO7r/kAuG4BOSNHi/4MSQaXQ1kp5cq02xJKqaQlNZocUWUQJFraaXvgKp0R8meg8W/RNhmg61VL/TwUNUsiIxuQk=', 'buyTradedCurrency': False, 'settlementCurrency': 'USD', 'tradedCurrency': 'SOL', 'quotedSettlementCurrencyAmount': '100', 'quotedTradedCurrencyAmount': '0.75099413', 'executedPrice': '133.156832'}, 'timestamp': 1725334117448, 'resultCode': 'OK'}\"}"
+        } ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 1,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Check Balance After Trade",
+      "time" : {
+        "start" : 1725334117502,
+        "stop" : 1725334119113,
+        "duration" : 1611
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "brokerage_balance_order_after_check",
+        "time" : {
+          "start" : 1725334117502,
+          "stop" : 1725334119113,
+          "duration" : 1611
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "get_account_information",
+          "time" : {
+            "start" : 1725334117502,
+            "stop" : 1725334118239,
+            "duration" : 737
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "currency",
+            "value" : "'SOL'"
+          }, {
+            "name" : "wallet",
+            "value" : "'Wallets'"
+          }, {
+            "name" : "account",
+            "value" : "'Brokerage_Available_Balance'"
+          }, {
+            "name" : "multiple",
+            "value" : "False"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        }, {
+          "name" : "get_account_information",
+          "time" : {
+            "start" : 1725334118240,
+            "stop" : 1725334119112,
+            "duration" : 872
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "currency",
+            "value" : "'USD'"
+          }, {
+            "name" : "wallet",
+            "value" : "'Wallets'"
+          }, {
+            "name" : "account",
+            "value" : "'Brokerage_Available_Balance'"
+          }, {
+            "name" : "multiple",
+            "value" : "False"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "res",
+          "value" : "{'response': <Response [200]>, 'res': {'tradeResponse': {'responseCode': 'EXECUTED', 'tradeId': '14ba482a4c10455685857008f6b7dac6', 'tradeRef': '14ba482a4c10455685857008f6b7dac6', 'quoteId': 'DENjd+ttVqGQjHU8ebcji6OnH4T2fHpSmdw6dtDwI9lNJu+TGwNj/4woV+dVU0N1ybR7TwlvxK+1DFXpXBNALEh3k/iGrKKrOcvpmhvyHghzis0OUUtCE6s5ZSeExsOrhDT1cLeR0fOmWki0Jbbs2geSYsRZk7sf7CHvgsug1YPaeHiJFbr/VQtTE1SUzCY51GIuQ7zzMRDotl2YnJ/FXBpbI8/KolStTGwhRszFDVDlpzlfgy+KAkLSGY706Tt9hxRTO7r/kAuG4BOSNHi/4MSQaXQ1kp5cq02xJKqaQlNZocUWUQJFraaXvgKp0R8meg8W/RNhmg61VL/TwUNUsiIxuQk=', 'buyTradedCurrency': False, 'settlementCurrency': 'USD', 'tradedCurrency': 'SOL', 'quotedSettlementCurrencyAmount': '100', 'quotedTradedCurrencyAmount': '0.75099413', 'executedPrice': '133.156832'}, 'timestamp': 1725334117448, 'resultCode': 'OK'}, 'req_msg': \"<Request> [e044c7c0-5715-4ea4-b632-bdd7c2a6e732] => POST api/3/retail/trade <Param> => {'tradeRequest': {'quoteId': 'DENjd+ttVqGQjHU8ebcji6OnH4T2fHpSmdw6dtDwI9lNJu+TGwNj/4woV+dVU0N1ybR7TwlvxK+1DFXpXBNALEh3k/iGrKKrOcvpmhvyHghzis0OUUtCE6s5ZSeExsOrhDT1cLeR0fOmWki0Jbbs2geSYsRZk7sf7CHvgsug1YPaeHiJFbr/VQtTE1SUzCY51GIuQ7zzMRDotl2YnJ/FXBpbI8/KolStTGwhRszFDVDlpzlfgy+KAkLSGY706Tt9hxRTO7r/kAuG4BOSNHi/4MSQaXQ1kp5cq02xJKqaQlNZocUWUQJFraaXvgKp0R8meg8W/RNhmg61VL/TwUNUsiIxuQk='}, 'tonce': 1725334116607408}\", 'res_msg': \"<Response> [e044c7c0-5715-4ea4-b632-bdd7c2a6e732] => {'tradeResponse': {'responseCode': 'EXECUTED', 'tradeId': '14ba482a4c10455685857008f6b7dac6', 'tradeRef': '14ba482a4c10455685857008f6b7dac6', 'quoteId': 'DENjd+ttVqGQjHU8ebcji6OnH4T2fHpSmdw6dtDwI9lNJu+TGwNj/4woV+dVU0N1ybR7TwlvxK+1DFXpXBNALEh3k/iGrKKrOcvpmhvyHghzis0OUUtCE6s5ZSeExsOrhDT1cLeR0fOmWki0Jbbs2geSYsRZk7sf7CHvgsug1YPaeHiJFbr/VQtTE1SUzCY51GIuQ7zzMRDotl2YnJ/FXBpbI8/KolStTGwhRszFDVDlpzlfgy+KAkLSGY706Tt9hxRTO7r/kAuG4BOSNHi/4MSQaXQ1kp5cq02xJKqaQlNZocUWUQJFraaXvgKp0R8meg8W/RNhmg61VL/TwUNUsiIxuQk=', 'buyTradedCurrency': False, 'settlementCurrency': 'USD', 'tradedCurrency': 'SOL', 'quotedSettlementCurrencyAmount': '100', 'quotedTradedCurrencyAmount': '0.75099413', 'executedPrice': '133.156832'}, 'timestamp': 1725334117448, 'resultCode': 'OK'}\"}"
+        }, {
+          "name" : "balance_before_dict",
+          "value" : "{'side': False, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USD', 'tradedCurrencyAmount': '0.75099413', 'quotedSettlementCurrencyAmount': '100', 'tradedCurrency_balance': '150043.44439255', 'settlementCurrency_balance': '38216.55000', 'executedPrice': '133.156832'}"
+        } ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 3,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "check_user_transaction",
+      "time" : {
+        "start" : 1725334119114,
+        "stop" : 1725334120119,
+        "duration" : 1005
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "check_user_transaction",
+        "time" : {
+          "start" : 1725334119114,
+          "stop" : 1725334120119,
+          "duration" : 1005
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "get_transaction_list",
+          "time" : {
+            "start" : 1725334119114,
+            "stop" : 1725334120118,
+            "duration" : 1004
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "max",
+            "value" : "None"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "execute_res",
+          "value" : "{'responseCode': 'EXECUTED', 'tradeId': '14ba482a4c10455685857008f6b7dac6', 'tradeRef': '14ba482a4c10455685857008f6b7dac6', 'quoteId': 'DENjd+ttVqGQjHU8ebcji6OnH4T2fHpSmdw6dtDwI9lNJu+TGwNj/4woV+dVU0N1ybR7TwlvxK+1DFXpXBNALEh3k/iGrKKrOcvpmhvyHghzis0OUUtCE6s5ZSeExsOrhDT1cLeR0fOmWki0Jbbs2geSYsRZk7sf7CHvgsug1YPaeHiJFbr/VQtTE1SUzCY51GIuQ7zzMRDotl2YnJ/FXBpbI8/KolStTGwhRszFDVDlpzlfgy+KAkLSGY706Tt9hxRTO7r/kAuG4BOSNHi/4MSQaXQ1kp5cq02xJKqaQlNZocUWUQJFraaXvgKp0R8meg8W/RNhmg61VL/TwUNUsiIxuQk=', 'buyTradedCurrency': False, 'settlementCurrency': 'USD', 'tradedCurrency': 'SOL', 'quotedSettlementCurrencyAmount': '100', 'quotedTradedCurrencyAmount': '0.75099413', 'executedPrice': '133.156832'}"
+        } ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 2,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "check_RFS_console_transaction",
+      "time" : {
+        "start" : 1725334120119,
+        "stop" : 1725334122359,
+        "duration" : 2240
+      },
+      "status" : "failed",
+      "statusMessage" : "AssertionError: original_aggregated_balance_dict, new_aggregated_balance_dict, change [{'tradeCcy': 'BTC', 'residualPosition': -0.00211726, 'minRfsClientTradeId': 35532, 'maxRfsClientTradeId': 58247, 'countRfsClientTradeId': 432}, {'tradeCcy': 'USDT', 'residualPosition': 0.14, 'minRfsClientTradeId': 41418, 'maxRfsClientTradeId': 41418, 'countRfsClientTradeId': 1}, {'tradeCcy': 'ETH', 'residualPosition': -0.00582343, 'minRfsClientTradeId': 41693, 'maxRfsClientTradeId': 57565, 'countRfsClientTradeId': 3492}, {'tradeCcy': 'LINK', 'residualPosition': 4.16e-06, 'minRfsClientTradeId': 44625, 'maxRfsClientTradeId': 44625, 'countRfsClientTradeId': 1}, {'tradeCcy': 'BCH', 'residualPosition': 3.9e-07, 'minRfsClientTradeId': 45529, 'maxRfsClientTradeId': 45529, 'countRfsClientTradeId': 1}, {'tradeCcy': 'LTC', 'residualPosition': 2.28e-06, 'minRfsClientTradeId': 46031, 'maxRfsClientTradeId': 46031, 'countRfsClientTradeId': 1}, {'tradeCcy': 'USDTTRC', 'residualPosition': 3.172e-05, 'minRfsClientTradeId': 57463, 'maxRfsClientTradeId': 57463, 'countRfsClientTradeId': 1}, {'tradeCcy': 'SOL', 'residualPosition': 1e-06, 'minRfsClientTradeId': 57476, 'maxRfsClientTradeId': 58257, 'countRfsClientTradeId': 37}], [{'tradeCcy': 'BTC', 'residualPosition': -0.00211726, 'minRfsClientTradeId': 35532, 'maxRfsClientTradeId': 58247, 'countRfsClientTradeId': 432}, {'tradeCcy': 'USDT', 'residualPosition': 0.14, 'minRfsClientTradeId': 41418, 'maxRfsClientTradeId': 41418, 'countRfsClientTradeId': 1}, {'tradeCcy': 'ETH', 'residualPosition': -0.00582343, 'minRfsClientTradeId': 41693, 'maxRfsClientTradeId': 57565, 'countRfsClientTradeId': 3492}, {'tradeCcy': 'LINK', 'residualPosition': 4.16e-06, 'minRfsClientTradeId': 44625, 'maxRfsClientTradeId': 44625, 'countRfsClientTradeId': 1}, {'tradeCcy': 'BCH', 'residualPosition': 3.9e-07, 'minRfsClientTradeId': 45529, 'maxRfsClientTradeId': 45529, 'countRfsClientTradeId': 1}, {'tradeCcy': 'LTC', 'residualPosition': 2.28e-06, 'minRfsClientTradeId': 46031, 'maxRfsClientTradeId': 46031, 'countRfsClientTradeId': 1}, {'tradeCcy': 'USDTTRC', 'residualPosition': 3.172e-05, 'minRfsClientTradeId': 57463, 'maxRfsClientTradeId': 57463, 'countRfsClientTradeId': 1}, {'tradeCcy': 'SOL', 'residualPosition': 7.9e-07, 'minRfsClientTradeId': 57476, 'maxRfsClientTradeId': 58257, 'countRfsClientTradeId': 37}], True\n",
+      "statusTrace" : "  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/testcase/test_RFQorder.py\", line 158, in check_RFS_console_tran\n    self.hedge_amount, self.trade_amount, self.rate = check_RFS_console_transaction(self.quote_res['res']['quoteResponse'], self.execute_res['res']['tradeResponse'], self.aggregated_balance_dic)\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/utils/RFQ_relates_function.py\", line 521, in check_RFS_console_transaction\n    raise e\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/utils/RFQ_relates_function.py\", line 461, in check_RFS_console_transaction\n    check_aggregated_position_after_trade(Position['TradeCcy'], Position['ResidualPosition'], ClientTrade['ClientTradeId'], original_aggregated_balance_dic, change=True)\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/utils/RFQ_relates_function.py\", line 285, in check_aggregated_position_after_trade\n    raise e\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/utils/RFQ_relates_function.py\", line 278, in check_aggregated_position_after_trade\n    assert original_aggregated_balance_dict == new_aggregated_balance_dict, f\"original_aggregated_balance_dict, new_aggregated_balance_dict, change {original_aggregated_balance_dict}, {new_aggregated_balance_dict}, {change}\"\n",
+      "steps" : [ {
+        "name" : "check_RFS_console_transaction",
+        "time" : {
+          "start" : 1725334120120,
+          "stop" : 1725334122359,
+          "duration" : 2239
+        },
+        "status" : "failed",
+        "statusMessage" : "AssertionError: original_aggregated_balance_dict, new_aggregated_balance_dict, change [{'tradeCcy': 'BTC', 'residualPosition': -0.00211726, 'minRfsClientTradeId': 35532, 'maxRfsClientTradeId': 58247, 'countRfsClientTradeId': 432}, {'tradeCcy': 'USDT', 'residualPosition': 0.14, 'minRfsClientTradeId': 41418, 'maxRfsClientTradeId': 41418, 'countRfsClientTradeId': 1}, {'tradeCcy': 'ETH', 'residualPosition': -0.00582343, 'minRfsClientTradeId': 41693, 'maxRfsClientTradeId': 57565, 'countRfsClientTradeId': 3492}, {'tradeCcy': 'LINK', 'residualPosition': 4.16e-06, 'minRfsClientTradeId': 44625, 'maxRfsClientTradeId': 44625, 'countRfsClientTradeId': 1}, {'tradeCcy': 'BCH', 'residualPosition': 3.9e-07, 'minRfsClientTradeId': 45529, 'maxRfsClientTradeId': 45529, 'countRfsClientTradeId': 1}, {'tradeCcy': 'LTC', 'residualPosition': 2.28e-06, 'minRfsClientTradeId': 46031, 'maxRfsClientTradeId': 46031, 'countRfsClientTradeId': 1}, {'tradeCcy': 'USDTTRC', 'residualPosition': 3.172e-05, 'minRfsClientTradeId': 57463, 'maxRfsClientTradeId': 57463, 'countRfsClientTradeId': 1}, {'tradeCcy': 'SOL', 'residualPosition': 1e-06, 'minRfsClientTradeId': 57476, 'maxRfsClientTradeId': 58257, 'countRfsClientTradeId': 37}], [{'tradeCcy': 'BTC', 'residualPosition': -0.00211726, 'minRfsClientTradeId': 35532, 'maxRfsClientTradeId': 58247, 'countRfsClientTradeId': 432}, {'tradeCcy': 'USDT', 'residualPosition': 0.14, 'minRfsClientTradeId': 41418, 'maxRfsClientTradeId': 41418, 'countRfsClientTradeId': 1}, {'tradeCcy': 'ETH', 'residualPosition': -0.00582343, 'minRfsClientTradeId': 41693, 'maxRfsClientTradeId': 57565, 'countRfsClientTradeId': 3492}, {'tradeCcy': 'LINK', 'residualPosition': 4.16e-06, 'minRfsClientTradeId': 44625, 'maxRfsClientTradeId': 44625, 'countRfsClientTradeId': 1}, {'tradeCcy': 'BCH', 'residualPosition': 3.9e-07, 'minRfsClientTradeId': 45529, 'maxRfsClientTradeId': 45529, 'countRfsClientTradeId': 1}, {'tradeCcy': 'LTC', 'residualPosition': 2.28e-06, 'minRfsClientTradeId': 46031, 'maxRfsClientTradeId': 46031, 'countRfsClientTradeId': 1}, {'tradeCcy': 'USDTTRC', 'residualPosition': 3.172e-05, 'minRfsClientTradeId': 57463, 'maxRfsClientTradeId': 57463, 'countRfsClientTradeId': 1}, {'tradeCcy': 'SOL', 'residualPosition': 7.9e-07, 'minRfsClientTradeId': 57476, 'maxRfsClientTradeId': 58257, 'countRfsClientTradeId': 37}], True\n",
+        "statusTrace" : "  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/utils/RFQ_relates_function.py\", line 521, in check_RFS_console_transaction\n    raise e\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/utils/RFQ_relates_function.py\", line 461, in check_RFS_console_transaction\n    check_aggregated_position_after_trade(Position['TradeCcy'], Position['ResidualPosition'], ClientTrade['ClientTradeId'], original_aggregated_balance_dic, change=True)\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/utils/RFQ_relates_function.py\", line 285, in check_aggregated_position_after_trade\n    raise e\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/utils/RFQ_relates_function.py\", line 278, in check_aggregated_position_after_trade\n    assert original_aggregated_balance_dict == new_aggregated_balance_dict, f\"original_aggregated_balance_dict, new_aggregated_balance_dict, change {original_aggregated_balance_dict}, {new_aggregated_balance_dict}, {change}\"\n",
+        "steps" : [ {
+          "name" : "rfs_trades_completed",
+          "time" : {
+            "start" : 1725334120120,
+            "stop" : 1725334121605,
+            "duration" : 1485
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "page",
+            "value" : "0"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        }, {
+          "name" : "check_aggregated_position",
+          "time" : {
+            "start" : 1725334121608,
+            "stop" : 1725334122358,
+            "duration" : 750
+          },
+          "status" : "failed",
+          "statusMessage" : "AssertionError: original_aggregated_balance_dict, new_aggregated_balance_dict, change [{'tradeCcy': 'BTC', 'residualPosition': -0.00211726, 'minRfsClientTradeId': 35532, 'maxRfsClientTradeId': 58247, 'countRfsClientTradeId': 432}, {'tradeCcy': 'USDT', 'residualPosition': 0.14, 'minRfsClientTradeId': 41418, 'maxRfsClientTradeId': 41418, 'countRfsClientTradeId': 1}, {'tradeCcy': 'ETH', 'residualPosition': -0.00582343, 'minRfsClientTradeId': 41693, 'maxRfsClientTradeId': 57565, 'countRfsClientTradeId': 3492}, {'tradeCcy': 'LINK', 'residualPosition': 4.16e-06, 'minRfsClientTradeId': 44625, 'maxRfsClientTradeId': 44625, 'countRfsClientTradeId': 1}, {'tradeCcy': 'BCH', 'residualPosition': 3.9e-07, 'minRfsClientTradeId': 45529, 'maxRfsClientTradeId': 45529, 'countRfsClientTradeId': 1}, {'tradeCcy': 'LTC', 'residualPosition': 2.28e-06, 'minRfsClientTradeId': 46031, 'maxRfsClientTradeId': 46031, 'countRfsClientTradeId': 1}, {'tradeCcy': 'USDTTRC', 'residualPosition': 3.172e-05, 'minRfsClientTradeId': 57463, 'maxRfsClientTradeId': 57463, 'countRfsClientTradeId': 1}, {'tradeCcy': 'SOL', 'residualPosition': 1e-06, 'minRfsClientTradeId': 57476, 'maxRfsClientTradeId': 58257, 'countRfsClientTradeId': 37}], [{'tradeCcy': 'BTC', 'residualPosition': -0.00211726, 'minRfsClientTradeId': 35532, 'maxRfsClientTradeId': 58247, 'countRfsClientTradeId': 432}, {'tradeCcy': 'USDT', 'residualPosition': 0.14, 'minRfsClientTradeId': 41418, 'maxRfsClientTradeId': 41418, 'countRfsClientTradeId': 1}, {'tradeCcy': 'ETH', 'residualPosition': -0.00582343, 'minRfsClientTradeId': 41693, 'maxRfsClientTradeId': 57565, 'countRfsClientTradeId': 3492}, {'tradeCcy': 'LINK', 'residualPosition': 4.16e-06, 'minRfsClientTradeId': 44625, 'maxRfsClientTradeId': 44625, 'countRfsClientTradeId': 1}, {'tradeCcy': 'BCH', 'residualPosition': 3.9e-07, 'minRfsClientTradeId': 45529, 'maxRfsClientTradeId': 45529, 'countRfsClientTradeId': 1}, {'tradeCcy': 'LTC', 'residualPosition': 2.28e-06, 'minRfsClientTradeId': 46031, 'maxRfsClientTradeId': 46031, 'countRfsClientTradeId': 1}, {'tradeCcy': 'USDTTRC', 'residualPosition': 3.172e-05, 'minRfsClientTradeId': 57463, 'maxRfsClientTradeId': 57463, 'countRfsClientTradeId': 1}, {'tradeCcy': 'SOL', 'residualPosition': 7.9e-07, 'minRfsClientTradeId': 57476, 'maxRfsClientTradeId': 58257, 'countRfsClientTradeId': 37}], True\n",
+          "statusTrace" : "  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/utils/RFQ_relates_function.py\", line 285, in check_aggregated_position_after_trade\n    raise e\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/utils/RFQ_relates_function.py\", line 278, in check_aggregated_position_after_trade\n    assert original_aggregated_balance_dict == new_aggregated_balance_dict, f\"original_aggregated_balance_dict, new_aggregated_balance_dict, change {original_aggregated_balance_dict}, {new_aggregated_balance_dict}, {change}\"\n",
+          "steps" : [ {
+            "name" : "rfs_aggregated_positions",
+            "time" : {
+              "start" : 1725334121608,
+              "stop" : 1725334122357,
+              "duration" : 749
+            },
+            "status" : "passed",
+            "steps" : [ ],
+            "attachments" : [ ],
+            "parameters" : [ ],
+            "stepsCount" : 0,
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "hasContent" : false
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "ccy",
+            "value" : "'SOL'"
+          }, {
+            "name" : "amount",
+            "value" : "1.3e-07"
+          }, {
+            "name" : "client_id",
+            "value" : "58257"
+          }, {
+            "name" : "original_aggregated_balance_dic",
+            "value" : "[{'tradeCcy': 'BTC', 'residualPosition': -0.00211726, 'minRfsClientTradeId': 35532, 'maxRfsClientTradeId': 58247, 'countRfsClientTradeId': 432}, {'tradeCcy': 'USDT', 'residualPosition': 0.14, 'minRfsClientTradeId': 41418, 'maxRfsClientTradeId': 41418, 'countRfsClientTradeId': 1}, {'tradeCcy': 'ETH', 'residualPosition': -0.00582343, 'minRfsClientTradeId': 41693, 'maxRfsClientTradeId': 57565, 'countRfsClientTradeId': 3492}, {'tradeCcy': 'LINK', 'residualPosition': 4.16e-06, 'minRfsClientTradeId': 44625, 'maxRfsClientTradeId': 44625, 'countRfsClientTradeId': 1}, {'tradeCcy': 'BCH', 'residualPosition': 3.9e-07, 'minRfsClientTradeId': 45529, 'maxRfsClientTradeId': 45529, 'countRfsClientTradeId': 1}, {'tradeCcy': 'LTC', 'residualPosition': 2.28e-06, 'minRfsClientTradeId': 46031, 'maxRfsClientTradeId': 46031, 'countRfsClientTradeId': 1}, {'tradeCcy': 'USDTTRC', 'residualPosition': 3.172e-05, 'minRfsClientTradeId': 57463, 'maxRfsClientTradeId': 57463, 'countRfsClientTradeId': 1}, {'tradeCcy': 'SOL', 'residualPosition': 6.6e-07, 'minRfsClientTradeId': 57476, 'maxRfsClientTradeId': 58256, 'countRfsClientTradeId': 36}]"
+          }, {
+            "name" : "change",
+            "value" : "True"
+          } ],
+          "stepsCount" : 1,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : true,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "quote_res",
+          "value" : "{'responseCode': 'FULL_QUOTE', 'buyTradedCurrency': False, 'settlementCurrency': 'USD', 'tradedCurrency': 'SOL', 'quotedSettlementCurrencyAmount': '100', 'quotedTradedCurrencyAmount': '0.75099413', 'executedPrice': '133.156832', 'retailRateInSettlementCurrency': '133.156832', 'quoteId': 'DENjd+ttVqGQjHU8ebcji6OnH4T2fHpSmdw6dtDwI9lNJu+TGwNj/4woV+dVU0N1ybR7TwlvxK+1DFXpXBNALEh3k/iGrKKrOcvpmhvyHghzis0OUUtCE6s5ZSeExsOrhDT1cLeR0fOmWki0Jbbs2geSYsRZk7sf7CHvgsug1YPaeHiJFbr/VQtTE1SUzCY51GIuQ7zzMRDotl2YnJ/FXBpbI8/KolStTGwhRszFDVDlpzlfgy+KAkLSGY706Tt9hxRTO7r/kAuG4BOSNHi/4MSQaXQ1kp5cq02xJKqaQlNZocUWUQJFraaXvgKp0R8meg8W/RNhmg61VL/TwUNUsiIxuQk=', 'quoteExpiresAt': 1725334122043, 'quoteCreatedAt': 1725334115043, 'dealerSettlementCurrency': 'USD', 'dealerSettlementCurrencyAmount': '100', 'isInvoice': False, 'isCardLoad': False, 'isPtsSufficient': False, 'isMtPreDealPreCheckSuccess': False}"
+        }, {
+          "name" : "execute_res",
+          "value" : "{'responseCode': 'EXECUTED', 'tradeId': '14ba482a4c10455685857008f6b7dac6', 'tradeRef': '14ba482a4c10455685857008f6b7dac6', 'quoteId': 'DENjd+ttVqGQjHU8ebcji6OnH4T2fHpSmdw6dtDwI9lNJu+TGwNj/4woV+dVU0N1ybR7TwlvxK+1DFXpXBNALEh3k/iGrKKrOcvpmhvyHghzis0OUUtCE6s5ZSeExsOrhDT1cLeR0fOmWki0Jbbs2geSYsRZk7sf7CHvgsug1YPaeHiJFbr/VQtTE1SUzCY51GIuQ7zzMRDotl2YnJ/FXBpbI8/KolStTGwhRszFDVDlpzlfgy+KAkLSGY706Tt9hxRTO7r/kAuG4BOSNHi/4MSQaXQ1kp5cq02xJKqaQlNZocUWUQJFraaXvgKp0R8meg8W/RNhmg61VL/TwUNUsiIxuQk=', 'buyTradedCurrency': False, 'settlementCurrency': 'USD', 'tradedCurrency': 'SOL', 'quotedSettlementCurrencyAmount': '100', 'quotedTradedCurrencyAmount': '0.75099413', 'executedPrice': '133.156832'}"
+        }, {
+          "name" : "original_aggregated_balance_dic",
+          "value" : "[{'tradeCcy': 'BTC', 'residualPosition': -0.00211726, 'minRfsClientTradeId': 35532, 'maxRfsClientTradeId': 58247, 'countRfsClientTradeId': 432}, {'tradeCcy': 'USDT', 'residualPosition': 0.14, 'minRfsClientTradeId': 41418, 'maxRfsClientTradeId': 41418, 'countRfsClientTradeId': 1}, {'tradeCcy': 'ETH', 'residualPosition': -0.00582343, 'minRfsClientTradeId': 41693, 'maxRfsClientTradeId': 57565, 'countRfsClientTradeId': 3492}, {'tradeCcy': 'LINK', 'residualPosition': 4.16e-06, 'minRfsClientTradeId': 44625, 'maxRfsClientTradeId': 44625, 'countRfsClientTradeId': 1}, {'tradeCcy': 'BCH', 'residualPosition': 3.9e-07, 'minRfsClientTradeId': 45529, 'maxRfsClientTradeId': 45529, 'countRfsClientTradeId': 1}, {'tradeCcy': 'LTC', 'residualPosition': 2.28e-06, 'minRfsClientTradeId': 46031, 'maxRfsClientTradeId': 46031, 'countRfsClientTradeId': 1}, {'tradeCcy': 'USDTTRC', 'residualPosition': 3.172e-05, 'minRfsClientTradeId': 57463, 'maxRfsClientTradeId': 57463, 'countRfsClientTradeId': 1}, {'tradeCcy': 'SOL', 'residualPosition': 6.6e-07, 'minRfsClientTradeId': 57476, 'maxRfsClientTradeId': 58256, 'countRfsClientTradeId': 36}]"
+        } ],
+        "stepsCount" : 3,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 4,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 24,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "setup_and_teardown::0",
+    "time" : {
+      "start" : 1725334124456,
+      "stop" : 1725334124456,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Positive Test Cases"
+  }, {
+    "name" : "subSuite",
+    "value" : "Positive Test Cases"
+  }, {
+    "name" : "epic",
+    "value" : "RFQ API TEST"
+  }, {
+    "name" : "parentSuite",
+    "value" : "RFQ API TEST"
+  }, {
+    "name" : "feature",
+    "value" : "IPA Test Cases"
+  }, {
+    "name" : "suite",
+    "value" : "IPA Test Cases"
+  }, {
+    "name" : "tag",
+    "value" : "flaky(reruns=1, reason='Quote Or Execute may Fail')"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.usefixtures('rfq_order_before_check')"
+  }, {
+    "name" : "host",
+    "value" : "shawnxiaooslcom.local"
+  }, {
+    "name" : "thread",
+    "value" : "69044-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "testcase.test_RFQorder"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "case_title",
+    "value" : "'4.SOL-USD 100 settlementCurrency sell test'"
+  }, {
+    "name" : "case_type",
+    "value" : "'Positive'"
+  }, {
+    "name" : "execute_expected",
+    "value" : "'EXECUTED'"
+  }, {
+    "name" : "quote_expected",
+    "value" : "'FULL_QUOTE'"
+  }, {
+    "name" : "quote_param",
+    "value" : "{'quoteRequest': {'buyTradedCurrency': False, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USD', 'settlementCurrencyAmount': 100}}"
+  } ],
+  "links" : [ ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "flaky(reruns=1, reason='Quote Or Execute may Fail')", "@pytest.mark.usefixtures('rfq_order_before_check')" ]
+  },
+  "source" : "f2212955cf755e9f.json",
+  "parameterValues" : [ "'4.SOL-USD 100 settlementCurrency sell test'", "'Positive'", "'EXECUTED'", "'FULL_QUOTE'", "{'quoteRequest': {'buyTradedCurrency': False, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USD', 'settlementCurrencyAmount': 100}}" ]
+}

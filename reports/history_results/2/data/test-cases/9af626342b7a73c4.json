@@ -1,0 +1,529 @@
+{
+  "uid" : "9af626342b7a73c4",
+  "name" : "2.SOL-USD 5 tradedCurrency sell test",
+  "fullName" : "testcase.test_RFQorder#test_makeRFQorder",
+  "historyId" : "c47ac116f7f9d6488be87f73780cef5d",
+  "time" : {
+    "start" : 1725334061692,
+    "stop" : 1725334070555,
+    "duration" : 8863
+  },
+  "status" : "failed",
+  "statusMessage" : "AssertionError: execute api did not EXECUTED\nassert 'TRADE_UNSUCC..._PLEASE_RETRY' == 'EXECUTED'\n  \n  - EXECUTED\n  + TRADE_UNSUCCESSFUL_PLEASE_RETRY",
+  "statusTrace" : "case_type = 'Positive', case_title = '2.SOL-USD 5 tradedCurrency sell test'\nquote_param = {'quoteRequest': {'buyTradedCurrency': False, 'settlementCurrency': 'USD', 'tradedCurrency': 'SOL', 'tradedCurrencyAmount': 5}}\nquote_expected = 'FULL_QUOTE', execute_expected = 'EXECUTED'\n\n    @pytest.mark.usefixtures(\"rfq_order_before_check\")\n    @pytest.mark.parametrize('case_type,case_title,quote_param,quote_expected,execute_expected',\n                             rfq_data_output(testdata))\n    @allure.parent_suite(\"RFQ API TEST\")\n    @allure.suite(\"IPA Test Cases\")\n    @allure.epic('RFQ API TEST')\n    @allure.feature(\"IPA Test Cases\")\n    @allure.title(\"{case_title}\")\n    @pytest.mark.flaky(reruns=reruns, reason='Quote Or Execute may Fail')\n    def test_makeRFQorder(case_type, case_title, quote_param, quote_expected, execute_expected):\n        allure.dynamic.story(f\"{case_type} Test Cases\")\n        allure.dynamic.sub_suite(f\"{case_type} Test Cases\")\n        logger.log(case_type)\n        try:\n            check_ccy_pair(quote_param)\n            client = RFQorder()\n            client.check_aggregated_balance_dic_before_trade()\n            client.quote_request(quote_param, quote_expected)\n            client.check_before_trade()\n            client.execute_request(execute_expected)\n            client.compare_quote_execute_details()\n            client.check_after_trade()\n            client.check_user_tran()\n            client.check_RFS_console_tran()\n            client.assertion_ops_tran_RFQ()\n    \n        except AssertionError or Exception as e:\n            # 如果失败，等待一段时间再重试\n            time.sleep(2)  # 等待 2 秒\n>           raise e\n\ntestcase/test_RFQorder.py:194: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \ntestcase/test_RFQorder.py:184: in test_makeRFQorder\n    client.execute_request(execute_expected)\ntestcase/test_RFQorder.py:104: in execute_request\n    raise e\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <test_RFQorder.RFQorder object at 0x7fe438d095e0>\nexecute_expected = 'EXECUTED'\n\n    @allure.step(\"Make Execute Request\")\n    def execute_request(self, execute_expected):\n        execute_param_ = {'tradeRequest': {}}\n        execute_param_['tradeRequest']['quoteId'] = self.quote_id\n        try:\n            execute_res = execute_trade(execute_param_, self.trace_id)\n            self.execute_res = execute_res\n            assert execute_res[\n                       'response'].status_code == 200, f\"Expected status code 200, but got {execute_res['response'].status_code}\"\n>           assert execute_res['res']['tradeResponse'][\n                       'responseCode'] == execute_expected, f'execute api did not {execute_expected}'\nE                      AssertionError: execute api did not EXECUTED\nE                      assert 'TRADE_UNSUCC..._PLEASE_RETRY' == 'EXECUTED'\nE                        \nE                        - EXECUTED\nE                        + TRADE_UNSUCCESSFUL_PLEASE_RETRY\n\ntestcase/test_RFQorder.py:90: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "setup_and_teardown",
+    "time" : {
+      "start" : 1725334059013,
+      "stop" : 1725334059013,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "rfq_order_before_check",
+    "time" : {
+      "start" : 1725334059013,
+      "stop" : 1725334061688,
+      "duration" : 2675
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "rfs_authToken",
+      "time" : {
+        "start" : 1725334059013,
+        "stop" : 1725334059820,
+        "duration" : 807
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "ops_authToken",
+      "time" : {
+        "start" : 1725334059820,
+        "stop" : 1725334060387,
+        "duration" : 567
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "check_rfs_trading_status",
+      "time" : {
+        "start" : 1725334060387,
+        "stop" : 1725334061176,
+        "duration" : 789
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "rfs_status",
+        "time" : {
+          "start" : 1725334060387,
+          "stop" : 1725334061176,
+          "duration" : 789
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "status",
+        "value" : "True"
+      } ],
+      "stepsCount" : 1,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "check_rfs_LP_gateway",
+      "time" : {
+        "start" : 1725334061176,
+        "stop" : 1725334061687,
+        "duration" : 511
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "rfs_status_venue",
+        "time" : {
+          "start" : 1725334061176,
+          "stop" : 1725334061687,
+          "duration" : 511
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "status",
+        "value" : "True"
+      } ],
+      "stepsCount" : 1,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 6,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  } ],
+  "testStage" : {
+    "status" : "failed",
+    "statusMessage" : "AssertionError: execute api did not EXECUTED\nassert 'TRADE_UNSUCC..._PLEASE_RETRY' == 'EXECUTED'\n  \n  - EXECUTED\n  + TRADE_UNSUCCESSFUL_PLEASE_RETRY",
+    "statusTrace" : "case_type = 'Positive', case_title = '2.SOL-USD 5 tradedCurrency sell test'\nquote_param = {'quoteRequest': {'buyTradedCurrency': False, 'settlementCurrency': 'USD', 'tradedCurrency': 'SOL', 'tradedCurrencyAmount': 5}}\nquote_expected = 'FULL_QUOTE', execute_expected = 'EXECUTED'\n\n    @pytest.mark.usefixtures(\"rfq_order_before_check\")\n    @pytest.mark.parametrize('case_type,case_title,quote_param,quote_expected,execute_expected',\n                             rfq_data_output(testdata))\n    @allure.parent_suite(\"RFQ API TEST\")\n    @allure.suite(\"IPA Test Cases\")\n    @allure.epic('RFQ API TEST')\n    @allure.feature(\"IPA Test Cases\")\n    @allure.title(\"{case_title}\")\n    @pytest.mark.flaky(reruns=reruns, reason='Quote Or Execute may Fail')\n    def test_makeRFQorder(case_type, case_title, quote_param, quote_expected, execute_expected):\n        allure.dynamic.story(f\"{case_type} Test Cases\")\n        allure.dynamic.sub_suite(f\"{case_type} Test Cases\")\n        logger.log(case_type)\n        try:\n            check_ccy_pair(quote_param)\n            client = RFQorder()\n            client.check_aggregated_balance_dic_before_trade()\n            client.quote_request(quote_param, quote_expected)\n            client.check_before_trade()\n            client.execute_request(execute_expected)\n            client.compare_quote_execute_details()\n            client.check_after_trade()\n            client.check_user_tran()\n            client.check_RFS_console_tran()\n            client.assertion_ops_tran_RFQ()\n    \n        except AssertionError or Exception as e:\n            # 如果失败，等待一段时间再重试\n            time.sleep(2)  # 等待 2 秒\n>           raise e\n\ntestcase/test_RFQorder.py:194: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \ntestcase/test_RFQorder.py:184: in test_makeRFQorder\n    client.execute_request(execute_expected)\ntestcase/test_RFQorder.py:104: in execute_request\n    raise e\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <test_RFQorder.RFQorder object at 0x7fe438d095e0>\nexecute_expected = 'EXECUTED'\n\n    @allure.step(\"Make Execute Request\")\n    def execute_request(self, execute_expected):\n        execute_param_ = {'tradeRequest': {}}\n        execute_param_['tradeRequest']['quoteId'] = self.quote_id\n        try:\n            execute_res = execute_trade(execute_param_, self.trace_id)\n            self.execute_res = execute_res\n            assert execute_res[\n                       'response'].status_code == 200, f\"Expected status code 200, but got {execute_res['response'].status_code}\"\n>           assert execute_res['res']['tradeResponse'][\n                       'responseCode'] == execute_expected, f'execute api did not {execute_expected}'\nE                      AssertionError: execute api did not EXECUTED\nE                      assert 'TRADE_UNSUCC..._PLEASE_RETRY' == 'EXECUTED'\nE                        \nE                        - EXECUTED\nE                        + TRADE_UNSUCCESSFUL_PLEASE_RETRY\n\ntestcase/test_RFQorder.py:90: AssertionError",
+    "steps" : [ {
+      "name" : "check_ccy_pair",
+      "time" : {
+        "start" : 1725334061692,
+        "stop" : 1725334063319,
+        "duration" : 1627
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "rfs_cc_pair_status",
+        "time" : {
+          "start" : 1725334061692,
+          "stop" : 1725334063318,
+          "duration" : 1626
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "quote_req",
+        "value" : "{'quoteRequest': {'buyTradedCurrency': False, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USD', 'tradedCurrencyAmount': 5}}"
+      } ],
+      "stepsCount" : 1,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "record aggregated_balance_before trade",
+      "time" : {
+        "start" : 1725334063319,
+        "stop" : 1725334063924,
+        "duration" : 605
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "rfs_aggregated_positions",
+        "time" : {
+          "start" : 1725334063319,
+          "stop" : 1725334063924,
+          "duration" : 605
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 1,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Asking QuoteId Request",
+      "time" : {
+        "start" : 1725334063925,
+        "stop" : 1725334064623,
+        "duration" : 698
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "6310ec4f638575f9",
+        "name" : "Asking QuoteId Details",
+        "source" : "6310ec4f638575f9.json",
+        "type" : "application/json",
+        "size" : 1083
+      } ],
+      "parameters" : [ {
+        "name" : "quote_param",
+        "value" : "{'quoteRequest': {'buyTradedCurrency': False, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USD', 'tradedCurrencyAmount': 5}}"
+      }, {
+        "name" : "quote_expected",
+        "value" : "'FULL_QUOTE'"
+      } ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Check Balance Before Trade",
+      "time" : {
+        "start" : 1725334064624,
+        "stop" : 1725334066164,
+        "duration" : 1540
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "brokerage_balance_order_before_check",
+        "time" : {
+          "start" : 1725334064624,
+          "stop" : 1725334066164,
+          "duration" : 1540
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "get_account_information",
+          "time" : {
+            "start" : 1725334064624,
+            "stop" : 1725334065441,
+            "duration" : 817
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "currency",
+            "value" : "'SOL'"
+          }, {
+            "name" : "wallet",
+            "value" : "'Wallets'"
+          }, {
+            "name" : "account",
+            "value" : "'Brokerage_Available_Balance'"
+          }, {
+            "name" : "multiple",
+            "value" : "False"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        }, {
+          "name" : "get_account_information",
+          "time" : {
+            "start" : 1725334065441,
+            "stop" : 1725334066163,
+            "duration" : 722
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "currency",
+            "value" : "'USD'"
+          }, {
+            "name" : "wallet",
+            "value" : "'Wallets'"
+          }, {
+            "name" : "account",
+            "value" : "'Brokerage_Available_Balance'"
+          }, {
+            "name" : "multiple",
+            "value" : "False"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "res",
+          "value" : "{'response': <Response [200]>, 'res': {'quoteResponse': {'responseCode': 'FULL_QUOTE', 'buyTradedCurrency': False, 'settlementCurrency': 'USD', 'tradedCurrency': 'SOL', 'quotedSettlementCurrencyAmount': '665.78', 'quotedTradedCurrencyAmount': '5', 'executedPrice': '133.156832', 'retailRateInSettlementCurrency': '133.156832', 'quoteId': 'FINH4J6Usn2o9PW+aVDCTpJja+jqzEBzofNGoloTvkMNvQEVudzSyeTwBeT6hpcHPr238drxkjlA00BE3HNRo/uC6r9IC7X1GnLkMeeFEDqpasccRUDbc2stBuMTduskqRC72QAIM0EI3NMWKrcfug/d+gVsbbdHm5cuedBengf8+PuY5YUZ/kTYwcWqqr4yUe+DVjfKU/vk6nmks/qbsIljpawer6XkXGK/YmXFZwhalz0xspCrE4cLHrmncDwE56iHXfEWX6oV2LjT7OhCQyH/rjdmq0hmOXEuEGQFBLs0PzaJor+J3tzb0LKadW8kaZ3RUrETbC+r26ICSO6mcZU/ieo=', 'quoteExpiresAt': 1725334071544, 'quoteCreatedAt': 1725334064544, 'dealerSettlementCurrency': 'USD', 'dealerSettlementCurrencyAmount': '665.78', 'isInvoice': False, 'isCardLoad': False, 'isPtsSufficient': False, 'isMtPreDealPreCheckSuccess': False}, 'timestamp': 1725334064544, 'resultCode': 'OK'}, 'req_msg': \"<Request> [055e4da1-eaea-485d-9b40-963a6601deda] => POST api/3/retail/quote <Param> => {'quoteRequest': {'buyTradedCurrency': False, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USD', 'tradedCurrencyAmount': 5}, 'tonce': 1725334063924709}\", 'res_msg': \"<Response> [055e4da1-eaea-485d-9b40-963a6601deda] => {'quoteResponse': {'responseCode': 'FULL_QUOTE', 'buyTradedCurrency': False, 'settlementCurrency': 'USD', 'tradedCurrency': 'SOL', 'quotedSettlementCurrencyAmount': '665.78', 'quotedTradedCurrencyAmount': '5', 'executedPrice': '133.156832', 'retailRateInSettlementCurrency': '133.156832', 'quoteId': 'FINH4J6Usn2o9PW+aVDCTpJja+jqzEBzofNGoloTvkMNvQEVudzSyeTwBeT6hpcHPr238drxkjlA00BE3HNRo/uC6r9IC7X1GnLkMeeFEDqpasccRUDbc2stBuMTduskqRC72QAIM0EI3NMWKrcfug/d+gVsbbdHm5cuedBengf8+PuY5YUZ/kTYwcWqqr4yUe+DVjfKU/vk6nmks/qbsIljpawer6XkXGK/YmXFZwhalz0xspCrE4cLHrmncDwE56iHXfEWX6oV2LjT7OhCQyH/rjdmq0hmOXEuEGQFBLs0PzaJor+J3tzb0LKadW8kaZ3RUrETbC+r26ICSO6mcZU/ieo=', 'quoteExpiresAt': 1725334071544, 'quoteCreatedAt': 1725334064544, 'dealerSettlementCurrency': 'USD', 'dealerSettlementCurrencyAmount': '665.78', 'isInvoice': False, 'isCardLoad': False, 'isPtsSufficient': False, 'isMtPreDealPreCheckSuccess': False}, 'timestamp': 1725334064544, 'resultCode': 'OK'}\"}"
+        } ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 3,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Make Execute Request",
+      "time" : {
+        "start" : 1725334066164,
+        "stop" : 1725334068544,
+        "duration" : 2380
+      },
+      "status" : "failed",
+      "statusMessage" : "AssertionError: execute api did not EXECUTED\nassert 'TRADE_UNSUCC..._PLEASE_RETRY' == 'EXECUTED'\n  \n  - EXECUTED\n  + TRADE_UNSUCCESSFUL_PLEASE_RETRY\n",
+      "statusTrace" : "  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/testcase/test_RFQorder.py\", line 104, in execute_request\n    raise e\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/testcase/test_RFQorder.py\", line 90, in execute_request\n    assert execute_res['res']['tradeResponse'][\n",
+      "steps" : [ {
+        "name" : "Execute Fail and Check if money lost",
+        "time" : {
+          "start" : 1725334067192,
+          "stop" : 1725334068543,
+          "duration" : 1351
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "brokerage_balance_order_before_check",
+          "time" : {
+            "start" : 1725334067192,
+            "stop" : 1725334068543,
+            "duration" : 1351
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "get_account_information",
+            "time" : {
+              "start" : 1725334067193,
+              "stop" : 1725334067819,
+              "duration" : 626
+            },
+            "status" : "passed",
+            "steps" : [ ],
+            "attachments" : [ ],
+            "parameters" : [ {
+              "name" : "currency",
+              "value" : "'SOL'"
+            }, {
+              "name" : "wallet",
+              "value" : "'Wallets'"
+            }, {
+              "name" : "account",
+              "value" : "'Brokerage_Available_Balance'"
+            }, {
+              "name" : "multiple",
+              "value" : "False"
+            } ],
+            "stepsCount" : 0,
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "hasContent" : true
+          }, {
+            "name" : "get_account_information",
+            "time" : {
+              "start" : 1725334067820,
+              "stop" : 1725334068541,
+              "duration" : 721
+            },
+            "status" : "passed",
+            "steps" : [ ],
+            "attachments" : [ ],
+            "parameters" : [ {
+              "name" : "currency",
+              "value" : "'USD'"
+            }, {
+              "name" : "wallet",
+              "value" : "'Wallets'"
+            }, {
+              "name" : "account",
+              "value" : "'Brokerage_Available_Balance'"
+            }, {
+              "name" : "multiple",
+              "value" : "False"
+            } ],
+            "stepsCount" : 0,
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "hasContent" : true
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "res",
+            "value" : "{'response': <Response [200]>, 'res': {'quoteResponse': {'responseCode': 'FULL_QUOTE', 'buyTradedCurrency': False, 'settlementCurrency': 'USD', 'tradedCurrency': 'SOL', 'quotedSettlementCurrencyAmount': '665.78', 'quotedTradedCurrencyAmount': '5', 'executedPrice': '133.156832', 'retailRateInSettlementCurrency': '133.156832', 'quoteId': 'FINH4J6Usn2o9PW+aVDCTpJja+jqzEBzofNGoloTvkMNvQEVudzSyeTwBeT6hpcHPr238drxkjlA00BE3HNRo/uC6r9IC7X1GnLkMeeFEDqpasccRUDbc2stBuMTduskqRC72QAIM0EI3NMWKrcfug/d+gVsbbdHm5cuedBengf8+PuY5YUZ/kTYwcWqqr4yUe+DVjfKU/vk6nmks/qbsIljpawer6XkXGK/YmXFZwhalz0xspCrE4cLHrmncDwE56iHXfEWX6oV2LjT7OhCQyH/rjdmq0hmOXEuEGQFBLs0PzaJor+J3tzb0LKadW8kaZ3RUrETbC+r26ICSO6mcZU/ieo=', 'quoteExpiresAt': 1725334071544, 'quoteCreatedAt': 1725334064544, 'dealerSettlementCurrency': 'USD', 'dealerSettlementCurrencyAmount': '665.78', 'isInvoice': False, 'isCardLoad': False, 'isPtsSufficient': False, 'isMtPreDealPreCheckSuccess': False}, 'timestamp': 1725334064544, 'resultCode': 'OK'}, 'req_msg': \"<Request> [055e4da1-eaea-485d-9b40-963a6601deda] => POST api/3/retail/quote <Param> => {'quoteRequest': {'buyTradedCurrency': False, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USD', 'tradedCurrencyAmount': 5}, 'tonce': 1725334063924709}\", 'res_msg': \"<Response> [055e4da1-eaea-485d-9b40-963a6601deda] => {'quoteResponse': {'responseCode': 'FULL_QUOTE', 'buyTradedCurrency': False, 'settlementCurrency': 'USD', 'tradedCurrency': 'SOL', 'quotedSettlementCurrencyAmount': '665.78', 'quotedTradedCurrencyAmount': '5', 'executedPrice': '133.156832', 'retailRateInSettlementCurrency': '133.156832', 'quoteId': 'FINH4J6Usn2o9PW+aVDCTpJja+jqzEBzofNGoloTvkMNvQEVudzSyeTwBeT6hpcHPr238drxkjlA00BE3HNRo/uC6r9IC7X1GnLkMeeFEDqpasccRUDbc2stBuMTduskqRC72QAIM0EI3NMWKrcfug/d+gVsbbdHm5cuedBengf8+PuY5YUZ/kTYwcWqqr4yUe+DVjfKU/vk6nmks/qbsIljpawer6XkXGK/YmXFZwhalz0xspCrE4cLHrmncDwE56iHXfEWX6oV2LjT7OhCQyH/rjdmq0hmOXEuEGQFBLs0PzaJor+J3tzb0LKadW8kaZ3RUrETbC+r26ICSO6mcZU/ieo=', 'quoteExpiresAt': 1725334071544, 'quoteCreatedAt': 1725334064544, 'dealerSettlementCurrency': 'USD', 'dealerSettlementCurrencyAmount': '665.78', 'isInvoice': False, 'isCardLoad': False, 'isPtsSufficient': False, 'isMtPreDealPreCheckSuccess': False}, 'timestamp': 1725334064544, 'resultCode': 'OK'}\"}"
+          } ],
+          "stepsCount" : 2,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 3,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ {
+        "uid" : "4984d8ca00521e98",
+        "name" : "Make Execute Details",
+        "source" : "4984d8ca00521e98.json",
+        "type" : "application/json",
+        "size" : 933
+      } ],
+      "parameters" : [ {
+        "name" : "execute_expected",
+        "value" : "'EXECUTED'"
+      } ],
+      "stepsCount" : 4,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 14,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "setup_and_teardown::0",
+    "time" : {
+      "start" : 1725334070599,
+      "stop" : 1725334070599,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Positive Test Cases"
+  }, {
+    "name" : "subSuite",
+    "value" : "Positive Test Cases"
+  }, {
+    "name" : "epic",
+    "value" : "RFQ API TEST"
+  }, {
+    "name" : "parentSuite",
+    "value" : "RFQ API TEST"
+  }, {
+    "name" : "feature",
+    "value" : "IPA Test Cases"
+  }, {
+    "name" : "suite",
+    "value" : "IPA Test Cases"
+  }, {
+    "name" : "tag",
+    "value" : "flaky(reruns=1, reason='Quote Or Execute may Fail')"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.usefixtures('rfq_order_before_check')"
+  }, {
+    "name" : "host",
+    "value" : "shawnxiaooslcom.local"
+  }, {
+    "name" : "thread",
+    "value" : "69044-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "testcase.test_RFQorder"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "case_title",
+    "value" : "'2.SOL-USD 5 tradedCurrency sell test'"
+  }, {
+    "name" : "case_type",
+    "value" : "'Positive'"
+  }, {
+    "name" : "execute_expected",
+    "value" : "'EXECUTED'"
+  }, {
+    "name" : "quote_expected",
+    "value" : "'FULL_QUOTE'"
+  }, {
+    "name" : "quote_param",
+    "value" : "{'quoteRequest': {'buyTradedCurrency': False, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USD', 'tradedCurrencyAmount': 5}}"
+  } ],
+  "links" : [ ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "flaky(reruns=1, reason='Quote Or Execute may Fail')", "@pytest.mark.usefixtures('rfq_order_before_check')" ]
+  },
+  "source" : "9af626342b7a73c4.json",
+  "parameterValues" : [ "'2.SOL-USD 5 tradedCurrency sell test'", "'Positive'", "'EXECUTED'", "'FULL_QUOTE'", "{'quoteRequest': {'buyTradedCurrency': False, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USD', 'tradedCurrencyAmount': 5}}" ]
+}

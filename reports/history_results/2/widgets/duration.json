@@ -1,0 +1,81 @@
+[ {
+  "uid" : "c751bb505fdc1d2f",
+  "name" : "2.SOL-USD 5 tradedCurrency sell test",
+  "time" : {
+    "start" : 1725334073870,
+    "stop" : 1725334084958,
+    "duration" : 11088
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "4d12d3a0d57a7ef8",
+  "name" : "6.SOL-USDT 5 tradedCurrency sell test",
+  "time" : {
+    "start" : 1725334164245,
+    "stop" : 1725334175143,
+    "duration" : 10898
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "96478ac47fc0a878",
+  "name" : "7.SOL-USDT 500 settlementCurrency buy test",
+  "time" : {
+    "start" : 1725334192310,
+    "stop" : 1725334203782,
+    "duration" : 11472
+  },
+  "status" : "failed",
+  "severity" : "normal"
+}, {
+  "uid" : "621a5e9de6f1252d",
+  "name" : "1.SOL-USD 5 tradedCurrency buy test",
+  "time" : {
+    "start" : 1725334048524,
+    "stop" : 1725334058998,
+    "duration" : 10474
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "e213ce6bd9c1f71b",
+  "name" : "4.SOL-USD 100 settlementCurrency sell test",
+  "time" : {
+    "start" : 1725334126901,
+    "stop" : 1725334135152,
+    "duration" : 8251
+  },
+  "status" : "failed",
+  "severity" : "normal"
+}, {
+  "uid" : "15f0680d5dda5796",
+  "name" : "8.SOL-USDT 500 settlementCurrency sell test",
+  "time" : {
+    "start" : 1725334221643,
+    "stop" : 1725334233359,
+    "duration" : 11716
+  },
+  "status" : "failed",
+  "severity" : "normal"
+}, {
+  "uid" : "aa0e082e868c68c2",
+  "name" : "5.SOL-USDT 5 tradedCurrency buy test",
+  "time" : {
+    "start" : 1725334150443,
+    "stop" : 1725334161337,
+    "duration" : 10894
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "ac5f69131e8a7413",
+  "name" : "3.SOL-USD 100 settlementCurrency buy test",
+  "time" : {
+    "start" : 1725334098392,
+    "stop" : 1725334109890,
+    "duration" : 11498
+  },
+  "status" : "failed",
+  "severity" : "normal"
+} ]

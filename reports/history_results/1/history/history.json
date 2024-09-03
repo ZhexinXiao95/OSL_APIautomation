@@ -1,0 +1,22 @@
+{
+  "3b38b8aa1c8cf9ae83c27e6b31799ca3" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 1,
+      "skipped" : 0,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "bdd076dc3588d0de",
+      "status" : "broken",
+      "statusDetails" : "TypeError: can only concatenate str (not \"int\") to str",
+      "time" : {
+        "start" : 1725333541926,
+        "stop" : 1725333550249,
+        "duration" : 8323
+      }
+    } ]
+  }
+}

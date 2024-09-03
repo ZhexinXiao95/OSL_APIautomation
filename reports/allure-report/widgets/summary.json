@@ -1,0 +1,20 @@
+{
+  "reportName" : "OSL Automation Report",
+  "testRuns" : [ ],
+  "statistic" : {
+    "failed" : 4,
+    "broken" : 0,
+    "skipped" : 0,
+    "passed" : 4,
+    "unknown" : 0,
+    "total" : 8
+  },
+  "time" : {
+    "start" : 1725334048524,
+    "stop" : 1725334233359,
+    "duration" : 184835,
+    "minDuration" : 8251,
+    "maxDuration" : 11716,
+    "sumDuration" : 86291
+  }
+}

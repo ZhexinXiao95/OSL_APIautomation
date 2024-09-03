@@ -1,0 +1,77 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "children" : [ {
+    "name" : "Product defects",
+    "children" : [ {
+      "name" : "AssertionError: original_aggregated_balance_dict, new_aggregated_balance_dict, change [{'tradeCcy': 'BTC', 'residualPosition': -0.00211726, 'minRfsClientTradeId': 35532, 'maxRfsClientTradeId': 58247, 'countRfsClientTradeId': 432}, {'tradeCcy': 'USDT', 'residualPosition': 0.14, 'minRfsClientTradeId': 41418, 'maxRfsClientTradeId': 41418, 'countRfsClientTradeId': 1}, {'tradeCcy': 'ETH', 'residualPosition': -0.00582343, 'minRfsClientTradeId': 41693, 'maxRfsClientTradeId': 57565, 'countRfsClientTradeId': 3492}, {'tradeCcy': 'LINK', 'residualPosition': 4.16e-06, 'minRfsClientTradeId': 44625, 'maxRfsClientTradeId': 44625, 'countRfsClientTradeId': 1}, {'tradeCcy': 'BCH', 'residualPosition': 3.9e-07, 'minRfsClientTradeId': 45529, 'maxRfsClientTradeId': 45529, 'countRfsClientTradeId': 1}, {'tradeCcy': 'LTC', 'residualPosition': 2.28e-06, 'minRfsClientTradeId': 46031, 'maxRfsClientTradeId': 46031, 'countRfsClientTradeId': 1}, {'tradeCcy': 'USDTTRC', 'residualPosition': 3.172e-05, 'minRfsClientTradeId': 57463, 'maxRfsClientTradeId': 57463, 'countRfsClientTradeId': 1}, {'tradeCcy': 'SOL', 'residualPosition': 1e-06, 'minRfsClientTradeId': 57476, 'maxRfsClientTradeId': 58256, 'countRfsClientTradeId': 36}], [{'tradeCcy': 'BTC', 'residualPosition': -0.00211726, 'minRfsClientTradeId': 35532, 'maxRfsClientTradeId': 58247, 'countRfsClientTradeId': 432}, {'tradeCcy': 'USDT', 'residualPosition': 0.14, 'minRfsClientTradeId': 41418, 'maxRfsClientTradeId': 41418, 'countRfsClientTradeId': 1}, {'tradeCcy': 'ETH', 'residualPosition': -0.00582343, 'minRfsClientTradeId': 41693, 'maxRfsClientTradeId': 57565, 'countRfsClientTradeId': 3492}, {'tradeCcy': 'LINK', 'residualPosition': 4.16e-06, 'minRfsClientTradeId': 44625, 'maxRfsClientTradeId': 44625, 'countRfsClientTradeId': 1}, {'tradeCcy': 'BCH', 'residualPosition': 3.9e-07, 'minRfsClientTradeId': 45529, 'maxRfsClientTradeId': 45529, 'countRfsClientTradeId': 1}, {'tradeCcy': 'LTC', 'residualPosition': 2.28e-06, 'minRfsClientTradeId': 46031, 'maxRfsClientTradeId': 46031, 'countRfsClientTradeId': 1}, {'tradeCcy': 'USDTTRC', 'residualPosition': 3.172e-05, 'minRfsClientTradeId': 57463, 'maxRfsClientTradeId': 57463, 'countRfsClientTradeId': 1}, {'tradeCcy': 'SOL', 'residualPosition': 6.6e-07, 'minRfsClientTradeId': 57476, 'maxRfsClientTradeId': 58256, 'countRfsClientTradeId': 36}], True",
+      "children" : [ {
+        "name" : "3.SOL-USD 100 settlementCurrency buy test",
+        "uid" : "ac5f69131e8a7413",
+        "parentUid" : "3d6071c882442968cad554a2a6284e61",
+        "status" : "failed",
+        "time" : {
+          "start" : 1725334098392,
+          "stop" : 1725334109890,
+          "duration" : 11498
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'3.SOL-USD 100 settlementCurrency buy test'", "'Positive'", "'EXECUTED'", "'FULL_QUOTE'", "{'quoteRequest': {'buyTradedCurrency': True, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USD', 'settlementCurrencyAmount': 100}}" ]
+      } ],
+      "uid" : "3d6071c882442968cad554a2a6284e61"
+    }, {
+      "name" : "AssertionError: execute api did not EXECUTED\nassert 'TRADE_UNSUCC..._PLEASE_RETRY' == 'EXECUTED'\n  \n  - EXECUTED\n  + TRADE_UNSUCCESSFUL_PLEASE_RETRY",
+      "children" : [ {
+        "name" : "4.SOL-USD 100 settlementCurrency sell test",
+        "uid" : "e213ce6bd9c1f71b",
+        "parentUid" : "7305270eddb05d272f2fd3f73c67ae1a",
+        "status" : "failed",
+        "time" : {
+          "start" : 1725334126901,
+          "stop" : 1725334135152,
+          "duration" : 8251
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'4.SOL-USD 100 settlementCurrency sell test'", "'Positive'", "'EXECUTED'", "'FULL_QUOTE'", "{'quoteRequest': {'buyTradedCurrency': False, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USD', 'settlementCurrencyAmount': 100}}" ]
+      } ],
+      "uid" : "7305270eddb05d272f2fd3f73c67ae1a"
+    }, {
+      "name" : "AssertionError: original_aggregated_balance_dict, new_aggregated_balance_dict, change [{'tradeCcy': 'BTC', 'residualPosition': -0.00211726, 'minRfsClientTradeId': 35532, 'maxRfsClientTradeId': 58247, 'countRfsClientTradeId': 432}, {'tradeCcy': 'USDT', 'residualPosition': 0.14, 'minRfsClientTradeId': 41418, 'maxRfsClientTradeId': 41418, 'countRfsClientTradeId': 1}, {'tradeCcy': 'ETH', 'residualPosition': -0.00582343, 'minRfsClientTradeId': 41693, 'maxRfsClientTradeId': 57565, 'countRfsClientTradeId': 3492}, {'tradeCcy': 'LINK', 'residualPosition': 4.16e-06, 'minRfsClientTradeId': 44625, 'maxRfsClientTradeId': 44625, 'countRfsClientTradeId': 1}, {'tradeCcy': 'BCH', 'residualPosition': 3.9e-07, 'minRfsClientTradeId': 45529, 'maxRfsClientTradeId': 45529, 'countRfsClientTradeId': 1}, {'tradeCcy': 'LTC', 'residualPosition': 2.28e-06, 'minRfsClientTradeId': 46031, 'maxRfsClientTradeId': 46031, 'countRfsClientTradeId': 1}, {'tradeCcy': 'USDTTRC', 'residualPosition': 3.172e-05, 'minRfsClientTradeId': 57463, 'maxRfsClientTradeId': 57463, 'countRfsClientTradeId': 1}, {'tradeCcy': 'SOL', 'residualPosition': 1e-06, 'minRfsClientTradeId': 57476, 'maxRfsClientTradeId': 58263, 'countRfsClientTradeId': 39}], [{'tradeCcy': 'BTC', 'residualPosition': -0.00211726, 'minRfsClientTradeId': 35532, 'maxRfsClientTradeId': 58247, 'countRfsClientTradeId': 432}, {'tradeCcy': 'USDT', 'residualPosition': 0.14, 'minRfsClientTradeId': 41418, 'maxRfsClientTradeId': 41418, 'countRfsClientTradeId': 1}, {'tradeCcy': 'ETH', 'residualPosition': -0.00582343, 'minRfsClientTradeId': 41693, 'maxRfsClientTradeId': 57565, 'countRfsClientTradeId': 3492}, {'tradeCcy': 'LINK', 'residualPosition': 4.16e-06, 'minRfsClientTradeId': 44625, 'maxRfsClientTradeId': 44625, 'countRfsClientTradeId': 1}, {'tradeCcy': 'BCH', 'residualPosition': 3.9e-07, 'minRfsClientTradeId': 45529, 'maxRfsClientTradeId': 45529, 'countRfsClientTradeId': 1}, {'tradeCcy': 'LTC', 'residualPosition': 2.28e-06, 'minRfsClientTradeId': 46031, 'maxRfsClientTradeId': 46031, 'countRfsClientTradeId': 1}, {'tradeCcy': 'USDTTRC', 'residualPosition': 3.172e-05, 'minRfsClientTradeId': 57463, 'maxRfsClientTradeId': 57463, 'countRfsClientTradeId': 1}, {'tradeCcy': 'SOL', 'residualPosition': 5e-07, 'minRfsClientTradeId': 57476, 'maxRfsClientTradeId': 58263, 'countRfsClientTradeId': 39}], True",
+      "children" : [ {
+        "name" : "7.SOL-USDT 500 settlementCurrency buy test",
+        "uid" : "96478ac47fc0a878",
+        "parentUid" : "f113631aac415dace82762562f8a8c52",
+        "status" : "failed",
+        "time" : {
+          "start" : 1725334192310,
+          "stop" : 1725334203782,
+          "duration" : 11472
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'7.SOL-USDT 500 settlementCurrency buy test'", "'Positive'", "'EXECUTED'", "'FULL_QUOTE'", "{'quoteRequest': {'buyTradedCurrency': True, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USDT', 'settlementCurrencyAmount': 500}}" ]
+      } ],
+      "uid" : "f113631aac415dace82762562f8a8c52"
+    }, {
+      "name" : "AssertionError: original_aggregated_balance_dict, new_aggregated_balance_dict, change [{'tradeCcy': 'BTC', 'residualPosition': -0.00211726, 'minRfsClientTradeId': 35532, 'maxRfsClientTradeId': 58247, 'countRfsClientTradeId': 432}, {'tradeCcy': 'USDT', 'residualPosition': 0.14, 'minRfsClientTradeId': 41418, 'maxRfsClientTradeId': 41418, 'countRfsClientTradeId': 1}, {'tradeCcy': 'ETH', 'residualPosition': -0.00582343, 'minRfsClientTradeId': 41693, 'maxRfsClientTradeId': 57565, 'countRfsClientTradeId': 3492}, {'tradeCcy': 'LINK', 'residualPosition': 4.16e-06, 'minRfsClientTradeId': 44625, 'maxRfsClientTradeId': 44625, 'countRfsClientTradeId': 1}, {'tradeCcy': 'BCH', 'residualPosition': 3.9e-07, 'minRfsClientTradeId': 45529, 'maxRfsClientTradeId': 45529, 'countRfsClientTradeId': 1}, {'tradeCcy': 'LTC', 'residualPosition': 2.28e-06, 'minRfsClientTradeId': 46031, 'maxRfsClientTradeId': 46031, 'countRfsClientTradeId': 1}, {'tradeCcy': 'USDTTRC', 'residualPosition': 3.172e-05, 'minRfsClientTradeId': 57463, 'maxRfsClientTradeId': 57463, 'countRfsClientTradeId': 1}, {'tradeCcy': 'SOL', 'residualPosition': 1e-06, 'minRfsClientTradeId': 57476, 'maxRfsClientTradeId': 58265, 'countRfsClientTradeId': 41}], [{'tradeCcy': 'BTC', 'residualPosition': -0.00211726, 'minRfsClientTradeId': 35532, 'maxRfsClientTradeId': 58247, 'countRfsClientTradeId': 432}, {'tradeCcy': 'USDT', 'residualPosition': 0.14, 'minRfsClientTradeId': 41418, 'maxRfsClientTradeId': 41418, 'countRfsClientTradeId': 1}, {'tradeCcy': 'ETH', 'residualPosition': -0.00582343, 'minRfsClientTradeId': 41693, 'maxRfsClientTradeId': 57565, 'countRfsClientTradeId': 3492}, {'tradeCcy': 'LINK', 'residualPosition': 4.16e-06, 'minRfsClientTradeId': 44625, 'maxRfsClientTradeId': 44625, 'countRfsClientTradeId': 1}, {'tradeCcy': 'BCH', 'residualPosition': 3.9e-07, 'minRfsClientTradeId': 45529, 'maxRfsClientTradeId': 45529, 'countRfsClientTradeId': 1}, {'tradeCcy': 'LTC', 'residualPosition': 2.28e-06, 'minRfsClientTradeId': 46031, 'maxRfsClientTradeId': 46031, 'countRfsClientTradeId': 1}, {'tradeCcy': 'USDTTRC', 'residualPosition': 3.172e-05, 'minRfsClientTradeId': 57463, 'maxRfsClientTradeId': 57463, 'countRfsClientTradeId': 1}, {'tradeCcy': 'SOL', 'residualPosition': 4.8e-07, 'minRfsClientTradeId': 57476, 'maxRfsClientTradeId': 58265, 'countRfsClientTradeId': 41}], True",
+      "children" : [ {
+        "name" : "8.SOL-USDT 500 settlementCurrency sell test",
+        "uid" : "15f0680d5dda5796",
+        "parentUid" : "4b833d474372498e2bbf85ded35dddd5",
+        "status" : "failed",
+        "time" : {
+          "start" : 1725334221643,
+          "stop" : 1725334233359,
+          "duration" : 11716
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'8.SOL-USDT 500 settlementCurrency sell test'", "'Positive'", "'EXECUTED'", "'FULL_QUOTE'", "{'quoteRequest': {'buyTradedCurrency': False, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USDT', 'settlementCurrencyAmount': 500}}" ]
+      } ],
+      "uid" : "4b833d474372498e2bbf85ded35dddd5"
+    } ],
+    "uid" : "8fb3a91ba5aaf9de24cc8a92edc82b5d"
+  } ],
+  "name" : "categories"
+}

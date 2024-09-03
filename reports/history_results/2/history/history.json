@@ -1,0 +1,158 @@
+{
+  "ba76d41bb93da3347ebf75be2eed6aba" : {
+    "statistic" : {
+      "failed" : 1,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "ac5f69131e8a7413",
+      "status" : "failed",
+      "statusDetails" : "AssertionError: original_aggregated_balance_dict, new_aggregated_balance_dict, change [{'tradeCcy': 'BTC', 'residualPosition': -0.00211726, 'minRfsClientTradeId': 35532, 'maxRfsClientTradeId': 58247, 'countRfsClientTradeId': 432}, {'tradeCcy': 'USDT', 'residualPosition': 0.14, 'minRfsClientTradeId': 41418, 'maxRfsClientTradeId': 41418, 'countRfsClientTradeId': 1}, {'tradeCcy': 'ETH', 'residualPosition': -0.00582343, 'minRfsClientTradeId': 41693, 'maxRfsClientTradeId': 57565, 'countRfsClientTradeId': 3492}, {'tradeCcy': 'LINK', 'residualPosition': 4.16e-06, 'minRfsClientTradeId': 44625, 'maxRfsClientTradeId': 44625, 'countRfsClientTradeId': 1}, {'tradeCcy': 'BCH', 'residualPosition': 3.9e-07, 'minRfsClientTradeId': 45529, 'maxRfsClientTradeId': 45529, 'countRfsClientTradeId': 1}, {'tradeCcy': 'LTC', 'residualPosition': 2.28e-06, 'minRfsClientTradeId': 46031, 'maxRfsClientTradeId': 46031, 'countRfsClientTradeId': 1}, {'tradeCcy': 'USDTTRC', 'residualPosition': 3.172e-05, 'minRfsClientTradeId': 57463, 'maxRfsClientTradeId': 57463, 'countRfsClientTradeId': 1}, {'tradeCcy': 'SOL', 'residualPosition': 1e-06, 'minRfsClientTradeId': 57476, 'maxRfsClientTradeId': 58256, 'countRfsClientTradeId': 36}], [{'tradeCcy': 'BTC', 'residualPosition': -0.00211726, 'minRfsClientTradeId': 35532, 'maxRfsClientTradeId': 58247, 'countRfsClientTradeId': 432}, {'tradeCcy': 'USDT', 'residualPosition': 0.14, 'minRfsClientTradeId': 41418, 'maxRfsClientTradeId': 41418, 'countRfsClientTradeId': 1}, {'tradeCcy': 'ETH', 'residualPosition': -0.00582343, 'minRfsClientTradeId': 41693, 'maxRfsClientTradeId': 57565, 'countRfsClientTradeId': 3492}, {'tradeCcy': 'LINK', 'residualPosition': 4.16e-06, 'minRfsClientTradeId': 44625, 'maxRfsClientTradeId': 44625, 'countRfsClientTradeId': 1}, {'tradeCcy': 'BCH', 'residualPosition': 3.9e-07, 'minRfsClientTradeId': 45529, 'maxRfsClientTradeId': 45529, 'countRfsClientTradeId': 1}, {'tradeCcy': 'LTC', 'residualPosition': 2.28e-06, 'minRfsClientTradeId': 46031, 'maxRfsClientTradeId': 46031, 'countRfsClientTradeId': 1}, {'tradeCcy': 'USDTTRC', 'residualPosition': 3.172e-05, 'minRfsClientTradeId': 57463, 'maxRfsClientTradeId': 57463, 'countRfsClientTradeId': 1}, {'tradeCcy': 'SOL', 'residualPosition': 6.6e-07, 'minRfsClientTradeId': 57476, 'maxRfsClientTradeId': 58256, 'countRfsClientTradeId': 36}], True",
+      "time" : {
+        "start" : 1725334098392,
+        "stop" : 1725334109890,
+        "duration" : 11498
+      }
+    } ]
+  },
+  "3b38b8aa1c8cf9ae83c27e6b31799ca3" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 1,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "621a5e9de6f1252d",
+      "status" : "passed",
+      "time" : {
+        "start" : 1725334048524,
+        "stop" : 1725334058998,
+        "duration" : 10474
+      }
+    } ]
+  },
+  "62653aee3f9334fdb742754db7b07266" : {
+    "statistic" : {
+      "failed" : 1,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "96478ac47fc0a878",
+      "status" : "failed",
+      "statusDetails" : "AssertionError: original_aggregated_balance_dict, new_aggregated_balance_dict, change [{'tradeCcy': 'BTC', 'residualPosition': -0.00211726, 'minRfsClientTradeId': 35532, 'maxRfsClientTradeId': 58247, 'countRfsClientTradeId': 432}, {'tradeCcy': 'USDT', 'residualPosition': 0.14, 'minRfsClientTradeId': 41418, 'maxRfsClientTradeId': 41418, 'countRfsClientTradeId': 1}, {'tradeCcy': 'ETH', 'residualPosition': -0.00582343, 'minRfsClientTradeId': 41693, 'maxRfsClientTradeId': 57565, 'countRfsClientTradeId': 3492}, {'tradeCcy': 'LINK', 'residualPosition': 4.16e-06, 'minRfsClientTradeId': 44625, 'maxRfsClientTradeId': 44625, 'countRfsClientTradeId': 1}, {'tradeCcy': 'BCH', 'residualPosition': 3.9e-07, 'minRfsClientTradeId': 45529, 'maxRfsClientTradeId': 45529, 'countRfsClientTradeId': 1}, {'tradeCcy': 'LTC', 'residualPosition': 2.28e-06, 'minRfsClientTradeId': 46031, 'maxRfsClientTradeId': 46031, 'countRfsClientTradeId': 1}, {'tradeCcy': 'USDTTRC', 'residualPosition': 3.172e-05, 'minRfsClientTradeId': 57463, 'maxRfsClientTradeId': 57463, 'countRfsClientTradeId': 1}, {'tradeCcy': 'SOL', 'residualPosition': 1e-06, 'minRfsClientTradeId': 57476, 'maxRfsClientTradeId': 58263, 'countRfsClientTradeId': 39}], [{'tradeCcy': 'BTC', 'residualPosition': -0.00211726, 'minRfsClientTradeId': 35532, 'maxRfsClientTradeId': 58247, 'countRfsClientTradeId': 432}, {'tradeCcy': 'USDT', 'residualPosition': 0.14, 'minRfsClientTradeId': 41418, 'maxRfsClientTradeId': 41418, 'countRfsClientTradeId': 1}, {'tradeCcy': 'ETH', 'residualPosition': -0.00582343, 'minRfsClientTradeId': 41693, 'maxRfsClientTradeId': 57565, 'countRfsClientTradeId': 3492}, {'tradeCcy': 'LINK', 'residualPosition': 4.16e-06, 'minRfsClientTradeId': 44625, 'maxRfsClientTradeId': 44625, 'countRfsClientTradeId': 1}, {'tradeCcy': 'BCH', 'residualPosition': 3.9e-07, 'minRfsClientTradeId': 45529, 'maxRfsClientTradeId': 45529, 'countRfsClientTradeId': 1}, {'tradeCcy': 'LTC', 'residualPosition': 2.28e-06, 'minRfsClientTradeId': 46031, 'maxRfsClientTradeId': 46031, 'countRfsClientTradeId': 1}, {'tradeCcy': 'USDTTRC', 'residualPosition': 3.172e-05, 'minRfsClientTradeId': 57463, 'maxRfsClientTradeId': 57463, 'countRfsClientTradeId': 1}, {'tradeCcy': 'SOL', 'residualPosition': 5e-07, 'minRfsClientTradeId': 57476, 'maxRfsClientTradeId': 58263, 'countRfsClientTradeId': 39}], True",
+      "time" : {
+        "start" : 1725334192310,
+        "stop" : 1725334203782,
+        "duration" : 11472
+      }
+    } ]
+  },
+  "c47ac116f7f9d6488be87f73780cef5d" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 1,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "c751bb505fdc1d2f",
+      "status" : "passed",
+      "time" : {
+        "start" : 1725334073870,
+        "stop" : 1725334084958,
+        "duration" : 11088
+      }
+    } ]
+  },
+  "8c12fafa121b030f7c6e7e458c5dd3c4" : {
+    "statistic" : {
+      "failed" : 1,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "e213ce6bd9c1f71b",
+      "status" : "failed",
+      "statusDetails" : "AssertionError: execute api did not EXECUTED\nassert 'TRADE_UNSUCC..._PLEASE_RETRY' == 'EXECUTED'\n  \n  - EXECUTED\n  + TRADE_UNSUCCESSFUL_PLEASE_RETRY",
+      "time" : {
+        "start" : 1725334126901,
+        "stop" : 1725334135152,
+        "duration" : 8251
+      }
+    } ]
+  },
+  "67035197cedf20221256d675cf0daff0" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 1,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "aa0e082e868c68c2",
+      "status" : "passed",
+      "time" : {
+        "start" : 1725334150443,
+        "stop" : 1725334161337,
+        "duration" : 10894
+      }
+    } ]
+  },
+  "7aa1c380909f605feda76e280f25e85b" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 1,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "4d12d3a0d57a7ef8",
+      "status" : "passed",
+      "time" : {
+        "start" : 1725334164245,
+        "stop" : 1725334175143,
+        "duration" : 10898
+      }
+    } ]
+  },
+  "69f484d19c625e0dacd019a0a514137e" : {
+    "statistic" : {
+      "failed" : 1,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "15f0680d5dda5796",
+      "status" : "failed",
+      "statusDetails" : "AssertionError: original_aggregated_balance_dict, new_aggregated_balance_dict, change [{'tradeCcy': 'BTC', 'residualPosition': -0.00211726, 'minRfsClientTradeId': 35532, 'maxRfsClientTradeId': 58247, 'countRfsClientTradeId': 432}, {'tradeCcy': 'USDT', 'residualPosition': 0.14, 'minRfsClientTradeId': 41418, 'maxRfsClientTradeId': 41418, 'countRfsClientTradeId': 1}, {'tradeCcy': 'ETH', 'residualPosition': -0.00582343, 'minRfsClientTradeId': 41693, 'maxRfsClientTradeId': 57565, 'countRfsClientTradeId': 3492}, {'tradeCcy': 'LINK', 'residualPosition': 4.16e-06, 'minRfsClientTradeId': 44625, 'maxRfsClientTradeId': 44625, 'countRfsClientTradeId': 1}, {'tradeCcy': 'BCH', 'residualPosition': 3.9e-07, 'minRfsClientTradeId': 45529, 'maxRfsClientTradeId': 45529, 'countRfsClientTradeId': 1}, {'tradeCcy': 'LTC', 'residualPosition': 2.28e-06, 'minRfsClientTradeId': 46031, 'maxRfsClientTradeId': 46031, 'countRfsClientTradeId': 1}, {'tradeCcy': 'USDTTRC', 'residualPosition': 3.172e-05, 'minRfsClientTradeId': 57463, 'maxRfsClientTradeId': 57463, 'countRfsClientTradeId': 1}, {'tradeCcy': 'SOL', 'residualPosition': 1e-06, 'minRfsClientTradeId': 57476, 'maxRfsClientTradeId': 58265, 'countRfsClientTradeId': 41}], [{'tradeCcy': 'BTC', 'residualPosition': -0.00211726, 'minRfsClientTradeId': 35532, 'maxRfsClientTradeId': 58247, 'countRfsClientTradeId': 432}, {'tradeCcy': 'USDT', 'residualPosition': 0.14, 'minRfsClientTradeId': 41418, 'maxRfsClientTradeId': 41418, 'countRfsClientTradeId': 1}, {'tradeCcy': 'ETH', 'residualPosition': -0.00582343, 'minRfsClientTradeId': 41693, 'maxRfsClientTradeId': 57565, 'countRfsClientTradeId': 3492}, {'tradeCcy': 'LINK', 'residualPosition': 4.16e-06, 'minRfsClientTradeId': 44625, 'maxRfsClientTradeId': 44625, 'countRfsClientTradeId': 1}, {'tradeCcy': 'BCH', 'residualPosition': 3.9e-07, 'minRfsClientTradeId': 45529, 'maxRfsClientTradeId': 45529, 'countRfsClientTradeId': 1}, {'tradeCcy': 'LTC', 'residualPosition': 2.28e-06, 'minRfsClientTradeId': 46031, 'maxRfsClientTradeId': 46031, 'countRfsClientTradeId': 1}, {'tradeCcy': 'USDTTRC', 'residualPosition': 3.172e-05, 'minRfsClientTradeId': 57463, 'maxRfsClientTradeId': 57463, 'countRfsClientTradeId': 1}, {'tradeCcy': 'SOL', 'residualPosition': 4.8e-07, 'minRfsClientTradeId': 57476, 'maxRfsClientTradeId': 58265, 'countRfsClientTradeId': 41}], True",
+      "time" : {
+        "start" : 1725334221643,
+        "stop" : 1725334233359,
+        "duration" : 11716
+      }
+    } ]
+  }
+}

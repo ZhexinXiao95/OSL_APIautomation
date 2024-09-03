@@ -1,0 +1,3 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"broken","Tue Sep 03 11:19:01 CST 2024","Tue Sep 03 11:19:10 CST 2024","8323","RFQ API TEST","IPA Test Cases","Positive Test Cases","","","1.SOL-USD 5 tradedCurrency buy test",""
+"passed","Tue Sep 03 11:19:12 CST 2024","Tue Sep 03 11:19:15 CST 2024","2839","","","Positive Test Cases","","","1.SOL-USD 5 tradedCurrency buy test",""

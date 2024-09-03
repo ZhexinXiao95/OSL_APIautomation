@@ -1,0 +1,39 @@
+{
+  "uid" : "ab17fc5a4eb3bca4b216b548c7f9fcbc",
+  "children" : [ {
+    "name" : "shawnxiaooslcom.local",
+    "children" : [ {
+      "name" : "68692-MainThread",
+      "children" : [ {
+        "name" : "1.SOL-USD 5 tradedCurrency buy test",
+        "uid" : "bdd076dc3588d0de",
+        "parentUid" : "f6dc48f67818ed78f2e85467eb85a090",
+        "status" : "broken",
+        "time" : {
+          "start" : 1725333541926,
+          "stop" : 1725333550249,
+          "duration" : 8323
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'1.SOL-USD 5 tradedCurrency buy test'", "'Positive'", "'EXECUTED'", "'FULL_QUOTE'", "{'quoteRequest': {'buyTradedCurrency': True, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USD', 'tradedCurrencyAmount': 5}}" ]
+      } ],
+      "uid" : "f6dc48f67818ed78f2e85467eb85a090"
+    } ],
+    "uid" : "529dc4edaba3661dc68296f61dc3f0ba"
+  }, {
+    "name" : "1.SOL-USD 5 tradedCurrency buy test",
+    "uid" : "d3735765e098a5d8",
+    "parentUid" : "ab17fc5a4eb3bca4b216b548c7f9fcbc",
+    "status" : "passed",
+    "time" : {
+      "start" : 1725333552983,
+      "stop" : 1725333555822,
+      "duration" : 2839
+    },
+    "flaky" : false,
+    "newFailed" : false,
+    "parameters" : [ "'1.SOL-USD 5 tradedCurrency buy test'", "'Positive'", "'EXECUTED'", "'FULL_QUOTE'", "{'quoteRequest': {'buyTradedCurrency': True, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USD', 'tradedCurrencyAmount': 5}}" ]
+  } ],
+  "name" : "timeline"
+}

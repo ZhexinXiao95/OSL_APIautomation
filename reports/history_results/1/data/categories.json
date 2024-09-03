@@ -1,0 +1,26 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "children" : [ {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "TypeError: can only concatenate str (not \"int\") to str",
+      "children" : [ {
+        "name" : "1.SOL-USD 5 tradedCurrency buy test",
+        "uid" : "bdd076dc3588d0de",
+        "parentUid" : "e055865276aa8c01ebf150c81e5da6eb",
+        "status" : "broken",
+        "time" : {
+          "start" : 1725333541926,
+          "stop" : 1725333550249,
+          "duration" : 8323
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'1.SOL-USD 5 tradedCurrency buy test'", "'Positive'", "'EXECUTED'", "'FULL_QUOTE'", "{'quoteRequest': {'buyTradedCurrency': True, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USD', 'tradedCurrencyAmount': 5}}" ]
+      } ],
+      "uid" : "e055865276aa8c01ebf150c81e5da6eb"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  } ],
+  "name" : "categories"
+}

@@ -1,0 +1,780 @@
+{
+  "uid" : "4d12d3a0d57a7ef8",
+  "name" : "6.SOL-USDT 5 tradedCurrency sell test",
+  "fullName" : "testcase.test_RFQorder#test_makeRFQorder",
+  "historyId" : "7aa1c380909f605feda76e280f25e85b",
+  "time" : {
+    "start" : 1725334164245,
+    "stop" : 1725334175143,
+    "duration" : 10898
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "setup_and_teardown",
+    "time" : {
+      "start" : 1725334161342,
+      "stop" : 1725334161343,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "rfq_order_before_check",
+    "time" : {
+      "start" : 1725334161343,
+      "stop" : 1725334164243,
+      "duration" : 2900
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "rfs_authToken",
+      "time" : {
+        "start" : 1725334161343,
+        "stop" : 1725334162013,
+        "duration" : 670
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "ops_authToken",
+      "time" : {
+        "start" : 1725334162013,
+        "stop" : 1725334162744,
+        "duration" : 731
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "check_rfs_trading_status",
+      "time" : {
+        "start" : 1725334162745,
+        "stop" : 1725334163582,
+        "duration" : 837
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "rfs_status",
+        "time" : {
+          "start" : 1725334162745,
+          "stop" : 1725334163581,
+          "duration" : 836
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "status",
+        "value" : "True"
+      } ],
+      "stepsCount" : 1,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "check_rfs_LP_gateway",
+      "time" : {
+        "start" : 1725334163582,
+        "stop" : 1725334164243,
+        "duration" : 661
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "rfs_status_venue",
+        "time" : {
+          "start" : 1725334163582,
+          "stop" : 1725334164243,
+          "duration" : 661
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "status",
+        "value" : "True"
+      } ],
+      "stepsCount" : 1,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 6,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  } ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "check_ccy_pair",
+      "time" : {
+        "start" : 1725334164246,
+        "stop" : 1725334164985,
+        "duration" : 739
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "rfs_cc_pair_status",
+        "time" : {
+          "start" : 1725334164246,
+          "stop" : 1725334164985,
+          "duration" : 739
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "quote_req",
+        "value" : "{'quoteRequest': {'buyTradedCurrency': False, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USDT', 'tradedCurrencyAmount': 5}}"
+      } ],
+      "stepsCount" : 1,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "record aggregated_balance_before trade",
+      "time" : {
+        "start" : 1725334164985,
+        "stop" : 1725334165517,
+        "duration" : 532
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "rfs_aggregated_positions",
+        "time" : {
+          "start" : 1725334164985,
+          "stop" : 1725334165517,
+          "duration" : 532
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 1,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Asking QuoteId Request",
+      "time" : {
+        "start" : 1725334165517,
+        "stop" : 1725334166256,
+        "duration" : 739
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "39673836ca291573",
+        "name" : "Asking QuoteId Details",
+        "source" : "39673836ca291573.json",
+        "type" : "application/json",
+        "size" : 1088
+      } ],
+      "parameters" : [ {
+        "name" : "quote_param",
+        "value" : "{'quoteRequest': {'buyTradedCurrency': False, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USDT', 'tradedCurrencyAmount': 5}}"
+      }, {
+        "name" : "quote_expected",
+        "value" : "'FULL_QUOTE'"
+      } ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Check Balance Before Trade",
+      "time" : {
+        "start" : 1725334166256,
+        "stop" : 1725334167801,
+        "duration" : 1545
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "brokerage_balance_order_before_check",
+        "time" : {
+          "start" : 1725334166257,
+          "stop" : 1725334167801,
+          "duration" : 1544
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "get_account_information",
+          "time" : {
+            "start" : 1725334166257,
+            "stop" : 1725334167001,
+            "duration" : 744
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "currency",
+            "value" : "'SOL'"
+          }, {
+            "name" : "wallet",
+            "value" : "'Wallets'"
+          }, {
+            "name" : "account",
+            "value" : "'Brokerage_Available_Balance'"
+          }, {
+            "name" : "multiple",
+            "value" : "False"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        }, {
+          "name" : "get_account_information",
+          "time" : {
+            "start" : 1725334167002,
+            "stop" : 1725334167799,
+            "duration" : 797
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "currency",
+            "value" : "'USDT'"
+          }, {
+            "name" : "wallet",
+            "value" : "'Wallets'"
+          }, {
+            "name" : "account",
+            "value" : "'Brokerage_Available_Balance'"
+          }, {
+            "name" : "multiple",
+            "value" : "False"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "res",
+          "value" : "{'response': <Response [200]>, 'res': {'quoteResponse': {'responseCode': 'FULL_QUOTE', 'buyTradedCurrency': False, 'settlementCurrency': 'USDT', 'tradedCurrency': 'SOL', 'quotedSettlementCurrencyAmount': '665.735', 'quotedTradedCurrencyAmount': '5', 'executedPrice': '133.147001', 'retailRateInSettlementCurrency': '133.147001', 'quoteId': 'CHErfWCMRgTEkYCvTBQ2hi2pDodJsAstmZDW2lLXVuz1YGcuuwGbCwKqobJ4ePZWqLpI4itKNtm5sRBYlfpGY9ZB1ljWaCM1RhwMrtw8O8wzlxwWBqx5p7hO1FfTyp3B3I0QQlp0PAuysComuOwt0kX/Xf/2xp6+exwRLqnVPuULKTb0CbUvtHGyQOv/ZYWeiv8mN1DqWEOLG/bzMSoIx9BR1NVXwZQjQ5yJTdMrQKzchyYa42/h5mVyOEOHnu3MUlIvMx4JbrFe94nkAib1X1KqUWi7G5uqLT5ropopc5kaIJbe1sJPwYe3HUwisDEBIbXmI8QP0NgbgJDHEB5MR6x0Us4=', 'quoteExpiresAt': 1725334173173, 'quoteCreatedAt': 1725334166173, 'dealerSettlementCurrency': 'USDT', 'dealerSettlementCurrencyAmount': '665.735', 'isInvoice': False, 'isCardLoad': False, 'isPtsSufficient': False, 'isMtPreDealPreCheckSuccess': False}, 'timestamp': 1725334166173, 'resultCode': 'OK'}, 'req_msg': \"<Request> [84d9f2b5-ab9a-4285-8f20-34a6b9fadb5f] => POST api/3/retail/quote <Param> => {'quoteRequest': {'buyTradedCurrency': False, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USDT', 'tradedCurrencyAmount': 5}, 'tonce': 1725334165517145}\", 'res_msg': \"<Response> [84d9f2b5-ab9a-4285-8f20-34a6b9fadb5f] => {'quoteResponse': {'responseCode': 'FULL_QUOTE', 'buyTradedCurrency': False, 'settlementCurrency': 'USDT', 'tradedCurrency': 'SOL', 'quotedSettlementCurrencyAmount': '665.735', 'quotedTradedCurrencyAmount': '5', 'executedPrice': '133.147001', 'retailRateInSettlementCurrency': '133.147001', 'quoteId': 'CHErfWCMRgTEkYCvTBQ2hi2pDodJsAstmZDW2lLXVuz1YGcuuwGbCwKqobJ4ePZWqLpI4itKNtm5sRBYlfpGY9ZB1ljWaCM1RhwMrtw8O8wzlxwWBqx5p7hO1FfTyp3B3I0QQlp0PAuysComuOwt0kX/Xf/2xp6+exwRLqnVPuULKTb0CbUvtHGyQOv/ZYWeiv8mN1DqWEOLG/bzMSoIx9BR1NVXwZQjQ5yJTdMrQKzchyYa42/h5mVyOEOHnu3MUlIvMx4JbrFe94nkAib1X1KqUWi7G5uqLT5ropopc5kaIJbe1sJPwYe3HUwisDEBIbXmI8QP0NgbgJDHEB5MR6x0Us4=', 'quoteExpiresAt': 1725334173173, 'quoteCreatedAt': 1725334166173, 'dealerSettlementCurrency': 'USDT', 'dealerSettlementCurrencyAmount': '665.735', 'isInvoice': False, 'isCardLoad': False, 'isPtsSufficient': False, 'isMtPreDealPreCheckSuccess': False}, 'timestamp': 1725334166173, 'resultCode': 'OK'}\"}"
+        } ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 3,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Make Execute Request",
+      "time" : {
+        "start" : 1725334167801,
+        "stop" : 1725334169397,
+        "duration" : 1596
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "648ed278c4bd1283",
+        "name" : "Make Execute Details",
+        "source" : "648ed278c4bd1283.json",
+        "type" : "application/json",
+        "size" : 1149
+      } ],
+      "parameters" : [ {
+        "name" : "execute_expected",
+        "value" : "'EXECUTED'"
+      } ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Compare Quote And Execute API Response Details",
+      "time" : {
+        "start" : 1725334169398,
+        "stop" : 1725334169399,
+        "duration" : 1
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "quote_execute_apiDetail_assert",
+        "time" : {
+          "start" : 1725334169398,
+          "stop" : 1725334169398,
+          "duration" : 0
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "quote_res",
+          "value" : "{'response': <Response [200]>, 'res': {'quoteResponse': {'responseCode': 'FULL_QUOTE', 'buyTradedCurrency': False, 'settlementCurrency': 'USDT', 'tradedCurrency': 'SOL', 'quotedSettlementCurrencyAmount': '665.735', 'quotedTradedCurrencyAmount': '5', 'executedPrice': '133.147001', 'retailRateInSettlementCurrency': '133.147001', 'quoteId': 'CHErfWCMRgTEkYCvTBQ2hi2pDodJsAstmZDW2lLXVuz1YGcuuwGbCwKqobJ4ePZWqLpI4itKNtm5sRBYlfpGY9ZB1ljWaCM1RhwMrtw8O8wzlxwWBqx5p7hO1FfTyp3B3I0QQlp0PAuysComuOwt0kX/Xf/2xp6+exwRLqnVPuULKTb0CbUvtHGyQOv/ZYWeiv8mN1DqWEOLG/bzMSoIx9BR1NVXwZQjQ5yJTdMrQKzchyYa42/h5mVyOEOHnu3MUlIvMx4JbrFe94nkAib1X1KqUWi7G5uqLT5ropopc5kaIJbe1sJPwYe3HUwisDEBIbXmI8QP0NgbgJDHEB5MR6x0Us4=', 'quoteExpiresAt': 1725334173173, 'quoteCreatedAt': 1725334166173, 'dealerSettlementCurrency': 'USDT', 'dealerSettlementCurrencyAmount': '665.735', 'isInvoice': False, 'isCardLoad': False, 'isPtsSufficient': False, 'isMtPreDealPreCheckSuccess': False}, 'timestamp': 1725334166173, 'resultCode': 'OK'}, 'req_msg': \"<Request> [84d9f2b5-ab9a-4285-8f20-34a6b9fadb5f] => POST api/3/retail/quote <Param> => {'quoteRequest': {'buyTradedCurrency': False, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USDT', 'tradedCurrencyAmount': 5}, 'tonce': 1725334165517145}\", 'res_msg': \"<Response> [84d9f2b5-ab9a-4285-8f20-34a6b9fadb5f] => {'quoteResponse': {'responseCode': 'FULL_QUOTE', 'buyTradedCurrency': False, 'settlementCurrency': 'USDT', 'tradedCurrency': 'SOL', 'quotedSettlementCurrencyAmount': '665.735', 'quotedTradedCurrencyAmount': '5', 'executedPrice': '133.147001', 'retailRateInSettlementCurrency': '133.147001', 'quoteId': 'CHErfWCMRgTEkYCvTBQ2hi2pDodJsAstmZDW2lLXVuz1YGcuuwGbCwKqobJ4ePZWqLpI4itKNtm5sRBYlfpGY9ZB1ljWaCM1RhwMrtw8O8wzlxwWBqx5p7hO1FfTyp3B3I0QQlp0PAuysComuOwt0kX/Xf/2xp6+exwRLqnVPuULKTb0CbUvtHGyQOv/ZYWeiv8mN1DqWEOLG/bzMSoIx9BR1NVXwZQjQ5yJTdMrQKzchyYa42/h5mVyOEOHnu3MUlIvMx4JbrFe94nkAib1X1KqUWi7G5uqLT5ropopc5kaIJbe1sJPwYe3HUwisDEBIbXmI8QP0NgbgJDHEB5MR6x0Us4=', 'quoteExpiresAt': 1725334173173, 'quoteCreatedAt': 1725334166173, 'dealerSettlementCurrency': 'USDT', 'dealerSettlementCurrencyAmount': '665.735', 'isInvoice': False, 'isCardLoad': False, 'isPtsSufficient': False, 'isMtPreDealPreCheckSuccess': False}, 'timestamp': 1725334166173, 'resultCode': 'OK'}\"}"
+        }, {
+          "name" : "execute_res",
+          "value" : "{'response': <Response [200]>, 'res': {'tradeResponse': {'responseCode': 'EXECUTED', 'tradeId': '1682c4f5c08d4165a450f975086db44b', 'tradeRef': '1682c4f5c08d4165a450f975086db44b', 'quoteId': 'CHErfWCMRgTEkYCvTBQ2hi2pDodJsAstmZDW2lLXVuz1YGcuuwGbCwKqobJ4ePZWqLpI4itKNtm5sRBYlfpGY9ZB1ljWaCM1RhwMrtw8O8wzlxwWBqx5p7hO1FfTyp3B3I0QQlp0PAuysComuOwt0kX/Xf/2xp6+exwRLqnVPuULKTb0CbUvtHGyQOv/ZYWeiv8mN1DqWEOLG/bzMSoIx9BR1NVXwZQjQ5yJTdMrQKzchyYa42/h5mVyOEOHnu3MUlIvMx4JbrFe94nkAib1X1KqUWi7G5uqLT5ropopc5kaIJbe1sJPwYe3HUwisDEBIbXmI8QP0NgbgJDHEB5MR6x0Us4=', 'buyTradedCurrency': False, 'settlementCurrency': 'USDT', 'tradedCurrency': 'SOL', 'quotedSettlementCurrencyAmount': '665.735', 'quotedTradedCurrencyAmount': '5', 'executedPrice': '133.147001'}, 'timestamp': 1725334169263, 'resultCode': 'OK'}, 'req_msg': \"<Request> [84d9f2b5-ab9a-4285-8f20-34a6b9fadb5f] => POST api/3/retail/trade <Param> => {'tradeRequest': {'quoteId': 'CHErfWCMRgTEkYCvTBQ2hi2pDodJsAstmZDW2lLXVuz1YGcuuwGbCwKqobJ4ePZWqLpI4itKNtm5sRBYlfpGY9ZB1ljWaCM1RhwMrtw8O8wzlxwWBqx5p7hO1FfTyp3B3I0QQlp0PAuysComuOwt0kX/Xf/2xp6+exwRLqnVPuULKTb0CbUvtHGyQOv/ZYWeiv8mN1DqWEOLG/bzMSoIx9BR1NVXwZQjQ5yJTdMrQKzchyYa42/h5mVyOEOHnu3MUlIvMx4JbrFe94nkAib1X1KqUWi7G5uqLT5ropopc5kaIJbe1sJPwYe3HUwisDEBIbXmI8QP0NgbgJDHEB5MR6x0Us4='}, 'tonce': 1725334167801265}\", 'res_msg': \"<Response> [84d9f2b5-ab9a-4285-8f20-34a6b9fadb5f] => {'tradeResponse': {'responseCode': 'EXECUTED', 'tradeId': '1682c4f5c08d4165a450f975086db44b', 'tradeRef': '1682c4f5c08d4165a450f975086db44b', 'quoteId': 'CHErfWCMRgTEkYCvTBQ2hi2pDodJsAstmZDW2lLXVuz1YGcuuwGbCwKqobJ4ePZWqLpI4itKNtm5sRBYlfpGY9ZB1ljWaCM1RhwMrtw8O8wzlxwWBqx5p7hO1FfTyp3B3I0QQlp0PAuysComuOwt0kX/Xf/2xp6+exwRLqnVPuULKTb0CbUvtHGyQOv/ZYWeiv8mN1DqWEOLG/bzMSoIx9BR1NVXwZQjQ5yJTdMrQKzchyYa42/h5mVyOEOHnu3MUlIvMx4JbrFe94nkAib1X1KqUWi7G5uqLT5ropopc5kaIJbe1sJPwYe3HUwisDEBIbXmI8QP0NgbgJDHEB5MR6x0Us4=', 'buyTradedCurrency': False, 'settlementCurrency': 'USDT', 'tradedCurrency': 'SOL', 'quotedSettlementCurrencyAmount': '665.735', 'quotedTradedCurrencyAmount': '5', 'executedPrice': '133.147001'}, 'timestamp': 1725334169263, 'resultCode': 'OK'}\"}"
+        } ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 1,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Check Balance After Trade",
+      "time" : {
+        "start" : 1725334169399,
+        "stop" : 1725334170905,
+        "duration" : 1506
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "brokerage_balance_order_after_check",
+        "time" : {
+          "start" : 1725334169399,
+          "stop" : 1725334170905,
+          "duration" : 1506
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "get_account_information",
+          "time" : {
+            "start" : 1725334169400,
+            "stop" : 1725334170049,
+            "duration" : 649
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "currency",
+            "value" : "'SOL'"
+          }, {
+            "name" : "wallet",
+            "value" : "'Wallets'"
+          }, {
+            "name" : "account",
+            "value" : "'Brokerage_Available_Balance'"
+          }, {
+            "name" : "multiple",
+            "value" : "False"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        }, {
+          "name" : "get_account_information",
+          "time" : {
+            "start" : 1725334170049,
+            "stop" : 1725334170904,
+            "duration" : 855
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "currency",
+            "value" : "'USDT'"
+          }, {
+            "name" : "wallet",
+            "value" : "'Wallets'"
+          }, {
+            "name" : "account",
+            "value" : "'Brokerage_Available_Balance'"
+          }, {
+            "name" : "multiple",
+            "value" : "False"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "res",
+          "value" : "{'response': <Response [200]>, 'res': {'tradeResponse': {'responseCode': 'EXECUTED', 'tradeId': '1682c4f5c08d4165a450f975086db44b', 'tradeRef': '1682c4f5c08d4165a450f975086db44b', 'quoteId': 'CHErfWCMRgTEkYCvTBQ2hi2pDodJsAstmZDW2lLXVuz1YGcuuwGbCwKqobJ4ePZWqLpI4itKNtm5sRBYlfpGY9ZB1ljWaCM1RhwMrtw8O8wzlxwWBqx5p7hO1FfTyp3B3I0QQlp0PAuysComuOwt0kX/Xf/2xp6+exwRLqnVPuULKTb0CbUvtHGyQOv/ZYWeiv8mN1DqWEOLG/bzMSoIx9BR1NVXwZQjQ5yJTdMrQKzchyYa42/h5mVyOEOHnu3MUlIvMx4JbrFe94nkAib1X1KqUWi7G5uqLT5ropopc5kaIJbe1sJPwYe3HUwisDEBIbXmI8QP0NgbgJDHEB5MR6x0Us4=', 'buyTradedCurrency': False, 'settlementCurrency': 'USDT', 'tradedCurrency': 'SOL', 'quotedSettlementCurrencyAmount': '665.735', 'quotedTradedCurrencyAmount': '5', 'executedPrice': '133.147001'}, 'timestamp': 1725334169263, 'resultCode': 'OK'}, 'req_msg': \"<Request> [84d9f2b5-ab9a-4285-8f20-34a6b9fadb5f] => POST api/3/retail/trade <Param> => {'tradeRequest': {'quoteId': 'CHErfWCMRgTEkYCvTBQ2hi2pDodJsAstmZDW2lLXVuz1YGcuuwGbCwKqobJ4ePZWqLpI4itKNtm5sRBYlfpGY9ZB1ljWaCM1RhwMrtw8O8wzlxwWBqx5p7hO1FfTyp3B3I0QQlp0PAuysComuOwt0kX/Xf/2xp6+exwRLqnVPuULKTb0CbUvtHGyQOv/ZYWeiv8mN1DqWEOLG/bzMSoIx9BR1NVXwZQjQ5yJTdMrQKzchyYa42/h5mVyOEOHnu3MUlIvMx4JbrFe94nkAib1X1KqUWi7G5uqLT5ropopc5kaIJbe1sJPwYe3HUwisDEBIbXmI8QP0NgbgJDHEB5MR6x0Us4='}, 'tonce': 1725334167801265}\", 'res_msg': \"<Response> [84d9f2b5-ab9a-4285-8f20-34a6b9fadb5f] => {'tradeResponse': {'responseCode': 'EXECUTED', 'tradeId': '1682c4f5c08d4165a450f975086db44b', 'tradeRef': '1682c4f5c08d4165a450f975086db44b', 'quoteId': 'CHErfWCMRgTEkYCvTBQ2hi2pDodJsAstmZDW2lLXVuz1YGcuuwGbCwKqobJ4ePZWqLpI4itKNtm5sRBYlfpGY9ZB1ljWaCM1RhwMrtw8O8wzlxwWBqx5p7hO1FfTyp3B3I0QQlp0PAuysComuOwt0kX/Xf/2xp6+exwRLqnVPuULKTb0CbUvtHGyQOv/ZYWeiv8mN1DqWEOLG/bzMSoIx9BR1NVXwZQjQ5yJTdMrQKzchyYa42/h5mVyOEOHnu3MUlIvMx4JbrFe94nkAib1X1KqUWi7G5uqLT5ropopc5kaIJbe1sJPwYe3HUwisDEBIbXmI8QP0NgbgJDHEB5MR6x0Us4=', 'buyTradedCurrency': False, 'settlementCurrency': 'USDT', 'tradedCurrency': 'SOL', 'quotedSettlementCurrencyAmount': '665.735', 'quotedTradedCurrencyAmount': '5', 'executedPrice': '133.147001'}, 'timestamp': 1725334169263, 'resultCode': 'OK'}\"}"
+        }, {
+          "name" : "balance_before_dict",
+          "value" : "{'side': False, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USDT', 'tradedCurrencyAmount': '5', 'quotedSettlementCurrencyAmount': '665.735', 'tradedCurrency_balance': '150047.69339842', 'settlementCurrency_balance': '497384.62534300', 'executedPrice': '133.147001'}"
+        } ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 3,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "check_user_transaction",
+      "time" : {
+        "start" : 1725334170906,
+        "stop" : 1725334172253,
+        "duration" : 1347
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "check_user_transaction",
+        "time" : {
+          "start" : 1725334170906,
+          "stop" : 1725334172253,
+          "duration" : 1347
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "get_transaction_list",
+          "time" : {
+            "start" : 1725334170906,
+            "stop" : 1725334172252,
+            "duration" : 1346
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "max",
+            "value" : "None"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "execute_res",
+          "value" : "{'responseCode': 'EXECUTED', 'tradeId': '1682c4f5c08d4165a450f975086db44b', 'tradeRef': '1682c4f5c08d4165a450f975086db44b', 'quoteId': 'CHErfWCMRgTEkYCvTBQ2hi2pDodJsAstmZDW2lLXVuz1YGcuuwGbCwKqobJ4ePZWqLpI4itKNtm5sRBYlfpGY9ZB1ljWaCM1RhwMrtw8O8wzlxwWBqx5p7hO1FfTyp3B3I0QQlp0PAuysComuOwt0kX/Xf/2xp6+exwRLqnVPuULKTb0CbUvtHGyQOv/ZYWeiv8mN1DqWEOLG/bzMSoIx9BR1NVXwZQjQ5yJTdMrQKzchyYa42/h5mVyOEOHnu3MUlIvMx4JbrFe94nkAib1X1KqUWi7G5uqLT5ropopc5kaIJbe1sJPwYe3HUwisDEBIbXmI8QP0NgbgJDHEB5MR6x0Us4=', 'buyTradedCurrency': False, 'settlementCurrency': 'USDT', 'tradedCurrency': 'SOL', 'quotedSettlementCurrencyAmount': '665.735', 'quotedTradedCurrencyAmount': '5', 'executedPrice': '133.147001'}"
+        } ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 2,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "check_RFS_console_transaction",
+      "time" : {
+        "start" : 1725334172254,
+        "stop" : 1725334174211,
+        "duration" : 1957
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "check_RFS_console_transaction",
+        "time" : {
+          "start" : 1725334172254,
+          "stop" : 1725334174211,
+          "duration" : 1957
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "rfs_trades_completed",
+          "time" : {
+            "start" : 1725334172255,
+            "stop" : 1725334173310,
+            "duration" : 1055
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "page",
+            "value" : "0"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        }, {
+          "name" : "check_aggregated_position",
+          "time" : {
+            "start" : 1725334173312,
+            "stop" : 1725334174208,
+            "duration" : 896
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "rfs_aggregated_positions",
+            "time" : {
+              "start" : 1725334173313,
+              "stop" : 1725334174207,
+              "duration" : 894
+            },
+            "status" : "passed",
+            "steps" : [ ],
+            "attachments" : [ ],
+            "parameters" : [ ],
+            "stepsCount" : 0,
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "hasContent" : false
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "ccy",
+            "value" : "'SOL'"
+          }, {
+            "name" : "amount",
+            "value" : "0.0"
+          }, {
+            "name" : "client_id",
+            "value" : "58261"
+          }, {
+            "name" : "original_aggregated_balance_dic",
+            "value" : "[{'tradeCcy': 'BTC', 'residualPosition': -0.00211726, 'minRfsClientTradeId': 35532, 'maxRfsClientTradeId': 58247, 'countRfsClientTradeId': 432}, {'tradeCcy': 'USDT', 'residualPosition': 0.14, 'minRfsClientTradeId': 41418, 'maxRfsClientTradeId': 41418, 'countRfsClientTradeId': 1}, {'tradeCcy': 'ETH', 'residualPosition': -0.00582343, 'minRfsClientTradeId': 41693, 'maxRfsClientTradeId': 57565, 'countRfsClientTradeId': 3492}, {'tradeCcy': 'LINK', 'residualPosition': 4.16e-06, 'minRfsClientTradeId': 44625, 'maxRfsClientTradeId': 44625, 'countRfsClientTradeId': 1}, {'tradeCcy': 'BCH', 'residualPosition': 3.9e-07, 'minRfsClientTradeId': 45529, 'maxRfsClientTradeId': 45529, 'countRfsClientTradeId': 1}, {'tradeCcy': 'LTC', 'residualPosition': 2.28e-06, 'minRfsClientTradeId': 46031, 'maxRfsClientTradeId': 46031, 'countRfsClientTradeId': 1}, {'tradeCcy': 'USDTTRC', 'residualPosition': 3.172e-05, 'minRfsClientTradeId': 57463, 'maxRfsClientTradeId': 57463, 'countRfsClientTradeId': 1}, {'tradeCcy': 'SOL', 'residualPosition': 7.9e-07, 'minRfsClientTradeId': 57476, 'maxRfsClientTradeId': 58257, 'countRfsClientTradeId': 37}]"
+          }, {
+            "name" : "change",
+            "value" : "False"
+          } ],
+          "stepsCount" : 1,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "quote_res",
+          "value" : "{'responseCode': 'FULL_QUOTE', 'buyTradedCurrency': False, 'settlementCurrency': 'USDT', 'tradedCurrency': 'SOL', 'quotedSettlementCurrencyAmount': '665.735', 'quotedTradedCurrencyAmount': '5', 'executedPrice': '133.147001', 'retailRateInSettlementCurrency': '133.147001', 'quoteId': 'CHErfWCMRgTEkYCvTBQ2hi2pDodJsAstmZDW2lLXVuz1YGcuuwGbCwKqobJ4ePZWqLpI4itKNtm5sRBYlfpGY9ZB1ljWaCM1RhwMrtw8O8wzlxwWBqx5p7hO1FfTyp3B3I0QQlp0PAuysComuOwt0kX/Xf/2xp6+exwRLqnVPuULKTb0CbUvtHGyQOv/ZYWeiv8mN1DqWEOLG/bzMSoIx9BR1NVXwZQjQ5yJTdMrQKzchyYa42/h5mVyOEOHnu3MUlIvMx4JbrFe94nkAib1X1KqUWi7G5uqLT5ropopc5kaIJbe1sJPwYe3HUwisDEBIbXmI8QP0NgbgJDHEB5MR6x0Us4=', 'quoteExpiresAt': 1725334173173, 'quoteCreatedAt': 1725334166173, 'dealerSettlementCurrency': 'USDT', 'dealerSettlementCurrencyAmount': '665.735', 'isInvoice': False, 'isCardLoad': False, 'isPtsSufficient': False, 'isMtPreDealPreCheckSuccess': False}"
+        }, {
+          "name" : "execute_res",
+          "value" : "{'responseCode': 'EXECUTED', 'tradeId': '1682c4f5c08d4165a450f975086db44b', 'tradeRef': '1682c4f5c08d4165a450f975086db44b', 'quoteId': 'CHErfWCMRgTEkYCvTBQ2hi2pDodJsAstmZDW2lLXVuz1YGcuuwGbCwKqobJ4ePZWqLpI4itKNtm5sRBYlfpGY9ZB1ljWaCM1RhwMrtw8O8wzlxwWBqx5p7hO1FfTyp3B3I0QQlp0PAuysComuOwt0kX/Xf/2xp6+exwRLqnVPuULKTb0CbUvtHGyQOv/ZYWeiv8mN1DqWEOLG/bzMSoIx9BR1NVXwZQjQ5yJTdMrQKzchyYa42/h5mVyOEOHnu3MUlIvMx4JbrFe94nkAib1X1KqUWi7G5uqLT5ropopc5kaIJbe1sJPwYe3HUwisDEBIbXmI8QP0NgbgJDHEB5MR6x0Us4=', 'buyTradedCurrency': False, 'settlementCurrency': 'USDT', 'tradedCurrency': 'SOL', 'quotedSettlementCurrencyAmount': '665.735', 'quotedTradedCurrencyAmount': '5', 'executedPrice': '133.147001'}"
+        }, {
+          "name" : "original_aggregated_balance_dic",
+          "value" : "[{'tradeCcy': 'BTC', 'residualPosition': -0.00211726, 'minRfsClientTradeId': 35532, 'maxRfsClientTradeId': 58247, 'countRfsClientTradeId': 432}, {'tradeCcy': 'USDT', 'residualPosition': 0.14, 'minRfsClientTradeId': 41418, 'maxRfsClientTradeId': 41418, 'countRfsClientTradeId': 1}, {'tradeCcy': 'ETH', 'residualPosition': -0.00582343, 'minRfsClientTradeId': 41693, 'maxRfsClientTradeId': 57565, 'countRfsClientTradeId': 3492}, {'tradeCcy': 'LINK', 'residualPosition': 4.16e-06, 'minRfsClientTradeId': 44625, 'maxRfsClientTradeId': 44625, 'countRfsClientTradeId': 1}, {'tradeCcy': 'BCH', 'residualPosition': 3.9e-07, 'minRfsClientTradeId': 45529, 'maxRfsClientTradeId': 45529, 'countRfsClientTradeId': 1}, {'tradeCcy': 'LTC', 'residualPosition': 2.28e-06, 'minRfsClientTradeId': 46031, 'maxRfsClientTradeId': 46031, 'countRfsClientTradeId': 1}, {'tradeCcy': 'USDTTRC', 'residualPosition': 3.172e-05, 'minRfsClientTradeId': 57463, 'maxRfsClientTradeId': 57463, 'countRfsClientTradeId': 1}, {'tradeCcy': 'SOL', 'residualPosition': 7.9e-07, 'minRfsClientTradeId': 57476, 'maxRfsClientTradeId': 58257, 'countRfsClientTradeId': 37}]"
+        } ],
+        "stepsCount" : 3,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 4,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "assertion_ops_transaction_RFQ",
+      "time" : {
+        "start" : 1725334174211,
+        "stop" : 1725334175141,
+        "duration" : 930
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "assertion_with_ops_transaction_for_RFQ",
+        "time" : {
+          "start" : 1725334174211,
+          "stop" : 1725334175141,
+          "duration" : 930
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "ops_transaction",
+          "time" : {
+            "start" : 1725334174212,
+            "stop" : 1725334175139,
+            "duration" : 927
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "tradeId",
+            "value" : "'1682c4f5c08d4165a450f975086db44b'"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "traceId",
+          "value" : "'1682c4f5c08d4165a450f975086db44b'"
+        }, {
+          "name" : "execute_res",
+          "value" : "{'responseCode': 'EXECUTED', 'tradeId': '1682c4f5c08d4165a450f975086db44b', 'tradeRef': '1682c4f5c08d4165a450f975086db44b', 'quoteId': 'CHErfWCMRgTEkYCvTBQ2hi2pDodJsAstmZDW2lLXVuz1YGcuuwGbCwKqobJ4ePZWqLpI4itKNtm5sRBYlfpGY9ZB1ljWaCM1RhwMrtw8O8wzlxwWBqx5p7hO1FfTyp3B3I0QQlp0PAuysComuOwt0kX/Xf/2xp6+exwRLqnVPuULKTb0CbUvtHGyQOv/ZYWeiv8mN1DqWEOLG/bzMSoIx9BR1NVXwZQjQ5yJTdMrQKzchyYa42/h5mVyOEOHnu3MUlIvMx4JbrFe94nkAib1X1KqUWi7G5uqLT5ropopc5kaIJbe1sJPwYe3HUwisDEBIbXmI8QP0NgbgJDHEB5MR6x0Us4=', 'buyTradedCurrency': False, 'settlementCurrency': 'USDT', 'tradedCurrency': 'SOL', 'quotedSettlementCurrencyAmount': '665.735', 'quotedTradedCurrencyAmount': '5', 'executedPrice': '133.147001'}"
+        }, {
+          "name" : "hedge_settlement_amount",
+          "value" : "677.2"
+        }, {
+          "name" : "hedge_trade_amount",
+          "value" : "5.0"
+        }, {
+          "name" : "rate",
+          "value" : "0.0"
+        } ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 2,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 27,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "setup_and_teardown::0",
+    "time" : {
+      "start" : 1725334175150,
+      "stop" : 1725334175150,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Positive Test Cases"
+  }, {
+    "name" : "subSuite",
+    "value" : "Positive Test Cases"
+  }, {
+    "name" : "epic",
+    "value" : "RFQ API TEST"
+  }, {
+    "name" : "parentSuite",
+    "value" : "RFQ API TEST"
+  }, {
+    "name" : "feature",
+    "value" : "IPA Test Cases"
+  }, {
+    "name" : "suite",
+    "value" : "IPA Test Cases"
+  }, {
+    "name" : "tag",
+    "value" : "flaky(reruns=1, reason='Quote Or Execute may Fail')"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.usefixtures('rfq_order_before_check')"
+  }, {
+    "name" : "host",
+    "value" : "shawnxiaooslcom.local"
+  }, {
+    "name" : "thread",
+    "value" : "69044-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "testcase.test_RFQorder"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "case_title",
+    "value" : "'6.SOL-USDT 5 tradedCurrency sell test'"
+  }, {
+    "name" : "case_type",
+    "value" : "'Positive'"
+  }, {
+    "name" : "execute_expected",
+    "value" : "'EXECUTED'"
+  }, {
+    "name" : "quote_expected",
+    "value" : "'FULL_QUOTE'"
+  }, {
+    "name" : "quote_param",
+    "value" : "{'quoteRequest': {'buyTradedCurrency': False, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USDT', 'tradedCurrencyAmount': 5}}"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ "flaky(reruns=1, reason='Quote Or Execute may Fail')", "@pytest.mark.usefixtures('rfq_order_before_check')" ]
+  },
+  "source" : "4d12d3a0d57a7ef8.json",
+  "parameterValues" : [ "'6.SOL-USDT 5 tradedCurrency sell test'", "'Positive'", "'EXECUTED'", "'FULL_QUOTE'", "{'quoteRequest': {'buyTradedCurrency': False, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USDT', 'tradedCurrencyAmount': 5}}" ]
+}

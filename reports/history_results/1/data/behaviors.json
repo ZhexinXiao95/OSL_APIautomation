@@ -1,0 +1,47 @@
+{
+  "uid" : "b1a8273437954620fa374b796ffaacdd",
+  "children" : [ {
+    "name" : "RFQ API TEST",
+    "children" : [ {
+      "name" : "IPA Test Cases",
+      "children" : [ {
+        "name" : "Positive Test Cases",
+        "children" : [ {
+          "name" : "1.SOL-USD 5 tradedCurrency buy test",
+          "uid" : "bdd076dc3588d0de",
+          "parentUid" : "1f23a668b018aa2e4f5b45e7b1a312ee",
+          "status" : "broken",
+          "time" : {
+            "start" : 1725333541926,
+            "stop" : 1725333550249,
+            "duration" : 8323
+          },
+          "flaky" : false,
+          "newFailed" : false,
+          "parameters" : [ "'1.SOL-USD 5 tradedCurrency buy test'", "'Positive'", "'EXECUTED'", "'FULL_QUOTE'", "{'quoteRequest': {'buyTradedCurrency': True, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USD', 'tradedCurrencyAmount': 5}}" ]
+        } ],
+        "uid" : "1f23a668b018aa2e4f5b45e7b1a312ee"
+      } ],
+      "uid" : "9074037a09747453130ebe83b298b865"
+    } ],
+    "uid" : "4260a56f09232b0054a7f5e7dde933b0"
+  }, {
+    "name" : "Positive Test Cases",
+    "children" : [ {
+      "name" : "1.SOL-USD 5 tradedCurrency buy test",
+      "uid" : "d3735765e098a5d8",
+      "parentUid" : "43bdad5f0cb4bbc09a5cf0e60154f728",
+      "status" : "passed",
+      "time" : {
+        "start" : 1725333552983,
+        "stop" : 1725333555822,
+        "duration" : 2839
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "'1.SOL-USD 5 tradedCurrency buy test'", "'Positive'", "'EXECUTED'", "'FULL_QUOTE'", "{'quoteRequest': {'buyTradedCurrency': True, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USD', 'tradedCurrencyAmount': 5}}" ]
+    } ],
+    "uid" : "43bdad5f0cb4bbc09a5cf0e60154f728"
+  } ],
+  "name" : "behaviors"
+}

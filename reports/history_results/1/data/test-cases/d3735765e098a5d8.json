@@ -1,0 +1,385 @@
+{
+  "uid" : "d3735765e098a5d8",
+  "name" : "1.SOL-USD 5 tradedCurrency buy test",
+  "fullName" : "testcase.test_RFQorder#test_makeRFQorder",
+  "time" : {
+    "start" : 1725333552983,
+    "stop" : 1725333555822,
+    "duration" : 2839
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "setup_and_teardown",
+    "time" : {
+      "start" : 1725333550344,
+      "stop" : 1725333550344,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "rfq_order_before_check",
+    "time" : {
+      "start" : 1725333550344,
+      "stop" : 1725333552982,
+      "duration" : 2638
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "rfs_authToken",
+      "time" : {
+        "start" : 1725333550344,
+        "stop" : 1725333550995,
+        "duration" : 651
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "ops_authToken",
+      "time" : {
+        "start" : 1725333550995,
+        "stop" : 1725333551920,
+        "duration" : 925
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "check_rfs_trading_status",
+      "time" : {
+        "start" : 1725333551920,
+        "stop" : 1725333552422,
+        "duration" : 502
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "rfs_status",
+        "time" : {
+          "start" : 1725333551921,
+          "stop" : 1725333552422,
+          "duration" : 501
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "status",
+        "value" : "True"
+      } ],
+      "stepsCount" : 1,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "check_rfs_LP_gateway",
+      "time" : {
+        "start" : 1725333552422,
+        "stop" : 1725333552981,
+        "duration" : 559
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "rfs_status_venue",
+        "time" : {
+          "start" : 1725333552423,
+          "stop" : 1725333552981,
+          "duration" : 558
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "status",
+        "value" : "True"
+      } ],
+      "stepsCount" : 1,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 6,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  } ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "check_ccy_pair",
+      "time" : {
+        "start" : 1725333552983,
+        "stop" : 1725333553537,
+        "duration" : 554
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "rfs_cc_pair_status",
+        "time" : {
+          "start" : 1725333552983,
+          "stop" : 1725333553536,
+          "duration" : 553
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "quote_req",
+        "value" : "{'quoteRequest': {'buyTradedCurrency': True, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USD', 'tradedCurrencyAmount': 5}}"
+      } ],
+      "stepsCount" : 1,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "record aggregated_balance_before trade",
+      "time" : {
+        "start" : 1725333553537,
+        "stop" : 1725333554200,
+        "duration" : 663
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "rfs_aggregated_positions",
+        "time" : {
+          "start" : 1725333553537,
+          "stop" : 1725333554200,
+          "duration" : 663
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 1,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Asking QuoteId Request",
+      "time" : {
+        "start" : 1725333554200,
+        "stop" : 1725333554827,
+        "duration" : 627
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "62dd7b839fd4647d",
+        "name" : "Asking QuoteId Details",
+        "source" : "62dd7b839fd4647d.json",
+        "type" : "application/json",
+        "size" : 1081
+      } ],
+      "parameters" : [ {
+        "name" : "quote_param",
+        "value" : "{'quoteRequest': {'buyTradedCurrency': True, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USD', 'tradedCurrencyAmount': 5}}"
+      }, {
+        "name" : "quote_expected",
+        "value" : "'FULL_QUOTE'"
+      } ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Check Balance Before Trade",
+      "time" : {
+        "start" : 1725333554827,
+        "stop" : 1725333555821,
+        "duration" : 994
+      },
+      "status" : "broken",
+      "statusMessage" : "KeyboardInterrupt\n",
+      "statusTrace" : "  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/testcase/test_RFQorder.py\", line 118, in check_before_trade\n    self.before_balance_dict = brokerage_balance_order_before_check(self.quote_res)\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/utils/RFQ_relates_function.py\", line 35, in brokerage_balance_order_before_check\n    settlementCurrency_balance = get_account_information(currency=settlementCurrency, multiple=False)\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/APIs/user/Custody.py\", line 12, in get_account_information\n    res = v3_mk_request('GET', 'api/3/account', log=False)\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/utils/request_connect.py\", line 47, in v3_mk_request\n    response = requests.request(method, base_url + \"/\" + path, headers=headers, data=body_str)\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/requests/api.py\", line 59, in request\n    return session.request(method=method, url=url, **kwargs)\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/requests/sessions.py\", line 589, in request\n    resp = self.send(prep, **send_kwargs)\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/requests/sessions.py\", line 703, in send\n    r = adapter.send(request, **kwargs)\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/requests/adapters.py\", line 667, in send\n    resp = conn.urlopen(\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/urllib3/connectionpool.py\", line 789, in urlopen\n    response = self._make_request(\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/urllib3/connectionpool.py\", line 466, in _make_request\n    self._validate_conn(conn)\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/urllib3/connectionpool.py\", line 1095, in _validate_conn\n    conn.connect()\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/urllib3/connection.py\", line 652, in connect\n    sock_and_verified = _ssl_wrap_socket_and_match_hostname(\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/urllib3/connection.py\", line 805, in _ssl_wrap_socket_and_match_hostname\n    ssl_sock = ssl_wrap_socket(\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/urllib3/util/ssl_.py\", line 465, in ssl_wrap_socket\n    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/urllib3/util/ssl_.py\", line 509, in _ssl_wrap_socket_impl\n    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)\n  File \"/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/ssl.py\", line 500, in wrap_socket\n    return self.sslsocket_class._create(\n  File \"/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/ssl.py\", line 1040, in _create\n    self.do_handshake()\n  File \"/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/ssl.py\", line 1309, in do_handshake\n    self._sslobj.do_handshake()\n",
+      "steps" : [ {
+        "name" : "brokerage_balance_order_before_check",
+        "time" : {
+          "start" : 1725333554828,
+          "stop" : 1725333555821,
+          "duration" : 993
+        },
+        "status" : "broken",
+        "statusMessage" : "KeyboardInterrupt\n",
+        "statusTrace" : "  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/utils/RFQ_relates_function.py\", line 35, in brokerage_balance_order_before_check\n    settlementCurrency_balance = get_account_information(currency=settlementCurrency, multiple=False)\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/APIs/user/Custody.py\", line 12, in get_account_information\n    res = v3_mk_request('GET', 'api/3/account', log=False)\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/utils/request_connect.py\", line 47, in v3_mk_request\n    response = requests.request(method, base_url + \"/\" + path, headers=headers, data=body_str)\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/requests/api.py\", line 59, in request\n    return session.request(method=method, url=url, **kwargs)\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/requests/sessions.py\", line 589, in request\n    resp = self.send(prep, **send_kwargs)\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/requests/sessions.py\", line 703, in send\n    r = adapter.send(request, **kwargs)\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/requests/adapters.py\", line 667, in send\n    resp = conn.urlopen(\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/urllib3/connectionpool.py\", line 789, in urlopen\n    response = self._make_request(\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/urllib3/connectionpool.py\", line 466, in _make_request\n    self._validate_conn(conn)\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/urllib3/connectionpool.py\", line 1095, in _validate_conn\n    conn.connect()\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/urllib3/connection.py\", line 652, in connect\n    sock_and_verified = _ssl_wrap_socket_and_match_hostname(\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/urllib3/connection.py\", line 805, in _ssl_wrap_socket_and_match_hostname\n    ssl_sock = ssl_wrap_socket(\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/urllib3/util/ssl_.py\", line 465, in ssl_wrap_socket\n    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/urllib3/util/ssl_.py\", line 509, in _ssl_wrap_socket_impl\n    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)\n  File \"/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/ssl.py\", line 500, in wrap_socket\n    return self.sslsocket_class._create(\n  File \"/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/ssl.py\", line 1040, in _create\n    self.do_handshake()\n  File \"/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/ssl.py\", line 1309, in do_handshake\n    self._sslobj.do_handshake()\n",
+        "steps" : [ {
+          "name" : "get_account_information",
+          "time" : {
+            "start" : 1725333554829,
+            "stop" : 1725333555455,
+            "duration" : 626
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "currency",
+            "value" : "'SOL'"
+          }, {
+            "name" : "wallet",
+            "value" : "'Wallets'"
+          }, {
+            "name" : "account",
+            "value" : "'Brokerage_Available_Balance'"
+          }, {
+            "name" : "multiple",
+            "value" : "False"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        }, {
+          "name" : "get_account_information",
+          "time" : {
+            "start" : 1725333555456,
+            "stop" : 1725333555816,
+            "duration" : 360
+          },
+          "status" : "broken",
+          "statusMessage" : "KeyboardInterrupt\n",
+          "statusTrace" : "  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/APIs/user/Custody.py\", line 12, in get_account_information\n    res = v3_mk_request('GET', 'api/3/account', log=False)\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/utils/request_connect.py\", line 47, in v3_mk_request\n    response = requests.request(method, base_url + \"/\" + path, headers=headers, data=body_str)\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/requests/api.py\", line 59, in request\n    return session.request(method=method, url=url, **kwargs)\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/requests/sessions.py\", line 589, in request\n    resp = self.send(prep, **send_kwargs)\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/requests/sessions.py\", line 703, in send\n    r = adapter.send(request, **kwargs)\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/requests/adapters.py\", line 667, in send\n    resp = conn.urlopen(\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/urllib3/connectionpool.py\", line 789, in urlopen\n    response = self._make_request(\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/urllib3/connectionpool.py\", line 466, in _make_request\n    self._validate_conn(conn)\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/urllib3/connectionpool.py\", line 1095, in _validate_conn\n    conn.connect()\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/urllib3/connection.py\", line 652, in connect\n    sock_and_verified = _ssl_wrap_socket_and_match_hostname(\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/urllib3/connection.py\", line 805, in _ssl_wrap_socket_and_match_hostname\n    ssl_sock = ssl_wrap_socket(\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/urllib3/util/ssl_.py\", line 465, in ssl_wrap_socket\n    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)\n  File \"/Users/shawn.xiao/PycharmProjects/pythonProject4/.venv/lib/python3.8/site-packages/urllib3/util/ssl_.py\", line 509, in _ssl_wrap_socket_impl\n    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)\n  File \"/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/ssl.py\", line 500, in wrap_socket\n    return self.sslsocket_class._create(\n  File \"/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/ssl.py\", line 1040, in _create\n    self.do_handshake()\n  File \"/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/ssl.py\", line 1309, in do_handshake\n    self._sslobj.do_handshake()\n",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "currency",
+            "value" : "'USD'"
+          }, {
+            "name" : "wallet",
+            "value" : "'Wallets'"
+          }, {
+            "name" : "account",
+            "value" : "'Brokerage_Available_Balance'"
+          }, {
+            "name" : "multiple",
+            "value" : "False"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : true,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "res",
+          "value" : "{'response': <Response [200]>, 'res': {'quoteResponse': {'responseCode': 'FULL_QUOTE', 'buyTradedCurrency': True, 'settlementCurrency': 'USD', 'tradedCurrency': 'SOL', 'quotedSettlementCurrencyAmount': '692.98', 'quotedTradedCurrencyAmount': '5', 'executedPrice': '138.596129', 'retailRateInSettlementCurrency': '138.596129', 'quoteId': 'XcBeIbsJ/p6n7Qph5xWJVXOXGn/Wz863MuPmobvdT9vNA6Nh98+MWsvsYbL1UcSdtjwkVNrmD5cuUIoO7iI+18hOkl9dyIEl8rVDe3h/cpf5CdUyhGEecN67kBsZ+2t5vMF5xM7wQZ6VOFU41g6jzTBJ9M706YTHIW1rHfAVU13M6gfGl3n3G0UFiScWfzgiemkr2zRBGinwr5wU2oZ/tbJkFehRf30dDCkMsImS4wJsipKyyyEeOmfaaxwwdemN6GBj2OyMA1JW3STnkYtNNJMjX+jzCi9Wm7TbegqahQ5SsKEWBuuOg1590VNDvEOviKYuaf5+OUGPiC+0gJraiIBE+RA=', 'quoteExpiresAt': 1725333561772, 'quoteCreatedAt': 1725333554772, 'dealerSettlementCurrency': 'USD', 'dealerSettlementCurrencyAmount': '692.98', 'isInvoice': False, 'isCardLoad': False, 'isPtsSufficient': False, 'isMtPreDealPreCheckSuccess': False}, 'timestamp': 1725333554772, 'resultCode': 'OK'}, 'req_msg': \"<Request> [d89292ba-e198-4054-a457-a8e9c7069648] => POST api/3/retail/quote <Param> => {'quoteRequest': {'buyTradedCurrency': True, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USD', 'tradedCurrencyAmount': 5}, 'tonce': 1725333554200409}\", 'res_msg': \"<Response> [d89292ba-e198-4054-a457-a8e9c7069648] => {'quoteResponse': {'responseCode': 'FULL_QUOTE', 'buyTradedCurrency': True, 'settlementCurrency': 'USD', 'tradedCurrency': 'SOL', 'quotedSettlementCurrencyAmount': '692.98', 'quotedTradedCurrencyAmount': '5', 'executedPrice': '138.596129', 'retailRateInSettlementCurrency': '138.596129', 'quoteId': 'XcBeIbsJ/p6n7Qph5xWJVXOXGn/Wz863MuPmobvdT9vNA6Nh98+MWsvsYbL1UcSdtjwkVNrmD5cuUIoO7iI+18hOkl9dyIEl8rVDe3h/cpf5CdUyhGEecN67kBsZ+2t5vMF5xM7wQZ6VOFU41g6jzTBJ9M706YTHIW1rHfAVU13M6gfGl3n3G0UFiScWfzgiemkr2zRBGinwr5wU2oZ/tbJkFehRf30dDCkMsImS4wJsipKyyyEeOmfaaxwwdemN6GBj2OyMA1JW3STnkYtNNJMjX+jzCi9Wm7TbegqahQ5SsKEWBuuOg1590VNDvEOviKYuaf5+OUGPiC+0gJraiIBE+RA=', 'quoteExpiresAt': 1725333561772, 'quoteCreatedAt': 1725333554772, 'dealerSettlementCurrency': 'USD', 'dealerSettlementCurrencyAmount': '692.98', 'isInvoice': False, 'isCardLoad': False, 'isPtsSufficient': False, 'isMtPreDealPreCheckSuccess': False}, 'timestamp': 1725333554772, 'resultCode': 'OK'}\"}"
+        } ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 3,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 9,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "setup_and_teardown::0",
+    "time" : {
+      "start" : 1725333556152,
+      "stop" : 1725333556152,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Positive Test Cases"
+  }, {
+    "name" : "subSuite",
+    "value" : "Positive Test Cases"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "case_title",
+    "value" : "'1.SOL-USD 5 tradedCurrency buy test'"
+  }, {
+    "name" : "case_type",
+    "value" : "'Positive'"
+  }, {
+    "name" : "execute_expected",
+    "value" : "'EXECUTED'"
+  }, {
+    "name" : "quote_expected",
+    "value" : "'FULL_QUOTE'"
+  }, {
+    "name" : "quote_param",
+    "value" : "{'quoteRequest': {'buyTradedCurrency': True, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USD', 'tradedCurrencyAmount': 5}}"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "d3735765e098a5d8.json",
+  "parameterValues" : [ "'1.SOL-USD 5 tradedCurrency buy test'", "'Positive'", "'EXECUTED'", "'FULL_QUOTE'", "{'quoteRequest': {'buyTradedCurrency': True, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USD', 'tradedCurrencyAmount': 5}}" ]
+}
