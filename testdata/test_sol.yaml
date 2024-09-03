@@ -1,0 +1,87 @@
+- case_title: 1.SOL-USD 5 tradedCurrency buy test
+  case_type: Positive
+  quoteRequest:
+    buyTradedCurrency: true
+    tradedCurrency: SOL
+    settlementCurrency: USD
+    tradedCurrencyAmount: 5
+    expected: FULL_QUOTE
+  tradeRequest:
+    expected: EXECUTED
+
+- case_title: 2.SOL-USD 5 tradedCurrency sell test
+  case_type: Positive
+  quoteRequest:
+    buyTradedCurrency: false
+    tradedCurrency: SOL
+    settlementCurrency: USD
+    tradedCurrencyAmount: 5
+    expected: FULL_QUOTE
+  tradeRequest:
+    expected: EXECUTED
+
+- case_title: 3.SOL-USD 100 settlementCurrency buy test
+  case_type: Positive
+  quoteRequest:
+    buyTradedCurrency: true
+    tradedCurrency: SOL
+    settlementCurrency: USD
+    settlementCurrencyAmount: 100
+    expected: FULL_QUOTE
+  tradeRequest:
+    expected: EXECUTED
+
+- case_title: 4.SOL-USD 100 settlementCurrency sell test
+  case_type: Positive
+  quoteRequest:
+    buyTradedCurrency: false
+    tradedCurrency: SOL
+    settlementCurrency: USD
+    settlementCurrencyAmount: 100
+    expected: FULL_QUOTE
+  tradeRequest:
+    expected: EXECUTED
+
+- case_title: 5.SOL-USDT 5 tradedCurrency buy test
+  case_type: Positive
+  quoteRequest:
+    buyTradedCurrency: true
+    tradedCurrency: SOL
+    settlementCurrency: USDT
+    tradedCurrencyAmount: 5
+    expected: FULL_QUOTE
+  tradeRequest:
+    expected: EXECUTED
+
+- case_title: 6.SOL-USDT 5 tradedCurrency sell test
+  case_type: Positive
+  quoteRequest:
+    buyTradedCurrency: false
+    tradedCurrency: SOL
+    settlementCurrency: USDT
+    tradedCurrencyAmount: 5
+    expected: FULL_QUOTE
+  tradeRequest:
+    expected: EXECUTED
+
+- case_title: 7.SOL-USDT 500 settlementCurrency buy test
+  case_type: Positive
+  quoteRequest:
+    buyTradedCurrency: true
+    tradedCurrency: SOL
+    settlementCurrency: USDT
+    settlementCurrencyAmount: 500
+    expected: FULL_QUOTE
+  tradeRequest:
+    expected: EXECUTED
+
+- case_title: 8.SOL-USDT 500 settlementCurrency sell test
+  case_type: Positive
+  quoteRequest:
+    buyTradedCurrency: false
+    tradedCurrency: SOL
+    settlementCurrency: USDT
+    settlementCurrencyAmount: 500
+    expected: FULL_QUOTE
+  tradeRequest:
+    expected: EXECUTED

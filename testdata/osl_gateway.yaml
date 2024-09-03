@@ -1,0 +1,220 @@
+- case_title: 1.BTC-USD 0.01 tradedCurrency buy test
+  case_type: Positive
+  quoteRequest:
+    buyTradedCurrency: true
+    tradedCurrency: BTC
+    settlementCurrency: USD
+    tradedCurrencyAmount: 0.01
+    expected: FULL_QUOTE
+  tradeRequest:
+    expected: EXECUTED
+
+- case_title: 2.BTC-USD 0.01 tradedCurrency sell test
+  case_type: Positive
+  quoteRequest:
+    buyTradedCurrency: false
+    tradedCurrency: BTC
+    settlementCurrency: USD
+    tradedCurrencyAmount: 0.01
+    expected: FULL_QUOTE
+  tradeRequest:
+    expected: EXECUTED
+
+- case_title: 3.BTC-USD 7 settlementCurrency buy test
+  case_type: Positive
+  quoteRequest:
+    buyTradedCurrency: true
+    tradedCurrency: BTC
+    settlementCurrency: USD
+    settlementCurrencyAmount: 7
+    expected: FULL_QUOTE
+  tradeRequest:
+    expected: EXECUTED
+
+- case_title: 4.BTC-USD 7 settlementCurrency sell test
+  case_type: Positive
+  quoteRequest:
+    buyTradedCurrency: false
+    tradedCurrency: BTC
+    settlementCurrency: USD
+    settlementCurrencyAmount: 7
+    expected: FULL_QUOTE
+  tradeRequest:
+    expected: EXECUTED
+
+- case_title: 5.ETH-USD 0.001 tradedCurrency buy test
+  case_type: Positive
+  quoteRequest:
+    buyTradedCurrency: true
+    tradedCurrency: ETH
+    settlementCurrency: USD
+    tradedCurrencyAmount: 0.001
+    expected: FULL_QUOTE
+  tradeRequest:
+    expected: EXECUTED
+
+- case_title: 6.ETH-USD 0.001 tradedCurrency sell test
+  case_type: Positive
+  quoteRequest:
+    buyTradedCurrency: false
+    tradedCurrency: ETH
+    settlementCurrency: USD
+    tradedCurrencyAmount: 0.001
+    expected: FULL_QUOTE
+  tradeRequest:
+    expected: EXECUTED
+
+- case_title: 7.ETH-USD 5 settlementCurrency buy test
+  case_type: Positive
+  quoteRequest:
+    buyTradedCurrency: true
+    tradedCurrency: ETH
+    settlementCurrency: USD
+    settlementCurrencyAmount: 5
+    expected: FULL_QUOTE
+  tradeRequest:
+    expected: EXECUTED
+
+- case_title: 8.ETH-USD 5 settlementCurrency sell test
+  case_type: Positive
+  quoteRequest:
+    buyTradedCurrency: false
+    tradedCurrency: ETH
+    settlementCurrency: USD
+    settlementCurrencyAmount: 5
+    expected: FULL_QUOTE
+  tradeRequest:
+    expected: EXECUTED
+#
+- case_title: 9.BTC-HKD 0.01 tradedCurrency buy test
+  case_type: Positive
+  quoteRequest:
+    buyTradedCurrency: true
+    tradedCurrency: BTC
+    settlementCurrency: HKD
+    tradedCurrencyAmount: 0.01
+    expected: FULL_QUOTE
+  tradeRequest:
+    expected: EXECUTED
+
+- case_title: 10.BTC-HKD 0.01 tradedCurrency sell test
+  case_type: Positive
+  quoteRequest:
+    buyTradedCurrency: false
+    tradedCurrency: BTC
+    settlementCurrency: HKD
+    tradedCurrencyAmount: 0.01
+    expected: FULL_QUOTE
+  tradeRequest:
+    expected: EXECUTED
+
+- case_title: 11.BTC-HKD 60 settlementCurrency buy test
+  case_type: Positive
+  quoteRequest:
+    buyTradedCurrency: true
+    tradedCurrency: BTC
+    settlementCurrency: HKD
+    settlementCurrencyAmount: 60
+    expected: FULL_QUOTE
+  tradeRequest:
+    expected: EXECUTED
+
+- case_title: 12.BTC-HKD 60 settlementCurrency sell test
+  case_type: Positive
+  quoteRequest:
+    buyTradedCurrency: false
+    tradedCurrency: BTC
+    settlementCurrency: HKD
+    settlementCurrencyAmount: 60
+    expected: FULL_QUOTE
+  tradeRequest:
+    expected: EXECUTED
+
+- case_title: 13.ETH-HKD 0.001 tradedCurrency buy test
+  case_type: Positive
+  quoteRequest:
+    buyTradedCurrency: true
+    tradedCurrency: ETH
+    settlementCurrency: HKD
+    tradedCurrencyAmount: 0.001
+    expected: FULL_QUOTE
+  tradeRequest:
+    expected: EXECUTED
+
+- case_title: 14.ETH-HKD 0.001 tradedCurrency sell test
+  case_type: Positive
+  quoteRequest:
+    buyTradedCurrency: false
+    tradedCurrency: ETH
+    settlementCurrency: HKD
+    tradedCurrencyAmount: 0.001
+    expected: FULL_QUOTE
+  tradeRequest:
+    expected: EXECUTED
+
+- case_title: 15.ETH-HKD 50 settlementCurrency buy test
+  case_type: Positive
+  quoteRequest:
+    buyTradedCurrency: true
+    tradedCurrency: ETH
+    settlementCurrency: HKD
+    settlementCurrencyAmount: 50
+    expected: FULL_QUOTE
+  tradeRequest:
+    expected: EXECUTED
+
+- case_title: 16.ETH-HKD 50 settlementCurrency sell test
+  case_type: Positive
+  quoteRequest:
+    buyTradedCurrency: false
+    tradedCurrency: ETH
+    settlementCurrency: HKD
+    settlementCurrencyAmount: 50
+    expected: FULL_QUOTE
+  tradeRequest:
+    expected: EXECUTED
+
+#
+#- case_title: 17.USDT-USD 10 tradedCurrency buy test
+#  case_type: Positive
+#  quoteRequest:
+#    buyTradedCurrency: true
+#    tradedCurrency: USDT
+#    settlementCurrency: USD
+#    tradedCurrencyAmount: 10
+#    expected: FULL_QUOTE
+#  tradeRequest:
+#    expected: EXECUTED
+#
+#- case_title: 18.USDT-USD 11 tradedCurrency sell test
+#  case_type: Positive
+#  quoteRequest:
+#    buyTradedCurrency: false
+#    tradedCurrency: USDT
+#    settlementCurrency: USD
+#    tradedCurrencyAmount: 11
+#    expected: FULL_QUOTE
+#  tradeRequest:
+#    expected: EXECUTED
+#
+#- case_title: 19.USDT-USD 12 settlementCurrency buy test
+#  case_type: Positive
+#  quoteRequest:
+#    buyTradedCurrency: true
+#    tradedCurrency: USDT
+#    settlementCurrency: USD
+#    settlementCurrencyAmount: 12
+#    expected: FULL_QUOTE
+#  tradeRequest:
+#    expected: EXECUTED
+#
+#- case_title: 20.USDT-USD 12 settlementCurrency sell test
+#  case_type: Positive
+#  quoteRequest:
+#    buyTradedCurrency: false
+#    tradedCurrency: USDT
+#    settlementCurrency: USD
+#    settlementCurrencyAmount: 12
+#    expected: FULL_QUOTE
+#  tradeRequest:
+#    expected: EXECUTED
