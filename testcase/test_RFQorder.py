@@ -161,7 +161,7 @@ class RFQorder:
     def assertion_ops_tran_RFQ(self):
         assertion_ops_transaction_RFQ(self.trade_id, self.execute_res['res']['tradeResponse'], self.hedge_amount, self.trade_amount, self.rate)
 
-testdata = read_pytest_ini('dataFile','global setting')
+testdata = read_pytest_ini('RFQ_datafile','global setting')
 @pytest.mark.usefixtures("rfq_order_before_check")
 @pytest.mark.parametrize('case_type,case_title,quote_param,quote_expected,execute_expected',
                          rfq_data_output(testdata))
