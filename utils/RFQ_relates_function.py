@@ -463,7 +463,6 @@ def check_RFS_console_transaction(quote_res, execute_res, original_aggregated_ba
             elif Position['ResidualStatus'] == 'NA':
                 check_aggregated_position_after_trade(Position['TradeCcy'], Position['ResidualPosition'], ClientTrade['ClientTradeId'], original_aggregated_balance_dic, change=False)
                 logger.log("Not aggregation")
-            logger.log('debug 4', 'debug')
 
             if ClientTrade['BuyTradedCurrency']:
                 P_SettlementPosition = Decimal(str(Position['clientSettlementAmount']))
