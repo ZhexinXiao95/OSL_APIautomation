@@ -26,4 +26,4 @@ def rfq_data_output(file):
 
 
 if __name__ == '__main__':
-    print(rfq_data_output('get_quote(IPA_Gateway_Test)Test_9'))
+    print(rfq_data_output('/RFQ/test_sol'))
