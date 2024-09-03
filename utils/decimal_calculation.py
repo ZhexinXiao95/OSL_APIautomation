@@ -1,16 +1,15 @@
-from decimal import Decimal, ROUND_HALF_UP, getcontext
-
-from APIs.RFSconsole.RFS_APIs import RFS_API
+from decimal import Decimal, ROUND_HALF_UP
 from utils.ini_read import read_pytest_ini
 from utils.log import logger
 
 
 def round_to_decimal(value):
+    logger.log(f'round_to_decimal value：{value}', 'debug')
     try:
         # 确保 value 是 Decimal 类型
         if not isinstance(value, Decimal):
             value = Decimal(str(value))
-        decimal_places = read_pytest_ini('decimal', 'global setting')
+        decimal_places = int(read_pytest_ini('decimal', 'global setting'))
         # 计算需要的精度，decimal_places + 1 位小数
         rounding_precision = decimal_places + 1
         quantize_str = '1.' + '0' * rounding_precision
@@ -36,4 +35,4 @@ if __name__ == '__main__':
     # Position = tran['Position']
     # P_SettlementAmount = round_to_decimal(Decimal(str(Position['TradedAmount'])) * Decimal(str(Position['limitPrice'])))
     # print(P_SettlementAmount)
-    print(round_to_decimal(438338.623234 - 498676.445343))
+    print(round_to_decimal(498676.445343))
