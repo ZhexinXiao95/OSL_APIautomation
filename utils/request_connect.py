@@ -22,14 +22,22 @@ def generate_traceid():
 
 def gen_sig_helper(secret, data):
     secret_bytes = base64.b64decode(secret.encode("utf8"))
-    return base64.b64encode(hmac.new(secret_bytes, data.encode("utf8"), digestmod=hashlib.sha512).digest()).decode(
+    result = base64.b64encode(hmac.new(secret_bytes, data.encode("utf8"), digestmod=hashlib.sha512).digest()).decode(
         "utf8")
+    return result
 
 
 def v3_gen_sig(secret, path, body_str=None):
     data = path
     if body_str != None:
         data = data + chr(0) + body_str
+    return gen_sig_helper(secret, data)
+
+
+def v4_gen_sig(secret, method, path, expires, body_str=None):
+    data = method + path + str(expires)
+    if body_str is not None:
+        data = data + body_str
     return gen_sig_helper(secret, data)
 
 
@@ -59,6 +67,37 @@ def v3_mk_request(method, path, dict={}, trace_id=None, log=True):
 
     except Exception as ex:
         logger.log(f"<{case_title} v3_mk_request unknow error {str(ex)}", 'critical')
+        raise ex
+
+
+def v4_mk_request(method, path, body=None, log=True):
+    tonce = int(time.time()) + 10
+    body_str = None
+    if body:
+        body_str = json.dumps(body)
+    headers = {
+        'api-key': key,
+        'api-signature': v4_gen_sig(secret, method, path, tonce, body_str),
+        'api-expires': str(tonce),
+    }
+    if body:
+        headers['Content-Type'] = 'application/json'
+
+    response = requests.request(method, base_url + path, headers=headers, data=body_str)
+    try:
+        if log:
+            logger.log(f"Request> => " + method + ' ' + path + ' <Param> => ' + str(body))
+            logger.log(f'<Response> => {response.json()}')
+        response.raise_for_status()
+        assert response.json()
+        request_msg = f"<Request> => " + method + ' ' + path + ' <Param> => ' + str(body)
+        response_msg = f'<Response> => {response.json()}'
+        response_json = response.json()
+        dict = {'response': response, 'res': response_json, 'req_msg': request_msg, 'res_msg': response_msg}
+        return dict
+
+    except Exception as ex:
+        logger.log(f"v4_mk_request unknow error {str(ex)}", 'critical')
         raise ex
 
 

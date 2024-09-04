@@ -1,10 +1,10 @@
 from utils.log import logger
-from utils.request_connect import v3_mk_request
+from utils.request_connect import v4_mk_request
 
 
 def get_exchange_currency_pairs():
     try:
-        res = v3_mk_request('GET', 'api/v4/instrument')
+        res = v4_mk_request('GET', '/api/v4/instrument')
         return res['res']
     except Exception as ex:
         logger.log(f'get_currency_pairs unknow error：{str(ex)}', 'critical')
@@ -17,7 +17,7 @@ def create_order(params):
     :return:
     """
     try:
-        res = v3_mk_request('POST', 'api/v4/order', params)
+        res = v4_mk_request('POST', '/api/v4/order', params)
         return res['res']
     except Exception as ex:
         logger.log(f'create_order unknow error：{str(ex)}', 'critical')
@@ -30,7 +30,7 @@ def cancel_order(params):
     :return:
     """
     try:
-        res = v3_mk_request('DELETE', 'api/v4/order', params)
+        res = v4_mk_request('DELETE', '/api/v4/order', params)
         return res['res']
     except Exception as ex:
         logger.log(f'cancel_order unknow error：{str(ex)}', 'critical')
@@ -43,7 +43,7 @@ def cancel_all_order(params):
     :return:
     """
     try:
-        res = v3_mk_request('DELETE', 'api/v4/order/all', params)
+        res = v4_mk_request('DELETE', '/api/v4/order/all', params)
         return res['res']
     except Exception as ex:
         logger.log(f'cancel_all_order unknow error：{str(ex)}', 'critical')
@@ -56,7 +56,7 @@ def get_order(params):
     :return:
     """
     try:
-        res = v3_mk_request('GET', 'api/v4/order', params)
+        res = v4_mk_request('GET', '/api/v4/order', params)
         return res['res']
     except Exception as ex:
         logger.log(f'get_order unknow error：{str(ex)}', 'critical')
@@ -69,7 +69,7 @@ def get_execution(params):
     :return:
     """
     try:
-        res = v3_mk_request('GET', 'api/v4/execution', params)
+        res = v4_mk_request('GET', '/api/v4/execution', params)
         return res['res']
     except Exception as ex:
         logger.log(f'get_execution unknow error：{str(ex)}', 'critical')
@@ -82,7 +82,7 @@ def get_execution_an_order(params):
     :return:
     """
     try:
-        res = v3_mk_request('GET', 'api/v4/execution/order', params)
+        res = v4_mk_request('GET', '/api/v4/execution/order', params)
         return res['res']
     except Exception as ex:
         logger.log(f'get_execution_an_order unknow error：{str(ex)}', 'critical')
@@ -95,7 +95,7 @@ def get_orderbook(params):
     :return:
     """
     try:
-        res = v3_mk_request('GET', 'api/v4/orderBook/L2', params)
+        res = v4_mk_request('GET', '/api/v4/orderBook/L2', params)
         return res['res']
     except Exception as ex:
         logger.log(f'get_orderbook unknow error：{str(ex)}', 'critical')
@@ -108,7 +108,7 @@ def get_exchange_wallet(params):
     :return:
     """
     try:
-        res = v3_mk_request('GET', 'api/v4/user/wallet', params)
+        res = v4_mk_request('GET', '/api/v4/user/wallet', params)
         return res['res']
     except Exception as ex:
         logger.log(f'get_exchange_wallet unknow error：{str(ex)}', 'critical')
@@ -121,7 +121,7 @@ def get_exchange_trade_list(params):
     :return:
     """
     try:
-        res = v3_mk_request('GET', 'api/v4/trade', params)
+        res = v4_mk_request('GET', '/api/v4/trade', params)
         return res['res']
     except Exception as ex:
         logger.log(f'get_exchange_trade_list unknow error：{str(ex)}', 'critical')
@@ -130,9 +130,12 @@ def get_exchange_trade_list(params):
 if __name__ == '__main__':
     get_exchange_currency_pairs()
     params = {
-        "symbol": "BTCUSD",
-        "orderQty": "1",
-        "side": "BUY",
-        "ordType": "Market"
+        'ordType': 'Limit',
+        'symbol': 'BTCUSD',
+        'orderQty': '0.01',
+        'price': '39000',
+        'side': 'Buy'
     }
     create_order(params)
+    params = None
+    get_order(params)
