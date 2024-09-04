@@ -6,3 +6,6 @@ reports/history_results/
 
 # 忽略所有日志文件
 *.log
+
+# 忽略配置项
+pytest.ini
