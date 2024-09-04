@@ -1,0 +1,34 @@
+- case_title: 1.BTC-USD 0.01 buy Market
+  case_type: Positive
+  request:
+    symbol: BTCUSD
+    orderQty: "1"
+    side: BUY
+    ordType: Market
+  tradeRequest:
+    expected: EXECUTED
+
+- case_title: 2.BTC-USD 0.01 buy Limit
+  case_type: Positive
+  request:
+    symbol: BTCUSD
+    orderQty: "1"
+    side: BUY
+    ordType: Limit
+    price: 60000
+    timeInForce: GoodTillCancel
+  tradeRequest:
+    expected: EXECUTED
+
+- case_title: 3.BTC-USD 0.01 buy Limit Post-Only
+  case_type: Positive
+  request:
+    symbol: BTCUSD
+    orderQty: "1"
+    side: BUY
+    ordType: Limit
+    price: 60000
+    timeInForce: GoodTillCancel
+    execInst: PostOnly
+  tradeRequest:
+    expected: EXECUTED

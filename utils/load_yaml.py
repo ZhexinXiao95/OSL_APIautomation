@@ -20,7 +20,7 @@ def load_yaml_file(file_name):
 
 if __name__ == '__main__':
     # 读取YAML文件并转换成字典格式
-    file_path = 'get_quote'
+    file_path = 'RFQ/test_sol'
     data_dict = load_yaml_file(file_path)
     # 打印转换后的字典数据
     print(data_dict)
