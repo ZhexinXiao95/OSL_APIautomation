@@ -1,121 +1,18 @@
 {
   "uid" : "98d3104e051c652961429bf95fa0b5d6",
   "children" : [ {
-    "name" : "RFQ API TEST",
-    "children" : [ {
-      "name" : "IPA Test Cases",
-      "children" : [ {
-        "name" : "Positive Test Cases",
-        "children" : [ {
-          "name" : "1.SOL-USD 5 tradedCurrency buy test",
-          "uid" : "621a5e9de6f1252d",
-          "parentUid" : "cc86bf166c188fe31d84bb361f93e968",
-          "status" : "passed",
-          "time" : {
-            "start" : 1725334048524,
-            "stop" : 1725334058998,
-            "duration" : 10474
-          },
-          "flaky" : false,
-          "newFailed" : false,
-          "parameters" : [ "'1.SOL-USD 5 tradedCurrency buy test'", "'Positive'", "'EXECUTED'", "'FULL_QUOTE'", "{'quoteRequest': {'buyTradedCurrency': True, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USD', 'tradedCurrencyAmount': 5}}" ]
-        }, {
-          "name" : "2.SOL-USD 5 tradedCurrency sell test",
-          "uid" : "c751bb505fdc1d2f",
-          "parentUid" : "cc86bf166c188fe31d84bb361f93e968",
-          "status" : "passed",
-          "time" : {
-            "start" : 1725334073870,
-            "stop" : 1725334084958,
-            "duration" : 11088
-          },
-          "flaky" : false,
-          "newFailed" : false,
-          "parameters" : [ "'2.SOL-USD 5 tradedCurrency sell test'", "'Positive'", "'EXECUTED'", "'FULL_QUOTE'", "{'quoteRequest': {'buyTradedCurrency': False, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USD', 'tradedCurrencyAmount': 5}}" ]
-        }, {
-          "name" : "3.SOL-USD 100 settlementCurrency buy test",
-          "uid" : "ac5f69131e8a7413",
-          "parentUid" : "cc86bf166c188fe31d84bb361f93e968",
-          "status" : "failed",
-          "time" : {
-            "start" : 1725334098392,
-            "stop" : 1725334109890,
-            "duration" : 11498
-          },
-          "flaky" : false,
-          "newFailed" : false,
-          "parameters" : [ "'3.SOL-USD 100 settlementCurrency buy test'", "'Positive'", "'EXECUTED'", "'FULL_QUOTE'", "{'quoteRequest': {'buyTradedCurrency': True, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USD', 'settlementCurrencyAmount': 100}}" ]
-        }, {
-          "name" : "4.SOL-USD 100 settlementCurrency sell test",
-          "uid" : "e213ce6bd9c1f71b",
-          "parentUid" : "cc86bf166c188fe31d84bb361f93e968",
-          "status" : "failed",
-          "time" : {
-            "start" : 1725334126901,
-            "stop" : 1725334135152,
-            "duration" : 8251
-          },
-          "flaky" : false,
-          "newFailed" : false,
-          "parameters" : [ "'4.SOL-USD 100 settlementCurrency sell test'", "'Positive'", "'EXECUTED'", "'FULL_QUOTE'", "{'quoteRequest': {'buyTradedCurrency': False, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USD', 'settlementCurrencyAmount': 100}}" ]
-        }, {
-          "name" : "5.SOL-USDT 5 tradedCurrency buy test",
-          "uid" : "aa0e082e868c68c2",
-          "parentUid" : "cc86bf166c188fe31d84bb361f93e968",
-          "status" : "passed",
-          "time" : {
-            "start" : 1725334150443,
-            "stop" : 1725334161337,
-            "duration" : 10894
-          },
-          "flaky" : false,
-          "newFailed" : false,
-          "parameters" : [ "'5.SOL-USDT 5 tradedCurrency buy test'", "'Positive'", "'EXECUTED'", "'FULL_QUOTE'", "{'quoteRequest': {'buyTradedCurrency': True, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USDT', 'tradedCurrencyAmount': 5}}" ]
-        }, {
-          "name" : "6.SOL-USDT 5 tradedCurrency sell test",
-          "uid" : "4d12d3a0d57a7ef8",
-          "parentUid" : "cc86bf166c188fe31d84bb361f93e968",
-          "status" : "passed",
-          "time" : {
-            "start" : 1725334164245,
-            "stop" : 1725334175143,
-            "duration" : 10898
-          },
-          "flaky" : false,
-          "newFailed" : false,
-          "parameters" : [ "'6.SOL-USDT 5 tradedCurrency sell test'", "'Positive'", "'EXECUTED'", "'FULL_QUOTE'", "{'quoteRequest': {'buyTradedCurrency': False, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USDT', 'tradedCurrencyAmount': 5}}" ]
-        }, {
-          "name" : "7.SOL-USDT 500 settlementCurrency buy test",
-          "uid" : "96478ac47fc0a878",
-          "parentUid" : "cc86bf166c188fe31d84bb361f93e968",
-          "status" : "failed",
-          "time" : {
-            "start" : 1725334192310,
-            "stop" : 1725334203782,
-            "duration" : 11472
-          },
-          "flaky" : false,
-          "newFailed" : false,
-          "parameters" : [ "'7.SOL-USDT 500 settlementCurrency buy test'", "'Positive'", "'EXECUTED'", "'FULL_QUOTE'", "{'quoteRequest': {'buyTradedCurrency': True, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USDT', 'settlementCurrencyAmount': 500}}" ]
-        }, {
-          "name" : "8.SOL-USDT 500 settlementCurrency sell test",
-          "uid" : "15f0680d5dda5796",
-          "parentUid" : "cc86bf166c188fe31d84bb361f93e968",
-          "status" : "failed",
-          "time" : {
-            "start" : 1725334221643,
-            "stop" : 1725334233359,
-            "duration" : 11716
-          },
-          "flaky" : false,
-          "newFailed" : false,
-          "parameters" : [ "'8.SOL-USDT 500 settlementCurrency sell test'", "'Positive'", "'EXECUTED'", "'FULL_QUOTE'", "{'quoteRequest': {'buyTradedCurrency': False, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USDT', 'settlementCurrencyAmount': 500}}" ]
-        } ],
-        "uid" : "cc86bf166c188fe31d84bb361f93e968"
-      } ],
-      "uid" : "ff5427488c1b6b72949334031cc16673"
-    } ],
-    "uid" : "9508eb2b2f2f676e70c75cb560494632"
+    "name" : "1.SOL-USD 5 tradedCurrency buy test",
+    "uid" : "4ea94d159ccf249a",
+    "parentUid" : "98d3104e051c652961429bf95fa0b5d6",
+    "status" : "skipped",
+    "time" : {
+      "start" : 1725355809367,
+      "stop" : 1725355809367,
+      "duration" : 0
+    },
+    "flaky" : false,
+    "newFailed" : false,
+    "parameters" : [ "'1.SOL-USD 5 tradedCurrency buy test'", "'Positive'", "'EXECUTED'", "'FULL_QUOTE'", "{'quoteRequest': {'buyTradedCurrency': True, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USD', 'tradedCurrencyAmount': 5}}" ]
   } ],
   "name" : "suites"
 }

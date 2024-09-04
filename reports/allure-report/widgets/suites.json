@@ -1,15 +1,4 @@
 {
   "total" : 1,
-  "items" : [ {
-    "uid" : "9508eb2b2f2f676e70c75cb560494632",
-    "name" : "RFQ API TEST",
-    "statistic" : {
-      "failed" : 4,
-      "broken" : 0,
-      "skipped" : 0,
-      "passed" : 4,
-      "unknown" : 0,
-      "total" : 8
-    }
-  } ]
+  "items" : [ ]
 }

@@ -1,5 +1,8 @@
 # 忽略所有数据文件夹及其内容
-reports/
+reports/allure-report/
+reports/allure-results/
+reports/history_reports/
+reports/history_results/
 
 # 忽略所有日志文件
 *.log
