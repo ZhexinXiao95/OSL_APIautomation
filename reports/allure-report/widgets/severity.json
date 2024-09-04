@@ -1,11 +1,21 @@
 [ {
-  "uid" : "4ea94d159ccf249a",
-  "name" : "1.SOL-USD 5 tradedCurrency buy test",
+  "uid" : "1088c8ae549cd6d2",
+  "name" : "1.BTC-USD 0.01 buy Limit Post-Only - QTY order",
   "time" : {
-    "start" : 1725355809367,
-    "stop" : 1725355809367,
-    "duration" : 0
+    "start" : 1725443047788,
+    "stop" : 1725443048380,
+    "duration" : 592
   },
-  "status" : "skipped",
+  "status" : "broken",
+  "severity" : "normal"
+}, {
+  "uid" : "f3d5c8fefc6a9b08",
+  "name" : "2.BTC-USD 0.01 sell Limit Post-Only - QTY order",
+  "time" : {
+    "start" : 1725443050096,
+    "stop" : 1725443050640,
+    "duration" : 544
+  },
+  "status" : "broken",
   "severity" : "normal"
 } ]

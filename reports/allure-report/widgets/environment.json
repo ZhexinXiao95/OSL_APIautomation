@@ -2,13 +2,13 @@
   "values" : [ "2.10.0" ],
   "name" : "allureVersion"
 }, {
-  "values" : [ "https://trade-hk-stage.oslsandbox.com" ],
+  "values" : [ "https://trade-hk.oslsandbox.com" ],
   "name" : "baseUrl"
 }, {
-  "values" : [ "stage" ],
+  "values" : [ "sit" ],
   "name" : "TestEnvironment"
 }, {
-  "values" : [ "shawn.xiao@osl.com" ],
+  "values" : [ "None" ],
   "name" : "AccountUse"
 }, {
   "values" : [ "Shawn Xiao" ],

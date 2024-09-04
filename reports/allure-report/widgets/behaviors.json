@@ -1,4 +1,15 @@
 {
   "total" : 1,
-  "items" : [ ]
+  "items" : [ {
+    "uid" : "fccb7e5f75d04eca90d7c0b92821132c",
+    "name" : "Exchange API TEST",
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 1,
+      "skipped" : 0,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 1
+    }
+  } ]
 }

@@ -9,10 +9,10 @@ import uuid
 
 from utils.ini_read import *
 from utils.log import logger
-
-base_url = read_pytest_ini('api_host', 'stage')
-key = read_pytest_ini('api_key', 'stage')
-secret = read_pytest_ini('api_secret', 'stage')
+env = read_pytest_ini('env', 'global setting')
+base_url = read_pytest_ini('api_host', env)
+key = read_pytest_ini('api_key', env)
+secret = read_pytest_ini('api_secret', env)
 
 
 def generate_traceid():
@@ -70,7 +70,7 @@ def v3_mk_request(method, path, dict={}, trace_id=None, log=True):
         raise ex
 
 
-def v4_mk_request(method, path, body=None, log=True):
+def v4_mk_request(method, path, body=None, log=True, need_res=True):
     tonce = int(time.time()) + 10
     body_str = None
     if body:
@@ -84,17 +84,21 @@ def v4_mk_request(method, path, body=None, log=True):
         headers['Content-Type'] = 'application/json'
 
     response = requests.request(method, base_url + path, headers=headers, data=body_str)
+
     try:
-        if log:
-            logger.log(f"Request> => " + method + ' ' + path + ' <Param> => ' + str(body))
-            logger.log(f'<Response> => {response.json()}')
-        response.raise_for_status()
-        assert response.json()
-        request_msg = f"<Request> => " + method + ' ' + path + ' <Param> => ' + str(body)
-        response_msg = f'<Response> => {response.json()}'
-        response_json = response.json()
-        dict = {'response': response, 'res': response_json, 'req_msg': request_msg, 'res_msg': response_msg}
-        return dict
+        if need_res:
+            if log:
+                logger.log(f"Request> => " + method + ' ' + path + ' <Param> => ' + str(body))
+                logger.log(f'<Response> => {response.json()}')
+            response.raise_for_status()
+            assert response.json()
+            request_msg = f"<Request> => " + method + ' ' + path + ' <Param> => ' + str(body)
+            response_msg = f'<Response> => {response.json()}'
+            response_json = response.json()
+            dict = {'response': response, 'res': response_json, 'req_msg': request_msg, 'res_msg': response_msg}
+            return dict
+        else:
+            return response
 
     except Exception as ex:
         logger.log(f"v4_mk_request unknow error {str(ex)}", 'critical')
@@ -128,3 +132,6 @@ def make_request(method, path, headers, params=None, timeout=5):
     except requests.exceptions.RequestException as e:
         logger.log(f"{path} An error occurred: {e}", "error")
         raise e
+
+if __name__ == '__main__':
+    v4_mk_request('DELETE','/api/v4/order/all')

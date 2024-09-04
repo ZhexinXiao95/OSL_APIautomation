@@ -1,18 +1,43 @@
 {
   "uid" : "98d3104e051c652961429bf95fa0b5d6",
   "children" : [ {
-    "name" : "1.SOL-USD 5 tradedCurrency buy test",
-    "uid" : "4ea94d159ccf249a",
-    "parentUid" : "98d3104e051c652961429bf95fa0b5d6",
-    "status" : "skipped",
-    "time" : {
-      "start" : 1725355809367,
-      "stop" : 1725355809367,
-      "duration" : 0
-    },
-    "flaky" : false,
-    "newFailed" : false,
-    "parameters" : [ "'1.SOL-USD 5 tradedCurrency buy test'", "'Positive'", "'EXECUTED'", "'FULL_QUOTE'", "{'quoteRequest': {'buyTradedCurrency': True, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USD', 'tradedCurrencyAmount': 5}}" ]
+    "name" : "Exchange API TEST",
+    "children" : [ {
+      "name" : "PostOnly Test Cases",
+      "children" : [ {
+        "name" : "Positive Test Cases",
+        "children" : [ {
+          "name" : "1.BTC-USD 0.01 buy Limit Post-Only - QTY order",
+          "uid" : "1088c8ae549cd6d2",
+          "parentUid" : "7257e2dc64bff1edb8b6c66778538e99",
+          "status" : "broken",
+          "time" : {
+            "start" : 1725443047788,
+            "stop" : 1725443048380,
+            "duration" : 592
+          },
+          "flaky" : false,
+          "newFailed" : false,
+          "parameters" : [ "'1.BTC-USD 0.01 buy Limit Post-Only - QTY order'", "'Positive'", "{'symbol': 'BTCUSD', 'orderQty': '1', 'side': 'BUY', 'ordType': 'Limit', 'price': None, 'timeInForce': 'GoodTillCancel', 'execInst': 'PostOnly'}" ]
+        }, {
+          "name" : "2.BTC-USD 0.01 sell Limit Post-Only - QTY order",
+          "uid" : "f3d5c8fefc6a9b08",
+          "parentUid" : "7257e2dc64bff1edb8b6c66778538e99",
+          "status" : "broken",
+          "time" : {
+            "start" : 1725443050096,
+            "stop" : 1725443050640,
+            "duration" : 544
+          },
+          "flaky" : false,
+          "newFailed" : false,
+          "parameters" : [ "'2.BTC-USD 0.01 sell Limit Post-Only - QTY order'", "'Positive'", "{'symbol': 'BTCUSD', 'orderQty': '1', 'side': 'SELL', 'ordType': 'Limit', 'price': None, 'timeInForce': 'GoodTillCancel', 'execInst': 'PostOnly'}" ]
+        } ],
+        "uid" : "7257e2dc64bff1edb8b6c66778538e99"
+      } ],
+      "uid" : "022017fcff4fb072a03639b097ac2a15"
+    } ],
+    "uid" : "3bb8948fa0c3d3f5a2d0ecbd92ca5979"
   } ],
   "name" : "suites"
 }

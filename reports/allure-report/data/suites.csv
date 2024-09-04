@@ -1,2 +1,3 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"skipped","Tue Sep 03 17:30:09 CST 2024","Tue Sep 03 17:30:09 CST 2024","0","","","","","","1.SOL-USD 5 tradedCurrency buy test",""
+"broken","Wed Sep 04 17:44:10 CST 2024","Wed Sep 04 17:44:10 CST 2024","544","Exchange API TEST","PostOnly Test Cases","Positive Test Cases","","","2.BTC-USD 0.01 sell Limit Post-Only - QTY order",""
+"broken","Wed Sep 04 17:44:07 CST 2024","Wed Sep 04 17:44:08 CST 2024","592","Exchange API TEST","PostOnly Test Cases","Positive Test Cases","","","1.BTC-USD 0.01 buy Limit Post-Only - QTY order",""

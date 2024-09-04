@@ -13,7 +13,11 @@ from utils.log import logger
 if __name__ == '__main__':
     # 生成Allure报告
     # os.system('pytest --clean-alluredir --alluredir=./reports/allure-results')
-    pytest.main(['-s', '-q', './', '--clean-alluredir', '--alluredir=./reports/allure-results'])
+    # 跑所有test
+    # pytest.main(['-s', '-q', './', '--clean-alluredir', '--alluredir=./reports/allure-results'])
+    # 跑指定test
+    pytest.main(['-s', '-q', './testcase/test_ExchangeOrder.py', '--clean-alluredir', '--alluredir=./reports/allure-results'])
+
     allure_edit()
     reports_path = 'reports/history_reports/'
     delete_oldest_html_files(reports_path)

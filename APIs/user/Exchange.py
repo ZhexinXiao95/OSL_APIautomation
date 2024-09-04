@@ -1,3 +1,5 @@
+import allure
+
 from utils.log import logger
 from utils.request_connect import v4_mk_request
 
@@ -5,7 +7,7 @@ from utils.request_connect import v4_mk_request
 def get_exchange_currency_pairs():
     try:
         res = v4_mk_request('GET', '/api/v4/instrument')
-        return res['res']
+        return res
     except Exception as ex:
         logger.log(f'get_currency_pairs unknow error：{str(ex)}', 'critical')
 
@@ -18,7 +20,7 @@ def create_order(params):
     """
     try:
         res = v4_mk_request('POST', '/api/v4/order', params)
-        return res['res']
+        return res
     except Exception as ex:
         logger.log(f'create_order unknow error：{str(ex)}', 'critical')
 
@@ -31,11 +33,12 @@ def cancel_order(params):
     """
     try:
         res = v4_mk_request('DELETE', '/api/v4/order', params)
-        return res['res']
+        return res
     except Exception as ex:
         logger.log(f'cancel_order unknow error：{str(ex)}', 'critical')
 
 
+@allure.step("clear existing order")
 def cancel_all_order(params):
     """
     https://osl.com/reference/cancel-all-orders
@@ -43,8 +46,9 @@ def cancel_all_order(params):
     :return:
     """
     try:
-        res = v4_mk_request('DELETE', '/api/v4/order/all', params)
-        return res['res']
+        res = v4_mk_request('DELETE', '/api/v4/order/all', params, need_res=False)
+        assert res.status_code in [200, 204], f'assertion error, got {res.status_code}'
+        logger.log(f'cancel_all_order success, got {res.status_code}')
     except Exception as ex:
         logger.log(f'cancel_all_order unknow error：{str(ex)}', 'critical')
 
@@ -57,7 +61,7 @@ def get_order(params):
     """
     try:
         res = v4_mk_request('GET', '/api/v4/order', params)
-        return res['res']
+        return res
     except Exception as ex:
         logger.log(f'get_order unknow error：{str(ex)}', 'critical')
 
@@ -70,7 +74,7 @@ def get_execution(params):
     """
     try:
         res = v4_mk_request('GET', '/api/v4/execution', params)
-        return res['res']
+        return res
     except Exception as ex:
         logger.log(f'get_execution unknow error：{str(ex)}', 'critical')
 
@@ -83,7 +87,7 @@ def get_execution_an_order(params):
     """
     try:
         res = v4_mk_request('GET', '/api/v4/execution/order', params)
-        return res['res']
+        return res
     except Exception as ex:
         logger.log(f'get_execution_an_order unknow error：{str(ex)}', 'critical')
 
@@ -96,7 +100,7 @@ def get_orderbook(params):
     """
     try:
         res = v4_mk_request('GET', '/api/v4/orderBook/L2', params)
-        return res['res']
+        return res
     except Exception as ex:
         logger.log(f'get_orderbook unknow error：{str(ex)}', 'critical')
 
@@ -109,7 +113,7 @@ def get_exchange_wallet(params):
     """
     try:
         res = v4_mk_request('GET', '/api/v4/user/wallet', params)
-        return res['res']
+        return res
     except Exception as ex:
         logger.log(f'get_exchange_wallet unknow error：{str(ex)}', 'critical')
 
@@ -122,20 +126,37 @@ def get_exchange_trade_list(params):
     """
     try:
         res = v4_mk_request('GET', '/api/v4/trade', params)
-        return res['res']
+        return res
     except Exception as ex:
         logger.log(f'get_exchange_trade_list unknow error：{str(ex)}', 'critical')
 
 
 if __name__ == '__main__':
-    get_exchange_currency_pairs()
-    params = {
-        'ordType': 'Limit',
-        'symbol': 'BTCUSD',
-        'orderQty': '0.01',
-        'price': '39000',
-        'side': 'Buy'
+    # get_exchange_currency_pairs()
+    # params = {
+    #     'ordType': 'Limit',
+    #     'symbol': 'BTCUSD',
+    #     'orderQty': '0.01',
+    #     'price': '39000',
+    #     'side': 'Buy'
+    # }
+    # create_order(params)
+    # params = None
+    # get_order(params)
+    # params = {
+    #     "symbol": "BTCUSD"
+    # }
+    cancel_all_order(None)
+
+    post_only_params = {
+        "symbol": "BTCUSD",
+        "orderQty": "1",
+        "side": "Sell",
+        "ordType": "Limit",
+        "price": 70000,
+        "timeInForce": "GoodTillCancel",
+        'execInst': 'PostOnly'
     }
-    create_order(params)
-    params = None
-    get_order(params)
+
+    orderID = create_order(post_only_params)['res']['orderID']
+    get_order(None)

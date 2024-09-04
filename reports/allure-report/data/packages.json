@@ -1,18 +1,35 @@
 {
   "uid" : "83edc06c07f9ae9e47eb6dd1b683e4e2",
   "children" : [ {
-    "name" : "1.SOL-USD 5 tradedCurrency buy test",
-    "uid" : "4ea94d159ccf249a",
-    "parentUid" : "83edc06c07f9ae9e47eb6dd1b683e4e2",
-    "status" : "skipped",
-    "time" : {
-      "start" : 1725355809367,
-      "stop" : 1725355809367,
-      "duration" : 0
-    },
-    "flaky" : false,
-    "newFailed" : false,
-    "parameters" : [ "'1.SOL-USD 5 tradedCurrency buy test'", "'Positive'", "'EXECUTED'", "'FULL_QUOTE'", "{'quoteRequest': {'buyTradedCurrency': True, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USD', 'tradedCurrencyAmount': 5}}" ]
+    "name" : "testcase.test_ExchangeOrder",
+    "children" : [ {
+      "name" : "1.BTC-USD 0.01 buy Limit Post-Only - QTY order",
+      "uid" : "1088c8ae549cd6d2",
+      "parentUid" : "e3bcbf07ce45d2335d975966df98b1e2",
+      "status" : "broken",
+      "time" : {
+        "start" : 1725443047788,
+        "stop" : 1725443048380,
+        "duration" : 592
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "'1.BTC-USD 0.01 buy Limit Post-Only - QTY order'", "'Positive'", "{'symbol': 'BTCUSD', 'orderQty': '1', 'side': 'BUY', 'ordType': 'Limit', 'price': None, 'timeInForce': 'GoodTillCancel', 'execInst': 'PostOnly'}" ]
+    }, {
+      "name" : "2.BTC-USD 0.01 sell Limit Post-Only - QTY order",
+      "uid" : "f3d5c8fefc6a9b08",
+      "parentUid" : "e3bcbf07ce45d2335d975966df98b1e2",
+      "status" : "broken",
+      "time" : {
+        "start" : 1725443050096,
+        "stop" : 1725443050640,
+        "duration" : 544
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "'2.BTC-USD 0.01 sell Limit Post-Only - QTY order'", "'Positive'", "{'symbol': 'BTCUSD', 'orderQty': '1', 'side': 'SELL', 'ordType': 'Limit', 'price': None, 'timeInForce': 'GoodTillCancel', 'execInst': 'PostOnly'}" ]
+    } ],
+    "uid" : "testcase.test_ExchangeOrder"
   } ],
   "name" : "packages"
 }
