@@ -46,10 +46,10 @@ def v3_mk_request(method, path, dict={}, trace_id=None, log=True):
     }
     response = requests.request(method, base_url + "/" + path, headers=headers, data=body_str)
     try:
-        response.raise_for_status()
         if log:
             logger.log(f"Request> [{trace_id}] => " + method + ' ' + path + ' <Param> => ' + str(body))
             logger.log(f'<Response> [{trace_id}] => {response.json()}')
+        response.raise_for_status()
         assert response.json()
         request_msg = f"<Request> [{trace_id}] => " + method + ' ' + path + ' <Param> => ' + str(body)
         response_msg = f'<Response> [{trace_id}] => {response.json()}'
