@@ -1,0 +1,18 @@
+{
+  "uid" : "ab17fc5a4eb3bca4b216b548c7f9fcbc",
+  "children" : [ {
+    "name" : "1.SOL-USD 5 tradedCurrency buy test",
+    "uid" : "4ea94d159ccf249a",
+    "parentUid" : "ab17fc5a4eb3bca4b216b548c7f9fcbc",
+    "status" : "skipped",
+    "time" : {
+      "start" : 1725355809367,
+      "stop" : 1725355809367,
+      "duration" : 0
+    },
+    "flaky" : false,
+    "newFailed" : false,
+    "parameters" : [ "'1.SOL-USD 5 tradedCurrency buy test'", "'Positive'", "'EXECUTED'", "'FULL_QUOTE'", "{'quoteRequest': {'buyTradedCurrency': True, 'tradedCurrency': 'SOL', 'settlementCurrency': 'USD', 'tradedCurrencyAmount': 5}}" ]
+  } ],
+  "name" : "timeline"
+}
