@@ -1,3 +1,4 @@
+from utils.business_operation.exchange_operation import price_for_limit
 from utils.load_yaml import load_yaml_file
 from utils.log import logger
 
@@ -31,10 +32,28 @@ def exchange_data_output(file):
     try:
         for data in data_list:
             case_title = data['case_title']
-            # case_type = data['case_type']
-            params = data['request']
-            expected = data['expected']
-            data = case_title, params, expected
+            if "Orders" in data:
+                execute_type = data['execute_type']
+                params_list = []
+                expected_list = []
+                for req in data['Orders']:
+                    # 成交单 - 替换价格变量
+                    params = req['request']
+                    # Market单不需要price
+                    if params['ordType'] != 'Market':
+                        order_price = price_for_limit(params['side'], params['symbol'])
+                        params['price'] = order_price
+
+                    expected = req['expected']
+                    params_list.append(params)
+                    expected_list.append(expected)
+                data = case_title, params_list, expected_list, execute_type
+
+            else:
+                # case_type = data['case_type']
+                params = data['request']
+                expected = data['expected']
+                data = case_title, params, expected
             list.append(data)
         return list
     except Exception as ex:

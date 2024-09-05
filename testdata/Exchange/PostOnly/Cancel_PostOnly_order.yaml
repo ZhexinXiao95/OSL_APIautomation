@@ -4,7 +4,7 @@
     orderQty: "0.01"
     side: Buy
     ordType: Limit
-    price: 50000
+    price: 45000
     timeInForce: GoodTillCancel
     execInst: PostOnly
   expected: New

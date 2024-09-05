@@ -4,9 +4,12 @@ from utils.log import logger
 from utils.request_connect import v4_mk_request
 
 
-def get_exchange_currency_pairs():
+def get_exchange_currency_pairs(symbol=None):
+    path = ''
     try:
-        res = v4_mk_request('GET', '/api/v4/instrument')
+        if symbol is not None:
+            path = f'?symbol={symbol}'
+        res = v4_mk_request('GET', f'/api/v4/instrument{path}')
         return res
     except Exception as ex:
         logger.log(f'get_currency_pairs unknow error：{str(ex)}', 'critical')
@@ -56,14 +59,23 @@ def cancel_all_order(params):
         logger.log(f'cancel_all_order unknow error：{str(ex)}', 'critical')
 
 
-def get_order(params):
+def get_order(params=None):
     """
     https://osl.com/reference/get-orders
-    :param params:
     :return:
     """
     try:
-        res = v4_mk_request('GET', '/api/v4/order', params)
+        path = ''
+        if params is not None:
+            for key, value in params.items():
+                if path == '':
+                    path = '?'
+                if path != '?':
+                    path = path + "&"
+                if value != '':
+                    path = path + key + "=" + str(value)
+
+        res = v4_mk_request('GET', f'/api/v4/order{path}')
         return res
     except Exception as ex:
         logger.log(f'get_order unknow error：{str(ex)}', 'critical')
@@ -136,36 +148,31 @@ def get_exchange_trade_list(params):
 
 
 if __name__ == '__main__':
-    # get_exchange_currency_pairs()
+    # post_only_params = {
+    #     "symbol": "BTCUSD",
+    #     "orderQty": "2",
+    #     "side": "Sell",
+    #     "ordType": "Limit",
+    #     "price": '46420',
+    #     "timeInForce": "GoodTillCancel",
+    #     'execInst': 'PostOnly'
+    # }
+    #
+    # orderID1 = create_order(post_only_params)['res']['orderID']
     # params = {
-    #     'ordType': 'Limit',
+    #     'ordType': 'Market',
     #     'symbol': 'BTCUSD',
     #     'orderQty': '1',
-    #     'price': '69500',
     #     'side': 'Buy'
     # }
-    # create_order(params)
-    # params = None
-    # get_order(params)
-    # params = {
-    #     "symbol": "BTCUSD"
-    # # }
-    # cancel_all_order(None)
-    #
-    post_only_params = {
-        "symbol": "BTCUSD",
-        "orderQty": "0.01",
-        "side": "Buy",
-        "ordType": "Limit",
-        "price": '50000',
-        "timeInForce": "GoodTillCancel",
-        'execInst': 'PostOnly'
-    }
+    # orderID2 = create_order(params)['res']['orderID']
+    # print(orderID1,orderID2)
 
-    orderID = create_order(post_only_params)['res']['orderID']
-    # print(orderID)
-    # get_order(None)
-    # print(get_exchange_currency_pairs())
-    # res = get_orderbook('BTCUSD')['res']
-    # print(res['asks'][0][0])
-    cancel_order(orderID)
+    # 2289677808 2289677809
+
+    # params = {
+    #     "orderID" : '2289677809',
+    #     "open": 'false'
+    # }
+    # print(get_order(params))
+    print(get_order({'orderID': 2289697900, 'open': 'false'})['res'][0]['avgPx'])

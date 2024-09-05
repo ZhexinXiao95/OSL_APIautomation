@@ -3,6 +3,7 @@ import pytest
 
 from APIs.user.Exchange import cancel_all_order
 from utils.RFQ_relates_function import *
+from utils.business_operation.exchange_operation import fills_price
 from utils.ini_read import read_pytest_ini, write_pytest_ini
 from utils.log import logger
 
@@ -27,3 +28,5 @@ def rfq_order_before_check():
 @pytest.fixture
 def exchange_order_before_check():
     cancel_all_order(None)
+    logger.log(f'{fills_price}','debug')
+
