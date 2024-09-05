@@ -1,0 +1,43 @@
+- case_title: 1.BTC-USD buy Limit Post-Only Place Fail Over LastPrice
+  request:
+    symbol: BTCUSD
+    orderQty: "10"
+    side: Buy
+    ordType: Limit
+    price: 90000
+    timeInForce: GoodTillCancel
+    execInst: PostOnly
+  expected: post only order would match
+
+- case_title: 2.BTC-USD sell Limit Post-Only Place Fail Under LastPrice
+  request:
+    symbol: BTCUSD
+    orderQty: "10"
+    side: Sell
+    ordType: Limit
+    price: 20000
+    timeInForce: GoodTillCancel
+    execInst: PostOnly
+  expected: post only order would match
+
+- case_title: 3.BTC-USD buy Limit Post-Only GTC Fail Price too low
+  request:
+    symbol: BTCUSD
+    orderQty: "0.01"
+    side: Buy
+    ordType: Limit
+    price: 100
+    timeInForce: GoodTillCancel
+    execInst: PostOnly
+  expected: order price too low
+
+- case_title: 4.BTC-USD sell Limit Post-Only GTC Fail Price too high
+  request:
+    symbol: BTCUSD
+    orderQty: "0.01"
+    side: Sell
+    ordType: Limit
+    price: 100000
+    timeInForce: GoodTillCancel
+    execInst: PostOnly
+  expected: order price too high

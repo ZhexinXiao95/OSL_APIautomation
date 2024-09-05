@@ -29,19 +29,21 @@ def generate_environment_file():
     baseUrl = read_pytest_ini('api_host', env)
     account = read_pytest_ini('test_account', env)
     venus = read_pytest_ini('venus', env)
+    test_uid = read_pytest_ini('test_uid', env)
     # Check if environment.properties file exists and delete it if it does
     if os.path.exists('./reports/allure-results/environment.properties'):
         os.remove('./reports/allure-results/environment.properties')
 
     with open('./reports/allure-results/environment.properties', 'w') as f:
         f.write(f'AccountUse = {account}\n'
+                f'TestUid = {test_uid}\n'
                 f'Gateway = {venus}\n'
                 f'TestEnvironment = {env}\n'
                 f'systemVersion = {system_version}\n'
                 f'PythonVersion = {python_version}\n'
                 f'allureVersion = {allureVersion}\n'
                 f'baseUrl = {baseUrl}\n'
-                f'projectName = RFQ api testing\n'
+                f'projectName = OSL Automation\n'
                 f'author = Shawn Xiao\n')
 
 

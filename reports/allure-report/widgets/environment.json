@@ -2,13 +2,16 @@
   "values" : [ "2.10.0" ],
   "name" : "allureVersion"
 }, {
+  "values" : [ "794e4084-b522-4cf8-b61d-63c6fd55ed54" ],
+  "name" : "TestUid"
+}, {
   "values" : [ "https://trade-hk.oslsandbox.com" ],
   "name" : "baseUrl"
 }, {
   "values" : [ "sit" ],
   "name" : "TestEnvironment"
 }, {
-  "values" : [ "None" ],
+  "values" : [ "shawn.xiao@osl.com" ],
   "name" : "AccountUse"
 }, {
   "values" : [ "Shawn Xiao" ],
@@ -20,7 +23,7 @@
   "values" : [ "3.8.10" ],
   "name" : "PythonVersion"
 }, {
-  "values" : [ "RFQ api testing" ],
+  "values" : [ "OSL Automation" ],
   "name" : "projectName"
 }, {
   "values" : [ "Mac" ],

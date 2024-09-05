@@ -90,8 +90,8 @@ def v4_mk_request(method, path, body=None, log=True, need_res=True):
             if log:
                 logger.log(f"Request> => " + method + ' ' + path + ' <Param> => ' + str(body))
                 logger.log(f'<Response> => {response.json()}')
-            response.raise_for_status()
-            assert response.json()
+            # response.raise_for_status()
+            # assert response.json()
             request_msg = f"<Request> => " + method + ' ' + path + ' <Param> => ' + str(body)
             response_msg = f'<Response> => {response.json()}'
             response_json = response.json()

@@ -3,7 +3,7 @@ from utils.ini_read import read_pytest_ini
 from utils.log import logger
 
 
-def round_to_decimal(value):
+def RTD(value):
     logger.log(f'round_to_decimal value：{value}', 'debug')
     try:
         # 确保 value 是 Decimal 类型
@@ -35,4 +35,4 @@ if __name__ == '__main__':
     # Position = tran['Position']
     # P_SettlementAmount = round_to_decimal(Decimal(str(Position['TradedAmount'])) * Decimal(str(Position['limitPrice'])))
     # print(P_SettlementAmount)
-    print(round_to_decimal(498676.445343))
+    print(RTD(498676.445343))

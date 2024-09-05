@@ -271,7 +271,7 @@ def check_aggregated_position_after_trade(ccy, amount, client_id, original_aggre
             new_aggregated_balance_dict = RFS_API(env).aggregated_positions()
             for balance in original_aggregated_balance_dict:
                 if balance['tradeCcy'] == ccy:
-                    balance['residualPosition'] = float(round_to_decimal(Decimal(str(balance['residualPosition'])) + Decimal(str(amount))))
+                    balance['residualPosition'] = float(RTD(Decimal(str(balance['residualPosition'])) + Decimal(str(amount))))
                     balance['maxRfsClientTradeId'] = client_id
                     logger.log(f"{balance['maxRfsClientTradeId']}", 'debug')
                     balance['countRfsClientTradeId'] += 1
@@ -407,18 +407,18 @@ def check_RFS_console_transaction(quote_res, execute_res, original_aggregated_ba
             # synthetic的买单
             if ClientTrade['BuyTradedCurrency']:
 
-                P_SettlementPosition = round_to_decimal(Decimal(str(Position['mdsRateCurrencyOffer'])) * Decimal(str(Position['clientSettlementAmount'])))
+                P_SettlementPosition = RTD(Decimal(str(Position['mdsRateCurrencyOffer'])) * Decimal(str(Position['clientSettlementAmount'])))
                 assert P_SettlementPosition == Decimal(str(Position['SettlementPosition'])), f"[buy] P_SettlementPosition = round_to_decimal(Decimal(str(Position['mdsRateCurrencyOffer'])) * Decimal(str(Position['clientSettlementAmount']))), {Decimal(str(Position['SettlementPosition']))}, {P_SettlementPosition}, {Decimal(str(Position['mdsRateCurrencyOffer']))} * {Decimal(str(Position['clientSettlementAmount']))}"
 
                 logger.log('1','debug')
-                P_SettlementAmount = round_to_decimal(Decimal(str(Position['TradedAmount'])) * Decimal(str(Position['limitPrice'])))
+                P_SettlementAmount = RTD(Decimal(str(Position['TradedAmount'])) * Decimal(str(Position['limitPrice'])))
                 assert P_SettlementAmount == Decimal(str(Position['SettlementAmount'])), f"[buy] P_SettlementAmount == Decimal(str(Position['SettlementAmount'])), {P_SettlementAmount}, {Decimal(str(Position['SettlementAmount']))}, {Decimal(str(Position['TradedAmount']))} * {Decimal(str(Position['limitPrice']))}"
 
                 logger.log('2','debug')
-                P_SettlementPosition = round_to_decimal(Decimal(str(Position['SettlementAmount'])) + Decimal(str(Position['FinalProfitLoss'])))
+                P_SettlementPosition = RTD(Decimal(str(Position['SettlementAmount'])) + Decimal(str(Position['FinalProfitLoss'])))
                 assert P_SettlementPosition == Decimal(str(Position['SettlementPosition'])), f"P_SettlementPosition = round_to_decimal(Decimal(str(Position['SettlementAmount'])) + Decimal(str(Position['FinalProfitLoss']))), {P_SettlementPosition}, {Decimal(str(Position['SettlementAmount']))} + {Decimal(str(Position['FinalProfitLoss']))}"
 
-                P_FinalProfitLoss = round_to_decimal(Decimal(str(Position['FinalSettlementPosition'])) - Decimal(str(Position['SettlementAmount'])))
+                P_FinalProfitLoss = RTD(Decimal(str(Position['FinalSettlementPosition'])) - Decimal(str(Position['SettlementAmount'])))
                 assert P_FinalProfitLoss == Decimal(str(Position['FinalProfitLoss'])), f"P_FinalProfitLoss == Decimal(str(Position['FinalProfitLoss'])), {P_FinalProfitLoss}, {Decimal(str(Position['FinalSettlementPosition']))} - {Decimal(str(Position['SettlementAmount']))}"
 
                 assert execute_traded_amount == -Decimal(str(Position['FinalTradedPosition'])), f"execute_traded_amount == -Decimal(str(Position['FinalTradedPosition'])), {execute_traded_amount}, {-Decimal(str(Position['FinalTradedPosition']))}"
@@ -426,21 +426,21 @@ def check_RFS_console_transaction(quote_res, execute_res, original_aggregated_ba
                 assert execute_settlement_amount == Decimal(str(Position['clientSettlementAmount'])), f"execute_settlement_amount == -Decimal(str(Position['TradedPosition'])), {execute_settlement_amount}, {Decimal(str(Position['clientSettlementAmount']))}"
 
                 # 可能存在未对冲的数据
-                assert execute_traded_amount == round_to_decimal(Decimal(str(Order['TradedAmount'])) - Decimal(str(Position['ResidualPosition']))), f"execute_traded_amount == round_to_decimal(-Decimal(str(Order['TradedAmount'])) + Decimal(str(Position['ResidualPosition']))), {execute_traded_amount}, {Decimal(str(Order['TradedAmount']))}, {Decimal(str(Position['ResidualPosition']))}"
+                assert execute_traded_amount == RTD(Decimal(str(Order['TradedAmount'])) - Decimal(str(Position['ResidualPosition']))), f"execute_traded_amount == round_to_decimal(-Decimal(str(Order['TradedAmount'])) + Decimal(str(Position['ResidualPosition']))), {execute_traded_amount}, {Decimal(str(Order['TradedAmount']))}, {Decimal(str(Position['ResidualPosition']))}"
 
             # synthetic的卖单
             elif ClientTrade['BuyTradedCurrency'] is False:
 
-                P_SettlementPosition = -round_to_decimal(Decimal(str(Position['mdsRateCurrencyBid'])) * Decimal(str(Position['clientSettlementAmount'])))
+                P_SettlementPosition = -RTD(Decimal(str(Position['mdsRateCurrencyBid'])) * Decimal(str(Position['clientSettlementAmount'])))
                 assert P_SettlementPosition == Decimal(str(Position['SettlementPosition'])), f"[sell] P_SettlementPosition = -round_to_decimal(Decimal(str(Position['mdsRateCurrencyBid'])) * Decimal(str(Position['clientSettlementAmount']))), {Decimal(str(Position['SettlementPosition']))}, {P_SettlementPosition}, {-Decimal(str(Position['mdsRateCurrencyBid']))} * {Decimal(str(Position['clientSettlementAmount']))}"
 
-                P_SettlementAmount = round_to_decimal(Decimal(str(Position['TradedAmount'])) * Decimal(str(Position['limitPrice'])))
+                P_SettlementAmount = RTD(Decimal(str(Position['TradedAmount'])) * Decimal(str(Position['limitPrice'])))
                 assert P_SettlementAmount == Decimal(str(Position['SettlementAmount'])), f"[sell] P_SettlementAmount = round_to_decimal(Decimal(str(Position['TradedAmount'])) * Decimal(str(Position['limitPrice']))), {Decimal(str(Position['SettlementAmount']))}, {P_SettlementAmount}, {Decimal(str(Position['TradedAmount']))} * {Decimal(str(Position['limitPrice']))}"
 
-                P_SettlementPosition = round_to_decimal(-Decimal(str(Position['SettlementAmount'])) + Decimal(str(Position['FinalProfitLoss'])))
+                P_SettlementPosition = RTD(-Decimal(str(Position['SettlementAmount'])) + Decimal(str(Position['FinalProfitLoss'])))
                 assert P_SettlementPosition == Decimal(str(Position['SettlementPosition'])), f"P_SettlementPosition == Position['SettlementPosition'], {P_SettlementPosition}, {Position['SettlementPosition']}"
 
-                P_FinalProfitLoss = round_to_decimal(Decimal(str(Position['FinalSettlementPosition'])) + Decimal(str(Position['SettlementAmount'])))
+                P_FinalProfitLoss = RTD(Decimal(str(Position['FinalSettlementPosition'])) + Decimal(str(Position['SettlementAmount'])))
                 assert P_FinalProfitLoss == Decimal(str(Position['FinalProfitLoss'])), f" P_FinalProfitLoss == Decimal(str(Position['FinalProfitLoss'])), {P_FinalProfitLoss}, {Decimal(str(Position['FinalSettlementPosition']))} + {Decimal(str(Position['SettlementAmount']))}"
 
                 assert execute_traded_amount == Decimal(str(Position['FinalTradedPosition'])), f"execute_traded_amount == Decimal(str(Position['FinalTradedPosition'])), {execute_traded_amount}, {Decimal(str(Position['FinalTradedPosition']))}"
@@ -448,7 +448,7 @@ def check_RFS_console_transaction(quote_res, execute_res, original_aggregated_ba
                 assert execute_settlement_amount == Decimal(str(Position['clientSettlementAmount'])), f"execute_settlement_amount == Decimal(str(Position['TradedPosition'])), {execute_settlement_amount}, {Decimal(str(Position['clientSettlementAmount']))}"
 
                 # 可能存在未对冲的数据
-                assert execute_traded_amount == round_to_decimal(Decimal(str(Order['TradedAmount'])) + Decimal(str(Position['ResidualPosition']))), f"execute_traded_amount == round_to_decimal(Decimal(str(Order['TradedAmount'])) + Decimal(str(Position['ResidualPosition']))), {execute_traded_amount}, {Decimal(str(Order['TradedAmount']))}, {Decimal(str(Position['ResidualPosition']))}"
+                assert execute_traded_amount == RTD(Decimal(str(Order['TradedAmount'])) + Decimal(str(Position['ResidualPosition']))), f"execute_traded_amount == round_to_decimal(Decimal(str(Order['TradedAmount'])) + Decimal(str(Position['ResidualPosition']))), {execute_traded_amount}, {Decimal(str(Order['TradedAmount']))}, {Decimal(str(Position['ResidualPosition']))}"
 
         elif ClientTrade['synthetic'] is False:
             assert '' == ClientTrade['mdsRateCurrencyPair'], f"'' == ClientTrade['mdsRateCurrencyPair'], {ClientTrade['mdsRateCurrencyPair']} should be empty"
@@ -468,13 +468,13 @@ def check_RFS_console_transaction(quote_res, execute_res, original_aggregated_ba
                 P_SettlementPosition = Decimal(str(Position['clientSettlementAmount']))
                 assert P_SettlementPosition == Decimal(str(Position['SettlementPosition'])), f"P_SettlementPosition == Decimal(str(Position['SettlementPosition'])), {P_SettlementPosition}, {Decimal(str(Position['clientSettlementAmount']))}"
 
-                P_SettlementAmount = round_to_decimal(Decimal(str(Position['TradedAmount'])) * Decimal(str(Position['limitPrice'])))
+                P_SettlementAmount = RTD(Decimal(str(Position['TradedAmount'])) * Decimal(str(Position['limitPrice'])))
                 assert P_SettlementAmount == Decimal(str(Position['SettlementAmount'])), f"P_SettlementAmount == Decimal(str(Position['SettlementAmount'])), {P_SettlementAmount}, {Decimal(str(Position['SettlementAmount']))}, {Decimal(str(Position['TradedAmount']))} * {Decimal(str(Position['limitPrice']))}"
 
-                P_SettlementPosition = round_to_decimal(Decimal(str(Position['SettlementAmount'])) + Decimal(str(Position['FinalProfitLoss'])))
+                P_SettlementPosition = RTD(Decimal(str(Position['SettlementAmount'])) + Decimal(str(Position['FinalProfitLoss'])))
                 assert P_SettlementPosition == Decimal(str(Position['SettlementPosition'])), f"P_SettlementPosition == Position['SettlementPosition'], {P_SettlementPosition}, {Decimal(str(Position['SettlementAmount']))} + {Decimal(str(Position['FinalProfitLoss']))}"
 
-                P_FinalProfitLoss = round_to_decimal(Decimal(str(Position['FinalSettlementPosition'])) - Decimal(str(Position['SettlementAmount'])))
+                P_FinalProfitLoss = RTD(Decimal(str(Position['FinalSettlementPosition'])) - Decimal(str(Position['SettlementAmount'])))
                 assert P_FinalProfitLoss == Decimal(str(Position['FinalProfitLoss'])), f"P_FinalProfitLoss == Decimal(str(Position['FinalProfitLoss'])), {P_FinalProfitLoss}, {Decimal(str(Position['FinalSettlementPosition']))} - {Decimal(str(Position['SettlementAmount']))}"
 
                 assert execute_traded_amount == -Decimal(str(Position['FinalTradedPosition'])), f"execute_traded_amount == -Decimal(str(Position['FinalTradedPosition'])), {execute_traded_amount}, {-Decimal(str(Position['FinalTradedPosition']))}"
@@ -482,19 +482,19 @@ def check_RFS_console_transaction(quote_res, execute_res, original_aggregated_ba
                 assert execute_settlement_amount == Decimal(str(Position['clientSettlementAmount'])), f"execute_settlement_amount == -Decimal(str(Position['TradedPosition'])), {execute_settlement_amount}, {Decimal(str(Position['clientSettlementAmount']))}"
 
                 # 可能存在未对冲的数据
-                assert execute_traded_amount == round_to_decimal(Decimal(str(Order['TradedAmount'])) + Decimal(str(Position['ResidualPosition']))), f"[synthetic false] execute_traded_amount == round_to_decimal(-Decimal(str(Order['TradedAmount'])) + Decimal(str(Position['ResidualPosition']))), {execute_traded_amount}, {Decimal(str(Order['TradedAmount']))}, {Decimal(str(Position['ResidualPosition']))}"
+                assert execute_traded_amount == RTD(Decimal(str(Order['TradedAmount'])) + Decimal(str(Position['ResidualPosition']))), f"[synthetic false] execute_traded_amount == round_to_decimal(-Decimal(str(Order['TradedAmount'])) + Decimal(str(Position['ResidualPosition']))), {execute_traded_amount}, {Decimal(str(Order['TradedAmount']))}, {Decimal(str(Position['ResidualPosition']))}"
 
             elif ClientTrade['BuyTradedCurrency'] is False:
                 P_SettlementPosition = -Decimal(str(Position['clientSettlementAmount']))
                 assert P_SettlementPosition == Decimal(str(Position['SettlementPosition'])), f"P_SettlementPosition == Decimal(str(Position['SettlementPosition'])), {P_SettlementPosition}, {Decimal(str(Position['clientSettlementAmount']))}"
 
-                P_SettlementAmount = round_to_decimal(Decimal(str(Position['TradedAmount'])) * Decimal(str(Position['limitPrice'])))
+                P_SettlementAmount = RTD(Decimal(str(Position['TradedAmount'])) * Decimal(str(Position['limitPrice'])))
                 assert P_SettlementAmount == Decimal(str(Position['SettlementAmount'])), f"P_SettlementAmount == Decimal(str(Position['SettlementAmount'])), {P_SettlementAmount}, {Decimal(str(Position['SettlementAmount']))}, {Decimal(str(Position['TradedAmount']))} * {Decimal(str(Position['limitPrice']))}"
 
-                P_SettlementPosition = round_to_decimal(-Decimal(str(Position['SettlementAmount'])) + Decimal(str(Position['FinalProfitLoss'])))
+                P_SettlementPosition = RTD(-Decimal(str(Position['SettlementAmount'])) + Decimal(str(Position['FinalProfitLoss'])))
                 assert P_SettlementPosition == Decimal(str(Position['SettlementPosition'])), f"P_SettlementPosition == Position['SettlementPosition'], {P_SettlementPosition}, {Position['SettlementPosition']}"
 
-                P_FinalProfitLoss = round_to_decimal(Decimal(str(Position['FinalSettlementPosition'])) + Decimal(str(Position['SettlementAmount'])))
+                P_FinalProfitLoss = RTD(Decimal(str(Position['FinalSettlementPosition'])) + Decimal(str(Position['SettlementAmount'])))
                 assert P_FinalProfitLoss == Decimal(str(Position['FinalProfitLoss'])), f"P_FinalProfitLoss == Decimal(str(Position['FinalProfitLoss'])), {P_FinalProfitLoss}, {Decimal(str(Position['FinalSettlementPosition']))} + {Decimal(str(Position['SettlementAmount']))}"
 
                 assert execute_traded_amount == Decimal(str(Position['FinalTradedPosition'])), f"execute_traded_amount == Decimal(str(Position['FinalTradedPosition'])), {execute_traded_amount}, {Decimal(str(Position['FinalTradedPosition']))}"
@@ -502,7 +502,7 @@ def check_RFS_console_transaction(quote_res, execute_res, original_aggregated_ba
                 assert execute_settlement_amount == Decimal(str(Position['clientSettlementAmount'])), f"execute_settlement_amount == Decimal(str(Position['TradedPosition'])), {execute_settlement_amount}, {Decimal(str(Position['clientSettlementAmount']))}"
 
                 # 可能存在未对冲的数据
-                assert execute_traded_amount == round_to_decimal(Decimal(str(Order['TradedAmount'])) + Decimal(str(Position['ResidualPosition']))), f"execute_traded_amount == round_to_decimal(Decimal(str(Order['TradedAmount'])) + Decimal(str(Position['ResidualPosition']))), {execute_traded_amount}, {Decimal(str(Order['TradedAmount']))}, {Decimal(str(Position['ResidualPosition']))}"
+                assert execute_traded_amount == RTD(Decimal(str(Order['TradedAmount'])) + Decimal(str(Position['ResidualPosition']))), f"execute_traded_amount == round_to_decimal(Decimal(str(Order['TradedAmount'])) + Decimal(str(Position['ResidualPosition']))), {execute_traded_amount}, {Decimal(str(Order['TradedAmount']))}, {Decimal(str(Position['ResidualPosition']))}"
         logger.log('<===== check_RFS_console_transaction end =====>')
         rate = ''
         logger.log(f"ClientTrade['BuyTradedCurrency'] {ClientTrade['BuyTradedCurrency']}", 'debug')
@@ -527,7 +527,7 @@ def check_RFS_console_transaction(quote_res, execute_res, original_aggregated_ba
 @allure.step('assertion_with_ops_transaction_for_RFQ')
 def assertion_ops_transaction_RFQ(traceId, execute_res, hedge_settlement_amount, hedge_trade_amount, rate):
     logger.log('<===== assertion_ops_transaction_RFQ start =====>')
-    platformTrade_Float_amount = round_to_decimal((hedge_settlement_amount * rate) / (1-0.0001-0.01) * (1-0.01))
+    platformTrade_Float_amount = RTD((hedge_settlement_amount * rate) / (1 - 0.0001 - 0.01) * (1 - 0.01))
     logger.log(f'hedge_settlement_amount {hedge_settlement_amount}, rate {rate}', 'debug')
     logger.log(f'platformTrade_Float_amount {platformTrade_Float_amount}', 'debug')
     try:

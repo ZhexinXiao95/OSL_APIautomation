@@ -1,2 +1,4 @@
 "Epic","Feature","Story","FAILED","BROKEN","PASSED","SKIPPED","UNKNOWN"
-"Exchange API TEST","exchange_data_output Test Cases","Positive Test Cases","0","2","0","0","0"
+"Exchange API TEST","PostOnly Test Cases","Positive Test Cases","0","0","6","0","0"
+"Exchange API TEST","PostOnly Test Cases","Cancel Order Test Cases","0","0","2","0","0"
+"Exchange API TEST","PostOnly Test Cases","Negative Test Cases","0","0","4","0","0"

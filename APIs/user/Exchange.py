@@ -25,13 +25,16 @@ def create_order(params):
         logger.log(f'create_order unknow error：{str(ex)}', 'critical')
 
 
-def cancel_order(params):
+def cancel_order(orderID):
     """
     https://osl.com/reference/cancel-orders
-    :param params:
+    :param orderID:
     :return:
     """
     try:
+        params = {
+            "orderID": [orderID]
+        }
         res = v4_mk_request('DELETE', '/api/v4/order', params)
         return res
     except Exception as ex:
@@ -92,14 +95,15 @@ def get_execution_an_order(params):
         logger.log(f'get_execution_an_order unknow error：{str(ex)}', 'critical')
 
 
-def get_orderbook(params):
+def get_orderbook(symbol, depth=10):
     """
     https://osl.com/reference/get-order-book
-    :param params:
+    :param symbol:
+    :param depth:
     :return:
     """
     try:
-        res = v4_mk_request('GET', '/api/v4/orderBook/L2', params)
+        res = v4_mk_request('GET', f'/api/v4/orderBook/L2?symbol={symbol}&depth={depth}')
         return res
     except Exception as ex:
         logger.log(f'get_orderbook unknow error：{str(ex)}', 'critical')
@@ -136,8 +140,8 @@ if __name__ == '__main__':
     # params = {
     #     'ordType': 'Limit',
     #     'symbol': 'BTCUSD',
-    #     'orderQty': '0.01',
-    #     'price': '39000',
+    #     'orderQty': '1',
+    #     'price': '69500',
     #     'side': 'Buy'
     # }
     # create_order(params)
@@ -145,18 +149,23 @@ if __name__ == '__main__':
     # get_order(params)
     # params = {
     #     "symbol": "BTCUSD"
-    # }
-    cancel_all_order(None)
-
+    # # }
+    # cancel_all_order(None)
+    #
     post_only_params = {
         "symbol": "BTCUSD",
-        "orderQty": "1",
-        "side": "Sell",
+        "orderQty": "0.01",
+        "side": "Buy",
         "ordType": "Limit",
-        "price": 70000,
+        "price": '50000',
         "timeInForce": "GoodTillCancel",
         'execInst': 'PostOnly'
     }
 
     orderID = create_order(post_only_params)['res']['orderID']
-    get_order(None)
+    # print(orderID)
+    # get_order(None)
+    # print(get_exchange_currency_pairs())
+    # res = get_orderbook('BTCUSD')['res']
+    # print(res['asks'][0][0])
+    cancel_order(orderID)

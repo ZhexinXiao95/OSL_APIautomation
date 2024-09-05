@@ -31,9 +31,10 @@ def exchange_data_output(file):
     try:
         for data in data_list:
             case_title = data['case_title']
-            case_type = data['case_type']
+            # case_type = data['case_type']
             params = data['request']
-            data = case_type, case_title, params
+            expected = data['expected']
+            data = case_title, params, expected
             list.append(data)
         return list
     except Exception as ex:
