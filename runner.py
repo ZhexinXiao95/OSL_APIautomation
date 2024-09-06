@@ -16,9 +16,23 @@ if __name__ == '__main__':
     # 跑所有test
     # pytest.main(['-s', '-q', './', '--clean-alluredir', '--alluredir=./reports/allure-results'])
     # 跑指定test
-    pytest.main(['-s', '-q', './testcase/test_ExchangeOrder.py', '--clean-alluredir', '--alluredir=./reports/allure-results'])
+    # pytest.main(['-s', '-q', './testcase/test_ExchangeOrder.py', '--clean-alluredir', '--alluredir=./reports/allure-results'])
     # 跑指定方法
     # pytest.main(['-s', '-q', './testcase/test_ExchangeOrder.py::test_PostOnly_FillsOrder', '--clean-alluredir', '--alluredir=./reports/allure-results'])
+
+    test_suite = read_pytest_ini('test_suite', 'global setting')
+    if test_suite == 'all':
+        logger.log('Test All Test Cases')
+        pytest.main(['-s', '-q', './', '--clean-alluredir', '--alluredir=./reports/allure-results'])
+    elif test_suite == 'specified':
+        test_name = read_pytest_ini('test_name', 'global setting')
+        logger.log(f'Test {test_name} Cases')
+        pytest.main(['-s', '-q', f'./testcase/{test_name}', '--clean-alluredir', '--alluredir=./reports/allure-results'])
+    elif test_suite == 'method':
+        test_name = read_pytest_ini('test_method', 'global setting')
+        test_method = read_pytest_ini('test_method', 'global setting')
+        logger.log(f'Test Method {test_method} in {test_name} Cases')
+        pytest.main(['-s', '-q', f'./testcase/{test_name}::{test_method}', '--clean-alluredir', '--alluredir=./reports/allure-results'])
 
     allure_edit()
     reports_path = 'reports/history_reports/'

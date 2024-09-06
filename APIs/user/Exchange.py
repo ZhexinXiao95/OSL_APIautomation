@@ -153,19 +153,18 @@ if __name__ == '__main__':
     #     "orderQty": "2",
     #     "side": "Sell",
     #     "ordType": "Limit",
-    #     "price": '46420',
+    #     "price": '60000',
     #     "timeInForce": "GoodTillCancel",
-    #     'execInst': 'PostOnly'
     # }
-    #
+    # #
     # orderID1 = create_order(post_only_params)['res']['orderID']
-    # params = {
-    #     'ordType': 'Market',
-    #     'symbol': 'BTCUSD',
-    #     'orderQty': '1',
-    #     'side': 'Buy'
-    # }
-    # orderID2 = create_order(params)['res']['orderID']
+    params = {
+        'ordType': 'Market',
+        'symbol': 'BTCUSD',
+        'orderQty': '1000',
+        'side': 'Sell'
+    }
+    orderID2 = create_order(params)
     # print(orderID1,orderID2)
 
     # 2289677808 2289677809
@@ -175,4 +174,4 @@ if __name__ == '__main__':
     #     "open": 'false'
     # }
     # print(get_order(params))
-    print(get_order({'orderID': 2289697900, 'open': 'false'})['res'][0]['avgPx'])
+    # print(get_order({'orderID': 2289697900, 'open': 'false'})['res'][0]['avgPx'])

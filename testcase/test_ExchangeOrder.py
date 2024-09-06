@@ -20,8 +20,8 @@ class ExchangeOrder:
         self.create_order_res = None
         self.symbol = None
 
-    @allure.step("Make Exchange order - PostOnly")
-    def create_P_PostOnlyOrder(self, params, expected):
+    @allure.step("Make Exchange order - Limit")
+    def create_P_LimitOrder(self, params, expected):
         res_dict = create_order(params)
         res = res_dict['res']
         self.create_order_res = res
@@ -35,14 +35,14 @@ class ExchangeOrder:
                                                 'price']), f"price assertion error, response price {RTD(res['price'])} != param price {RTD(params['price'])}"
             assert res['ordType'] == params[
                 'ordType'], f"ordType assertion error, response ordType {res['ordType']} != param ordType {params['ordType']}"
-            assert res['execInst'] == params[
-                'execInst'], f"execInst assertion error, response execInst {res['execInst']} != param execInst {params['execInst']}"
             assert res['side'] == params[
                 'side'], f"side assertion error, response side {res['side']} != param side {params['side']}"
             assert res['timeInForce'] == params[
                 'timeInForce'], f"timeInForce assertion error, response timeInForce {res['timeInForce']} != param timeInForce {params['timeInForce']}"
             if expected not in ['PartiallyFilled','Filled']:
                 assert res['ordStatus'] == expected, f"ordStatus assertion error, response ordStatus {res['ordStatus']} != expected ordStatus {expected}"
+            if 'execInst' in params:
+                assert res['execInst'] == params['execInst'], f"execInst assertion error, response execInst {res['execInst']} != param execInst {params['execInst']}"
 
             allure.attach(name="Make Exchange Order",
                           body=f"Request:{res_dict['response'].request.body}\nResponse:{res_dict['response'].text}",
@@ -55,7 +55,7 @@ class ExchangeOrder:
             return self.orderID
         except AssertionError as e:
             logger.log(
-                f'create_P_ex_order Assertion Error：{str(e)}\nRequest:{res_dict["response"].request.body}\nResponse:{res_dict["response"].text}',
+                f'create_P_LimitOrder Assertion Error：{str(e)}\nRequest:{res_dict["response"].request.body}\nResponse:{res_dict["response"].text}',
                 'error')
             allure.attach(name="Make Exchange Order",
                           body=f"Request:{res_dict['response'].request.body}\nResponse:{res_dict['response'].text}",
@@ -64,15 +64,15 @@ class ExchangeOrder:
 
         except Exception as ex:
             logger.log(
-                f'create_P_ex_order Unknow Error：{str(ex)}\nRequest:{res_dict["response"].request.body}\nResponse:{res_dict["response"].text}',
+                f'create_P_LimitOrder Unknow Error：{str(ex)}\nRequest:{res_dict["response"].request.body}\nResponse:{res_dict["response"].text}',
                 'critical')
             allure.attach(name="Make Exchange Order",
                           body=f"Request:{res_dict['response'].request.body}\nResponse:{res_dict['response'].text}",
                           attachment_type=allure.attachment_type.JSON)
             raise ex
 
-    @allure.step("Make Exchange order - PostOnly")
-    def create_N_PostOnlyOrder(self, params, expected):
+    @allure.step("Make Exchange order - Limit")
+    def create_N_LimitOrder(self, params, expected):
         res_dict = create_order(params)
         res = res_dict['res']
         self.create_order_res = res
@@ -84,7 +84,7 @@ class ExchangeOrder:
                           attachment_type=allure.attachment_type.JSON)
         except AssertionError as e:
             logger.log(
-                f'create_N_ex_order Assertion Error：{str(e)}\nRequest:{res_dict["response"].request.body}\nResponse:{res_dict["response"].text}',
+                f'create_N_LimitOrder Assertion Error：{str(e)}\nRequest:{res_dict["response"].request.body}\nResponse:{res_dict["response"].text}',
                 'error')
             allure.attach(name="Make Exchange Order",
                           body=f"Request:{res_dict['response'].request.body}\nResponse:{res_dict['response'].text}",
@@ -93,12 +93,13 @@ class ExchangeOrder:
 
         except Exception as ex:
             logger.log(
-                f'create_N_ex_order Unknow Error：{str(ex)}\nRequest:{res_dict["response"].request.body}\nResponse:{res_dict["response"].text}',
+                f'create_N_LimitOrder Unknow Error：{str(ex)}\nRequest:{res_dict["response"].request.body}\nResponse:{res_dict["response"].text}',
                 'critical')
             allure.attach(name="Make Exchange Order",
                           body=f"Request:{res_dict['response'].request.body}\nResponse:{res_dict['response'].text}",
                           attachment_type=allure.attachment_type.JSON)
             raise ex
+
     @allure.step("Make Exchange order - Market")
     def create_P_MarketOrder(self, params, expected):
         should_fills_price = fills_price(params['side'], self.symbol)
@@ -145,6 +146,36 @@ class ExchangeOrder:
         except Exception as ex:
             logger.log(
                 f'create_P_MarketOrder Unknow Error：{str(ex)}\nRequest:{res_dict["response"].request.body}\nResponse:{res_dict["response"].text}',
+                'critical')
+            allure.attach(name="Make Exchange Order",
+                          body=f"Request:{res_dict['response'].request.body}\nResponse:{res_dict['response'].text}",
+                          attachment_type=allure.attachment_type.JSON)
+            raise ex
+
+    @allure.step("Make Exchange order - Market")
+    def create_N_MarketOrder(self, params, expected):
+        res_dict = create_order(params)
+        res = res_dict['res']
+        self.create_order_res = res
+
+        try:
+            assert res['error'][
+                       'message'] == expected, f"Message assertion error, response msg {res['error']['message']} != expected msg {expected}"
+            allure.attach(name="Make Exchange Order",
+                          body=f"Request:{res_dict['response'].request.body}\nResponse:{res_dict['response'].text}",
+                          attachment_type=allure.attachment_type.JSON)
+        except AssertionError as e:
+            logger.log(
+                f'create_N_MarketOrder Assertion Error：{str(e)}\nRequest:{res_dict["response"].request.body}\nResponse:{res_dict["response"].text}',
+                'error')
+            allure.attach(name="Make Exchange Order",
+                          body=f"Request:{res_dict['response'].request.body}\nResponse:{res_dict['response'].text}",
+                          attachment_type=allure.attachment_type.JSON)
+            raise e
+
+        except Exception as ex:
+            logger.log(
+                f'create_N_MarketOrder Unknow Error：{str(ex)}\nRequest:{res_dict["response"].request.body}\nResponse:{res_dict["response"].text}',
                 'critical')
             allure.attach(name="Make Exchange Order",
                           body=f"Request:{res_dict['response'].request.body}\nResponse:{res_dict['response'].text}",
@@ -202,7 +233,7 @@ class ExchangeOrder:
             logger.log(f'{param}', 'debug')
             orderID = ''
             if 'PostOnly' in param.values():
-                orderID = self.create_P_PostOnlyOrder(param, expected)
+                orderID = self.create_P_LimitOrder(param, expected)
             elif "Market" in param.values():
                 orderID = self.create_P_MarketOrder(param, expected)
             orderID_list.append([orderID, expected])
@@ -234,7 +265,7 @@ def test_PostOnly_Positive_ExchangeOrder(case_title, params, expected):
     try:
         logger.log(f'{case_title}', 'debug')
         client = ExchangeOrder()
-        client.create_P_PostOnlyOrder(params, expected)
+        client.create_P_LimitOrder(params, expected)
     except AssertionError or Exception as e:
         # 如果失败，等待一段时间再重试
         time.sleep(2)  # 等待 2 秒
@@ -256,7 +287,7 @@ def test_PostOnly_Negative_ExchangeOrder(case_title, params, expected):
     try:
         logger.log(f'{case_title}', 'debug')
         client = ExchangeOrder()
-        client.create_N_PostOnlyOrder(params, expected)
+        client.create_N_LimitOrder(params, expected)
     except AssertionError or Exception as e:
         # 如果失败，等待一段时间再重试
         time.sleep(2)  # 等待 2 秒
@@ -278,7 +309,7 @@ def test_PostOnly_CancelOrder(case_title, params, expected):
     try:
         logger.log(f'{case_title}', 'debug')
         client = ExchangeOrder()
-        client.create_P_PostOnlyOrder(params, expected)
+        client.create_P_LimitOrder(params, expected)
         client.cancel_order()
     except AssertionError or Exception as e:
         # 如果失败，等待一段时间再重试
