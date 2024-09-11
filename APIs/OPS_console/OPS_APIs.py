@@ -7,24 +7,32 @@ from utils.request_connect import make_request
 
 
 class OPS_API:
-    def __init__(self, env):
-        self.env = env
+    def __init__(self):
+        self.env = read_pytest_ini('env','global setting')
         self.host = read_pytest_ini('ops_console_host', self.env)
-        self.token = read_pytest_ini('ops_console_token', self.env)
         self.cookie = read_pytest_ini("ops_console_cookie", self.env)
         auth = read_pytest_ini("ops_console_acct", self.env)
         self.account, self.pwd = auth[0], auth[1]
-        self.headers = {
+        self.ops_authToken()
+        self.token = read_pytest_ini('ops_console_token', self.env)
+        self.headers_token = {
             'content-type': 'application/json',
             'cookie': self.cookie,
             'Token': self.token,
+        }
+        self.headers_auth = {
+            'content-type': 'application/json',
+            'cookie': self.cookie + '; Authorization=' + self.token,
+            'authorization': self.token,
         }
 
     @allure.step("ops_authToken")
     def ops_authToken(self):
         current_otp = authenticator_code('ops_console_authenticator', self.env)
-        headers = copy.deepcopy(self.headers)
-        del headers['Token']
+        headers = {
+            'content-type': 'application/json',
+            'cookie': self.cookie,
+        }
         path = "/auth/api/1.0/login"
         data = {
             "username": self.account,
@@ -35,10 +43,27 @@ class OPS_API:
         write_pytest_ini('ops_console_token', self.env, response['authToken'])
         return response['authToken']
 
+    # def userSearch(self):
+    #     path = "/opUser/count"
+    #     data = {
+    #         "includeUserDetail": 'true',
+    #         "includeUserGroup": 'true',
+    #         "usernameSearchText": "shawn.xiao@osl.com",
+    #         "dateFrom": "1999-12-31T16:00:00.000Z",
+    #         "dateTo": "2024-09-10T16:00:00.000Z",
+    #         "includeWalletGroup": 'true',
+    #         "includeUserClientCode": 'true',
+    #         "includeKyb": 'true',
+    #         "limit": 50
+    #     }
+    #
+    #     response = make_request('get', path=self.host + path, params=data, headers=self.headers)
+    #     return response
+
     @allure.step("ops_transaction")
     def ops_transaction(self, tradeId):
         path = "/Transaction"
-        headers = copy.deepcopy(self.headers)
+        headers = copy.deepcopy(self.headers_token)
         del headers['Token']
         headers['cookie'] = headers['cookie'] + '; Authorization=' + self.token
         data = {
@@ -48,7 +73,9 @@ class OPS_API:
         response = make_request('get', path=self.host + path, params=data, headers=headers)
         return response
 
+
 if __name__ == '__main__':
-    OPS = OPS_API('stage')
-    print(OPS.ops_authToken())
-    print(OPS.ops_transaction('33d04ef55e074889b64d1b06ad4beb26'))
+    OPS = OPS_API()
+    # print(OPS.ops_authToken())
+    # print(OPS.userSearch())
+    # print(OPS.ops_transaction('33d04ef55e074889b64d1b06ad4beb26'))
