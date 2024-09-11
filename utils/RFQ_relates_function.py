@@ -482,7 +482,7 @@ def check_RFS_console_transaction(quote_res, execute_res, original_aggregated_ba
                 assert execute_settlement_amount == Decimal(str(Position['clientSettlementAmount'])), f"execute_settlement_amount == -Decimal(str(Position['TradedPosition'])), {execute_settlement_amount}, {Decimal(str(Position['clientSettlementAmount']))}"
 
                 # 可能存在未对冲的数据
-                assert execute_traded_amount == RTD(Decimal(str(Order['TradedAmount'])) + Decimal(str(Position['ResidualPosition']))), f"[synthetic false] execute_traded_amount == round_to_decimal(-Decimal(str(Order['TradedAmount'])) + Decimal(str(Position['ResidualPosition']))), {execute_traded_amount}, {Decimal(str(Order['TradedAmount']))}, {Decimal(str(Position['ResidualPosition']))}"
+                assert execute_traded_amount == RTD(Decimal(str(Order['TradedAmount'])) + Decimal(str(Position['ResidualPosition']))), f"[synthetic false] execute_traded_amount == RTD(Decimal(str(Order['TradedAmount'])) + Decimal(str(Position['ResidualPosition']))), {execute_traded_amount}, {Decimal(str(Order['TradedAmount']))}, {Decimal(str(Position['ResidualPosition']))}"
 
             elif ClientTrade['BuyTradedCurrency'] is False:
                 P_SettlementPosition = -Decimal(str(Position['clientSettlementAmount']))
@@ -531,7 +531,7 @@ def assertion_ops_transaction_RFQ(traceId, execute_res, hedge_settlement_amount,
     logger.log(f'hedge_settlement_amount {hedge_settlement_amount}, rate {rate}', 'debug')
     logger.log(f'platformTrade_Float_amount {platformTrade_Float_amount}', 'debug')
     try:
-        ops_tran_data = OPS_API(env).ops_transaction(traceId)
+        ops_tran_data = OPS_API().ops_transaction(traceId)
         test_account = read_pytest_ini('test_account', env)
         # 创建一个 defaultdict 来分类数据
         classified_data = defaultdict(list)
