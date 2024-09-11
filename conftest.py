@@ -20,7 +20,7 @@ def setup_and_teardown():
 @pytest.fixture
 def rfq_order_before_check():
     RFS_API(env).rfs_authToken()
-    OPS_API(env).ops_authToken()
+    # OPS_API(env).ops_authToken()
     check_rfs_trading_status()
     check_rfs_LP_gateway()
 
