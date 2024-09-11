@@ -127,7 +127,7 @@ def make_request(method, path, headers, params=None, timeout=5):
         elif 'image/' in content_type:
             return response.content  # 返回二进制数据
         else:
-            return response.text  # 默认返回文本
+            return response.json()  # 默认返回文本
 
     except requests.exceptions.RequestException as e:
         logger.log(f"{path} An error occurred: {e}", "error")
