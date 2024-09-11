@@ -19,7 +19,6 @@ if __name__ == '__main__':
     # pytest.main(['-s', '-q', './testcase/test_ExchangeOrder.py', '--clean-alluredir', '--alluredir=./reports/allure-results'])
     # 跑指定方法
     # pytest.main(['-s', '-q', './testcase/test_ExchangeOrder.py::test_PostOnly_FillsOrder', '--clean-alluredir', '--alluredir=./reports/allure-results'])
-    print(1)
 
     test_suite = read_pytest_ini('test_suite', 'global setting')
     if test_suite == 'all':
@@ -32,11 +31,10 @@ if __name__ == '__main__':
     elif test_suite == 'method':
         test_name = read_pytest_ini('test_name', 'global setting')
         test_method = read_pytest_ini('test_method', 'global setting')
-        logger.log(f'Test Method {test_name} in {test_method} Cases')
+        logger.log(f'Test Method {test_method} in {test_name} Cases')
         pytest.main(['-s', '-q', f'./testcase/{test_name}::{test_method}', '--clean-alluredir', '--alluredir=./reports/allure-results'])
     else:
         logger.log('empty folder')
-    print(1)
     allure_edit()
     reports_path = 'reports/history_reports/'
     delete_oldest_html_files(reports_path)
