@@ -31,7 +31,7 @@ def fills_price(side, symbol):
     elif side == 'Sell':
         return bidPrice
     else:
-        return askPrice,bidPrice
+        return askPrice, bidPrice
 
 if __name__ == '__main__':
     a = price_for_limit('Buy', 'BTCUSD')
