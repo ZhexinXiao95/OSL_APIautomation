@@ -1,0 +1,7 @@
+- case_title: 1.BTC-USD buy Market GTC
+  request:
+    symbol: BTCUSD
+    orderQty: "1000"
+    side: Buy
+    ordType: Market
+  expected: order quantity too large
