@@ -6,7 +6,9 @@ def get_concatenation(params):
                 path = '?'
             if path != '?':
                 path = path + "&"
-            if isinstance(value, list):
+            if value is None:
+                pass
+            elif isinstance(value, list):
                 for i in value:
                     path = path + key + "=" + str(i) + "&"
                 path = path.rstrip('&')
@@ -17,7 +19,7 @@ def get_concatenation(params):
 if __name__ == '__main__':
     data = {
         "limit": 20,
-        "loginUsernameSearchText": 'xzx',
+        "loginUsernameSearchText": None,
         "verificationState": ["VERIFIED", "KYC_VERIFIED", "CRYPTO_VERIFIED"],
     }
     print(get_concatenation(data))
