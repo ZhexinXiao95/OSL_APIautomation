@@ -4,6 +4,7 @@ import allure
 import pytest
 
 from APIs.user.Exchange import create_order, get_order, get_exchange_currency_pairs, get_orderbook, cancel_order
+from reports.customize_allure import allure_attach_decorator
 from utils.business_operation.exchange_operation import price_for_limit, fills_price
 from utils.decimal_calculation import RTD
 from utils.ini_read import read_pytest_ini
@@ -21,6 +22,7 @@ class ExchangeOrder:
         self.symbol = None
 
     @allure.step("Make Exchange order - Limit")
+    @allure_attach_decorator
     def create_P_LimitOrder(self, params, expected):
         res_dict = create_order(params)
         res = res_dict['res']
@@ -39,14 +41,14 @@ class ExchangeOrder:
                 'side'], f"side assertion error, response side {res['side']} != param side {params['side']}"
             assert res['timeInForce'] == params[
                 'timeInForce'], f"timeInForce assertion error, response timeInForce {res['timeInForce']} != param timeInForce {params['timeInForce']}"
-            if expected not in ['PartiallyFilled','Filled']:
-                assert res['ordStatus'] == expected, f"ordStatus assertion error, response ordStatus {res['ordStatus']} != expected ordStatus {expected}"
+            if expected not in ['PartiallyFilled', 'Filled']:
+                assert res[
+                           'ordStatus'] == expected, f"ordStatus assertion error, response ordStatus {res['ordStatus']} != expected ordStatus {expected}"
             if 'execInst' in params:
-                assert res['execInst'] == params['execInst'], f"execInst assertion error, response execInst {res['execInst']} != param execInst {params['execInst']}"
+                assert res['execInst'] == params[
+                    'execInst'], f"execInst assertion error, response execInst {res['execInst']} != param execInst {params['execInst']}"
 
-            allure.attach(name="Make Exchange Order",
-                          body=f"Request:{res_dict['response'].request.body}\nResponse:{res_dict['response'].text}",
-                          attachment_type=allure.attachment_type.JSON)
+            return res_dict
             self.orderID = res['orderID']
             if expected == 'New':
                 self.check_order_exist()
@@ -72,6 +74,7 @@ class ExchangeOrder:
             raise ex
 
     @allure.step("Make Exchange order - Limit")
+    @allure_attach_decorator
     def create_N_LimitOrder(self, params, expected):
         res_dict = create_order(params)
         res = res_dict['res']
@@ -79,9 +82,10 @@ class ExchangeOrder:
         try:
             assert res['error'][
                        'message'] == expected, f"Message assertion error, response msg {res['error']['message']} != expected msg {expected}"
-            allure.attach(name="Make Exchange Order",
-                          body=f"Request:{res_dict['response'].request.body}\nResponse:{res_dict['response'].text}",
-                          attachment_type=allure.attachment_type.JSON)
+            return res_dict
+            # allure.attach(name="Make Exchange Order",
+            #               body=f"Request:{res_dict['response'].request.body}\nResponse:{res_dict['response'].text}",
+            #               attachment_type=allure.attachment_type.JSON)
         except AssertionError as e:
             logger.log(
                 f'create_N_LimitOrder Assertion Error：{str(e)}\nRequest:{res_dict["response"].request.body}\nResponse:{res_dict["response"].text}',
@@ -101,6 +105,7 @@ class ExchangeOrder:
             raise ex
 
     @allure.step("Make Exchange order - Market")
+    @allure_attach_decorator
     def create_P_MarketOrder(self, params, expected):
         should_fills_price = fills_price(params['side'], self.symbol)
         res_dict = create_order(params)
@@ -119,21 +124,22 @@ class ExchangeOrder:
 
             assert res['side'] == params[
                 'side'], f"side assertion error, response side {res['side']} != param side {params['side']}"
-            assert res['timeInForce'] == 'GoodTillCancel', f"timeInForce assertion error, response timeInForce {res['timeInForce']} != GoodTillCancel"
-            assert res['ordStatus'] == expected, f"ordStatus assertion error, response ordStatus {res['ordStatus']} != expected ordStatus {expected}"
+            assert res[
+                       'timeInForce'] == 'GoodTillCancel', f"timeInForce assertion error, response timeInForce {res['timeInForce']} != GoodTillCancel"
+            assert res[
+                       'ordStatus'] == expected, f"ordStatus assertion error, response ordStatus {res['ordStatus']} != expected ordStatus {expected}"
 
-            allure.attach(name="Make Exchange Order",
-                          body=f"Request:{res_dict['response'].request.body}\nResponse:{res_dict['response'].text}",
-                          attachment_type=allure.attachment_type.JSON)
             self.orderID = res['orderID']
             actual_fills_price = get_order({'orderID': self.orderID, 'open': 'false'})['res'][0]['avgPx']
-            assert RTD(should_fills_price) == RTD(actual_fills_price), f"should_fills_price assertion error, should_fills_price {RTD(should_fills_price)} != actual_fills_price {RTD(actual_fills_price)}"
+            assert RTD(should_fills_price) == RTD(
+                actual_fills_price), f"should_fills_price assertion error, should_fills_price {RTD(should_fills_price)} != actual_fills_price {RTD(actual_fills_price)}"
 
             if expected == 'New':
                 self.check_order_exist()
             elif expected == 'Withdrawn':
                 self.check_order_exist(exist=False)
-            return self.orderID
+            return res_dict
+
         except AssertionError as e:
             logger.log(
                 f'create_P_MarketOrder Assertion Error：{str(e)}\nRequest:{res_dict["response"].request.body}\nResponse:{res_dict["response"].text}',
@@ -153,6 +159,7 @@ class ExchangeOrder:
             raise ex
 
     @allure.step("Make Exchange order - Market")
+    @allure_attach_decorator
     def create_N_MarketOrder(self, params, expected):
         res_dict = create_order(params)
         res = res_dict['res']
@@ -161,9 +168,10 @@ class ExchangeOrder:
         try:
             assert res['error'][
                        'message'] == expected, f"Message assertion error, response msg {res['error']['message']} != expected msg {expected}"
-            allure.attach(name="Make Exchange Order",
-                          body=f"Request:{res_dict['response'].request.body}\nResponse:{res_dict['response'].text}",
-                          attachment_type=allure.attachment_type.JSON)
+            return res_dict
+            # allure.attach(name="Make Exchange Order",
+            #               body=f"Request:{res_dict['response'].request.body}\nResponse:{res_dict['response'].text}",
+            #               attachment_type=allure.attachment_type.JSON)
         except AssertionError as e:
             logger.log(
                 f'create_N_MarketOrder Assertion Error：{str(e)}\nRequest:{res_dict["response"].request.body}\nResponse:{res_dict["response"].text}',
@@ -183,6 +191,7 @@ class ExchangeOrder:
             raise ex
 
     @allure.step("Check order exist")
+    @allure_attach_decorator
     def check_order_exist(self, exist=True):
         if exist:
             params = {
@@ -200,13 +209,13 @@ class ExchangeOrder:
             res = res_dict['res']
         get_orderID = res[0]['orderID']
         assert get_orderID == self.orderID, f"orderID assertion error, response orderID {get_orderID} != param create_order_orderID {self.orderID}"
-        allure.attach(name="Check Order Exist",
-                      body=f"OrderID {self.orderID}\nRequest:{res_dict['response'].request.body}\nResponse:{res_dict['response'].text}",
-                      attachment_type=allure.attachment_type.JSON)
+        return res_dict
 
     @allure.step("Get last Price")
     def get_lastPrice(self):
-        res = get_exchange_currency_pairs()['res']
+
+        res_dict = get_exchange_currency_pairs()
+        res = res_dict['res']
         for item in res:
             if item['symbol'] == self.symbol:
                 return item['lastPrice']
@@ -217,16 +226,16 @@ class ExchangeOrder:
         return res['asks'][0][0], res['bids'][0][0]
 
     @allure.step("Cancel Order")
+    @allure_attach_decorator
     def cancel_order(self):
         res_dict = cancel_order(self.orderID)
         res = res_dict['res']
         assert res[0][
                    'orderID'] == self.orderID, f"orderID assertion error, response orderID {res[0]['orderID']} != param cancel_orderID {self.orderID}"
-        allure.attach(name="Make Exchange Order",
-                      body=f"Request:{res_dict['response'].request.body}\nResponse:{res_dict['response'].text}",
-                      attachment_type=allure.attachment_type.JSON)
+        return res_dict
 
     @allure.step('Check Fills Order')
+    @allure_attach_decorator
     def check_fills_order(self, params_list, expected_list):
         orderID_list = []
         for param, expected in zip(params_list, expected_list):
@@ -246,9 +255,8 @@ class ExchangeOrder:
             res_expected = res_dict['res'][0]['ordStatus']
             assert res_expected == item[
                 1], f"Expected assertion error, response res_expected {res_expected} != expected {item[1]}"
-            allure.attach(name="Make Exchange Order",
-                          body=f"Request:{res_dict['response'].request.body}\nResponse:{res_dict['response'].text}",
-                          attachment_type=allure.attachment_type.JSON)
+            return res_dict
+
 
 @pytest.mark.usefixtures("exchange_order_before_check")
 @pytest.mark.parametrize('case_title,params,expected',
@@ -274,7 +282,7 @@ def test_PostOnly_Positive_ExchangeOrder(case_title, params, expected):
 
 @pytest.mark.usefixtures("exchange_order_before_check")
 @pytest.mark.parametrize('case_title,params,expected',
-                         exchange_data_output("Exchange/PostOnly/Negative_PostOnly_order"))
+                         exchange_data_output("Exchange/PostOnly/test"))
 @allure.parent_suite("Exchange API TEST")
 @allure.suite("PostOnly Test Cases")
 @allure.epic('Exchange API TEST')
@@ -333,7 +341,30 @@ def test_PostOnly_FillsOrder(case_title, params_list, expected_list, execute_typ
         logger.log(f'{case_title}', 'debug')
         client = ExchangeOrder()
         client.check_fills_order(params_list, expected_list)
+    except AssertionError or Exception as e:
+        # 如果失败，等待一段时间再重试
+        time.sleep(2)  # 等待 2 秒
+        raise e
 
+
+print(2)
+
+
+@pytest.mark.parametrize('case_title,params,expected',
+                         exchange_data_output("Exchange/MarketOrder/Negative_Market_Order"))
+@allure.parent_suite("Exchange API TEST")
+@allure.suite("Makert Order Test Cases")
+@allure.epic('Exchange API TEST')
+@allure.feature("Makert Order Test Cases")
+@allure.title("{case_title}")
+@pytest.mark.flaky(reruns=reruns, reason='None')
+def test_Negative_Market_Order(case_title, params, expected):
+    allure.dynamic.story(f"{case_title} Test Cases")
+    allure.dynamic.sub_suite(f"{case_title} Test Cases")
+    try:
+        logger.log(f'{case_title}', 'debug')
+        client = ExchangeOrder()
+        client.create_N_MarketOrder(params, expected)
     except AssertionError or Exception as e:
         # 如果失败，等待一段时间再重试
         time.sleep(2)  # 等待 2 秒
