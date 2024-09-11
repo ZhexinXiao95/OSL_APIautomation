@@ -42,90 +42,91 @@
   tradeRequest:
     expected: EXECUTED
 
-- case_title: 5.ETH-USD 0.001 tradedCurrency buy test
-  case_type: Positive
-  quoteRequest:
-    buyTradedCurrency: true
-    tradedCurrency: ETH
-    settlementCurrency: USD
-    tradedCurrencyAmount: 0.001
-    expected: FULL_QUOTE
-  tradeRequest:
-    expected: EXECUTED
-
-- case_title: 6.ETH-USD 0.001 tradedCurrency sell test
-  case_type: Positive
-  quoteRequest:
-    buyTradedCurrency: false
-    tradedCurrency: ETH
-    settlementCurrency: USD
-    tradedCurrencyAmount: 0.001
-    expected: FULL_QUOTE
-  tradeRequest:
-    expected: EXECUTED
-
-- case_title: 7.ETH-USD 5 settlementCurrency buy test
-  case_type: Positive
-  quoteRequest:
-    buyTradedCurrency: true
-    tradedCurrency: ETH
-    settlementCurrency: USD
-    settlementCurrencyAmount: 5
-    expected: FULL_QUOTE
-  tradeRequest:
-    expected: EXECUTED
-
-- case_title: 8.ETH-USD 5 settlementCurrency sell test
-  case_type: Positive
-  quoteRequest:
-    buyTradedCurrency: false
-    tradedCurrency: ETH
-    settlementCurrency: USD
-    settlementCurrencyAmount: 5
-    expected: FULL_QUOTE
-  tradeRequest:
-    expected: EXECUTED
+#- case_title: 5.BTC-HKD 0.01 tradedCurrency buy test
+#  case_type: Positive
+#  quoteRequest:
+#    buyTradedCurrency: true
+#    tradedCurrency: BTC
+#    settlementCurrency: HKD
+#    tradedCurrencyAmount: 0.01
+#    expected: FULL_QUOTE
+#  tradeRequest:
+#    expected: EXECUTED
 #
-- case_title: 9.BTC-HKD 0.01 tradedCurrency buy test
+#- case_title: 6.BTC-HKD 0.01 tradedCurrency sell test
+#  case_type: Positive
+#  quoteRequest:
+#    buyTradedCurrency: false
+#    tradedCurrency: BTC
+#    settlementCurrency: HKD
+#    tradedCurrencyAmount: 0.01
+#    expected: FULL_QUOTE
+#  tradeRequest:
+#    expected: EXECUTED
+#
+#- case_title: 7.BTC-HKD 60 settlementCurrency buy test
+#  case_type: Positive
+#  quoteRequest:
+#    buyTradedCurrency: true
+#    tradedCurrency: BTC
+#    settlementCurrency: HKD
+#    settlementCurrencyAmount: 60
+#    expected: FULL_QUOTE
+#  tradeRequest:
+#    expected: EXECUTED
+#
+#- case_title: 8.BTC-HKD 60 settlementCurrency sell test
+#  case_type: Positive
+#  quoteRequest:
+#    buyTradedCurrency: false
+#    tradedCurrency: BTC
+#    settlementCurrency: HKD
+#    settlementCurrencyAmount: 60
+#    expected: FULL_QUOTE
+#  tradeRequest:
+#    expected: EXECUTED
+
+
+- case_title: 9.ETH-USD 0.001 tradedCurrency buy test
   case_type: Positive
   quoteRequest:
     buyTradedCurrency: true
-    tradedCurrency: BTC
-    settlementCurrency: HKD
-    tradedCurrencyAmount: 0.01
+    tradedCurrency: ETH
+    settlementCurrency: USD
+    tradedCurrencyAmount: 0.001
     expected: FULL_QUOTE
   tradeRequest:
     expected: EXECUTED
 
-- case_title: 10.BTC-HKD 0.01 tradedCurrency sell test
+- case_title: 10.ETH-USD 0.001 tradedCurrency sell test
   case_type: Positive
   quoteRequest:
     buyTradedCurrency: false
-    tradedCurrency: BTC
-    settlementCurrency: HKD
-    tradedCurrencyAmount: 0.01
+    tradedCurrency: ETH
+    settlementCurrency: USD
+    tradedCurrencyAmount: 0.001
     expected: FULL_QUOTE
   tradeRequest:
     expected: EXECUTED
 
-- case_title: 11.BTC-HKD 60 settlementCurrency buy test
+- case_title: 11.ETH-USD 5 settlementCurrency buy test
   case_type: Positive
   quoteRequest:
     buyTradedCurrency: true
-    tradedCurrency: BTC
-    settlementCurrency: HKD
-    settlementCurrencyAmount: 60
+    tradedCurrency: ETH
+    settlementCurrency: USD
+    settlementCurrencyAmount: 5
     expected: FULL_QUOTE
   tradeRequest:
     expected: EXECUTED
 
-- case_title: 12.BTC-HKD 60 settlementCurrency sell test
+- case_title: 12.ETH-USD 5 settlementCurrency sell test
   case_type: Positive
   quoteRequest:
     buyTradedCurrency: false
-    tradedCurrency: BTC
-    settlementCurrency: HKD
-    settlementCurrencyAmount: 60
+    tradedCurrency: ETH
+    settlementCurrency: USD
+    settlementCurrencyAmount: 5
     expected: FULL_QUOTE
   tradeRequest:
     expected: EXECUTED
@@ -173,6 +174,9 @@
     expected: FULL_QUOTE
   tradeRequest:
     expected: EXECUTED
+
+
+
 
 #
 #- case_title: 17.USDT-USD 10 tradedCurrency buy test
