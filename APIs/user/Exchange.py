@@ -155,6 +155,7 @@ if __name__ == '__main__':
     #     "ordType": "Limit",
     #     "price": '60000',
     #     "timeInForce": "GoodTillCancel",
+    #     'execInst': 'PostOnly'
     # }
     # #
     # orderID1 = create_order(post_only_params)['res']['orderID']
