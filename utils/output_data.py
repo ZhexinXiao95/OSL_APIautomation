@@ -57,10 +57,10 @@ def exchange_data_output(file):
             list.append(data)
         return list
     except Exception as ex:
-        logger.log(f'output_yaml Unknow Error {ex}\n{data}')
+        logger.log(f'exchange_data_output Unknow Error {ex}\n{data}')
         raise ex
 
 
 if __name__ == '__main__':
     # print(rfq_data_output('/RFQ/test_sol'))
-    print(exchange_data_output('Exchange/create_PostOnly_order'))
+    print(exchange_data_output('Exchange/MarketOrder/Negative_Market_Order'))
