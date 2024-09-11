@@ -8,12 +8,14 @@ from utils.request_connect import make_request
 
 class OPS_API:
     def __init__(self):
+        """
+        TODO: to check valid of token in redis, if not valid then raise token request, otherwise use the token in hand
+        """
         self.env = read_pytest_ini('env','global setting')
         self.host = read_pytest_ini('ops_console_host', self.env)
         self.cookie = read_pytest_ini("ops_console_cookie", self.env)
         auth = read_pytest_ini("ops_console_acct", self.env)
         self.account, self.pwd = auth[0], auth[1]
-        self.ops_authToken()
         self.token = read_pytest_ini('ops_console_token', self.env)
         self.headers_token = {
             'content-type': 'application/json',
