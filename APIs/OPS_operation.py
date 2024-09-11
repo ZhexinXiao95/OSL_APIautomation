@@ -10,7 +10,7 @@ class OPS_operation:
     def __init__(self):
         pass
 
-    def coin_deposit(self, currency, amount, account=None, uuid=None):
+    def account_deposit(self, currency, amount, account=None, uuid=None):
         Deposit_Obj = OPS_Deposit()
         approval_id = Deposit_Obj.deposit(currency, amount, account, uuid)['uuid']
         uuid = Deposit_Obj.get_attribute('uuid')
@@ -28,8 +28,8 @@ class OPS_operation:
         logger.log(f'{balance_after}', 'critical')
 
         assert RTD(balance_before) + RTD(amount) == RTD(balance_after), f"balance incorrect, balance before:{RTD(balance_before)} + deposit amount:{RTD(amount)} == balance after:{RTD(balance_after)}"
-        logger.log(f'Account:[{account}] Uuid:[{uuid}] Currency:[{currency}] Amount:[{amount}] Coin deposit successful')
+        logger.log(f'Account:[{account}] \nUuid:[{uuid}] \nCurrency:[{currency}] \nAmount:[{amount}] \naccount deposit successful')
 
 if __name__ == '__main__':
     OPS_API().ops_authToken()
-    OPS_operation().coin_deposit('HKD',100,'shawn.xiao@osl.com')
+    OPS_operation().account_deposit('HKD',100,'shawn.xiao@osl.com')
