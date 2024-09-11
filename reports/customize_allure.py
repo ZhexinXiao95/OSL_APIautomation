@@ -3,11 +3,36 @@ import os
 import json
 import shutil
 from datetime import datetime
+from functools import wraps
+
+import allure
 import pytest
 from utils.email_ import send_email
 from reports.generate_environment import generate_environment_file
 from utils.log import logger
 
+
+def allure_attach_decorator(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        # 调用被装饰的函数，获取返回值和内部生成的 res_dict
+        res_dict = func(*args, **kwargs)
+
+        # 获取函数名称
+        func_name = func.__name__
+
+        # 调用 allure_attach 函数
+        allure_attach(func_name, res_dict)
+
+        return res_dict
+
+    return wrapper
+
+
+def allure_attach(name, res_dict):
+    allure.attach(name=name,
+                  body=f"Request:{res_dict['response'].request.body}\nResponse:{res_dict['response'].text}",
+                  attachment_type=allure.attachment_type.JSON)
 
 def change_allure_report():
     # 修改标题
@@ -119,6 +144,7 @@ def update_trend_data(dirname, old_data: list):
 
 ALLURE_PLUS_DIR = r"./reports/history_results"
 
+
 def allure_edit():
     # 增加环境信息
     generate_environment_file()
@@ -136,8 +162,9 @@ def allure_edit():
     # 利用插件输出可独立阅览的html文件
     os.system("allure-combine ./reports/allure-report --dest ./reports/allure-report")
     current_time = datetime.now().strftime('%Y_%m_%d %H_%M_%S')
-    shutil.move("./reports/allure-report/complete.html",'./reports/history_reports/')
+    shutil.move("./reports/allure-report/complete.html", './reports/history_reports/')
     os.rename("./reports/history_reports/complete.html", f"./reports/history_reports/{current_time}.html")
+
 
 def find_last_html(directory):
     # 列出目录下所有文件
@@ -163,8 +190,5 @@ def find_last_html(directory):
         logger.log("目录中未找到HTML文件")
 
 
-
-
 if __name__ == '__main__':
     path = './reports/history_reports'
-
