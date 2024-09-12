@@ -4,13 +4,15 @@ from datetime import datetime
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
+
+from utils.ini_read import read_pytest_ini
 from utils.log import logger
 
 
 def send_email(subject, body, attachment=None):
-    sender_email = "automation_test_xiaozx@outlook.com"
-    sender_password = "12345shangshandalaohu"
-    receiver_email = "shawn.xiao@osl.com"
+    sender_email = read_pytest_ini('sender_email', 'email setting')
+    sender_password = read_pytest_ini('sender_password', 'email setting')
+    receiver_email = read_pytest_ini('receiver_email', 'email setting')
     # 设置邮件内容
     message = MIMEMultipart()
     message["From"] = sender_email
