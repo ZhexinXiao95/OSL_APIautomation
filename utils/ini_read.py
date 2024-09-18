@@ -22,7 +22,7 @@ def read_pytest_ini(key, env):
             raise Exception
 
     except Exception as ex:
-        logger.log(f'read_pytest_ini 发生未知异常：{str(ex)}', 'critical')
+        logger.log(f'read_pytest_ini {key} {env} 发生未知异常：{str(ex)}', 'critical')
         raise ex
 
 
