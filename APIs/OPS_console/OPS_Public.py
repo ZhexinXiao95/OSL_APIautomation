@@ -10,7 +10,6 @@ class OpsPublic(OPS_API):
         data = {
             "limit": 20,
             "loginUsernameSearchText": account,
-            "verificationState": ["VERIFIED", "KYC_VERIFIED", "CRYPTO_VERIFIED"]
         }
         path = "/opUser/listUser" + get_concatenation(data)
         response = make_request('get', path=self.host + path, headers=self.headers_auth)
@@ -34,7 +33,6 @@ class OpsPublic(OPS_API):
             'ccy': currency,
             "limit": limit,
         }
-        print(data)
         path = "/Account" + get_concatenation(data)
         response = make_request('get', path=self.host + path, headers=self.headers_auth)
         return response[0][wallet]
