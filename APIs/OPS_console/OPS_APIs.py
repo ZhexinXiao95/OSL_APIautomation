@@ -3,6 +3,7 @@ import copy
 import allure
 from utils.Authenticator import authenticator_code
 from utils.ini_read import read_pytest_ini, write_pytest_ini
+from utils.path_concatenation import get_concatenation
 from utils.request_connect import make_request
 
 
@@ -16,6 +17,7 @@ class OPS_API:
         self.cookie = read_pytest_ini("ops_console_cookie", self.env)
         auth = read_pytest_ini("ops_console_acct", self.env)
         self.account, self.pwd = auth[0], auth[1]
+        self.token = self.ops_authToken()
         self.token = read_pytest_ini('ops_console_token', self.env)
         self.headers_token = {
             'content-type': 'application/json',
@@ -24,7 +26,6 @@ class OPS_API:
         }
         self.headers_auth = {
             'content-type': 'application/json',
-            'cookie': self.cookie + '; Authorization=' + self.token,
             'authorization': self.token,
         }
 
@@ -65,19 +66,18 @@ class OPS_API:
     @allure.step("ops_transaction")
     def ops_transaction(self, tradeId):
         path = "/Transaction"
-        headers = copy.deepcopy(self.headers_token)
-        del headers['Token']
-        headers['cookie'] = headers['cookie'] + '; Authorization=' + self.token
+        headers = copy.deepcopy(self.headers_auth)
         data = {
             'tradeRef': tradeId
         }
-        print(headers['cookie'])
-        response = make_request('get', path=self.host + path, params=data, headers=headers)
+        path = path + get_concatenation(data)
+        print(headers)
+        response = make_request('get', path=self.host + path, headers=headers)
         return response
 
 
 if __name__ == '__main__':
     OPS = OPS_API()
-    # print(OPS.ops_authToken())
+    print(OPS.ops_authToken())
     # print(OPS.userSearch())
-    # print(OPS.ops_transaction('33d04ef55e074889b64d1b06ad4beb26'))
+    print(OPS.ops_transaction('33d04ef55e074889b64d1b06ad4beb26'))
