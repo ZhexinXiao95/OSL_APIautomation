@@ -4,7 +4,7 @@ from utils.log import logger
 
 
 def RTD(value):
-    logger.log(f'round_to_decimal value：{value}', 'debug')
+    # logger.log(f'round_to_decimal value：{value}', 'debug')
     try:
         # 确保 value 是 Decimal 类型
         if not isinstance(value, Decimal):
