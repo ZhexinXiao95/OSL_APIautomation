@@ -109,12 +109,12 @@ def make_request(method, path, headers, params=None, timeout=5):
     try:
         if method.upper() == 'GET':
             response = requests.get(path, headers=headers, params=params, timeout=timeout)
+            logger.log(f"请求url: {response.url}\n响应体: {response.text}", 'debug')
         elif method.upper() == 'POST':
             response = requests.post(path, headers=headers, json=params, timeout=timeout)
+            logger.log(f"请求url: {response.url}\n请求体: {response.request.body.decode('utf-8')}\n响应体: {response.text}", 'debug')
         else:
             raise ValueError(f"make_request Unsupported HTTP method: {method}")
-
-        logger.log(response.text)
         response.raise_for_status()  # 如果请求不成功，抛出异常
         assert response.status_code == 200, f'make_request api request receive {response.status_code}, Request: {response.request.body}'
         assert response.json()
