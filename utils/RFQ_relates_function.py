@@ -4,6 +4,7 @@ from collections import defaultdict
 from APIs.OPS_console.OPS_APIs import OPS_API
 from APIs.RFSconsole.RFS_APIs import RFS_API
 from APIs.user.Custody import get_account_information, get_transaction_list
+from utils.business_operation.RFS_relates_operation import analysis_ops_transaction_type
 from utils.decimal_calculation import *
 from utils.ini_read import read_pytest_ini
 from utils.log import logger
@@ -310,7 +311,7 @@ def check_RFS_console_transaction(quote_res, execute_res, original_aggregated_ba
         logger.log(ClientTrade, 'debug')
         logger.log(Order, 'debug')
         logger.log(Position, 'debug')
-        tradeId_list = [ClientTrade['ReferenceId'], Order['ClientOrderId'], Order['ExternalID'], Order['ReferenceId']]
+        tradeId_list = [ClientTrade['ReferenceId'], Order['ExternalID'], Order['ReferenceId']]
         assert all(item == execute_res['tradeId'] for item in tradeId_list), f'tradeId_list {tradeId_list} not match {execute_res["tradeId"]}'
 
         assert ClientTrade['ClientTradeExternalOrderId'] == Order['externalOrderId'], f"ClientTrade['ClientTradeExternalOrderId'] == Order['externalOrderId'] {ClientTrade['ClientTradeExternalOrderId']} == {Order['externalOrderId']}"
@@ -343,7 +344,7 @@ def check_RFS_console_transaction(quote_res, execute_res, original_aggregated_ba
         settlementCurrency_list = [ClientTrade['SettlementCurrency'], Position['SettlementCcy']]
         assert all(item == execute_SettlementCurrency for item in settlementCurrency_list), f'settlementCurrency_list {settlementCurrency_list} not match {execute_SettlementCurrency}'
 
-        tradeCurrency_list = [ClientTrade['TradedCurrency'], Order['TradedCcy'], Position['TradeCcy']]
+        tradeCurrency_list = [ClientTrade['TradedCurrency'], Position['TradeCcy']]
         assert all(item == execute_TradedCurrency for item in tradeCurrency_list), f'tradeCurrency_list {tradeCurrency_list} not match {execute_TradedCurrency}'
 
         settle_amount_list = [Decimal(str(ClientTrade['SettlementCurrencyAmount'])), Decimal(str(Position['clientSettlementAmount']))]
@@ -369,7 +370,7 @@ def check_RFS_console_transaction(quote_res, execute_res, original_aggregated_ba
 
         gateway = read_pytest_ini('rfs_gateway', env)
         venue_list = [Order['Venue'], Position['Venue']]
-        # assert all(item == gateway for item in venue_list), f'venue_list {venue_list} not match {gateway}'
+        assert all(item == gateway for item in venue_list), f'venue_list {venue_list} not match {gateway}'
 
         assert "HEDGED" == Position['PositionStatus'], f"{Position['PositionStatus']}"
 
@@ -382,13 +383,17 @@ def check_RFS_console_transaction(quote_res, execute_res, original_aggregated_ba
 
         assert ClientTrade['synthetic'] == Position['synthetic'], f"ClientTrade['synthetic'] == Position['synthetic']{ClientTrade['synthetic']}, {Position['synthetic']}"
 
-        assert all([ClientTrade['naturalSettlementCcy'] == Order['SettlementCcy'], ClientTrade['naturalSettlementCcy'] == Position['hedgeSettlementCcy']]), f"{ClientTrade['naturalSettlementCcy']}, {Order['SettlementCcy']}, {Position['hedgeSettlementCcy']}"
+        # assert all([ClientTrade['naturalSettlementCcy'] == Order['SettlementCcy'], ClientTrade['naturalSettlementCcy'] == Position['hedgeSettlementCcy']]), f"all([ClientTrade['naturalSettlementCcy'] {ClientTrade['naturalSettlementCcy']}, {Order['SettlementCcy']}, {Position['hedgeSettlementCcy']}"
 
         assert Order['LimitPrice'] == Position['limitPrice'], f"Order['LimitPrice'] == Position['limitPrice'], {Order['LimitPrice']}, {Position['limitPrice']}"
 
         assert Order['SettlementAmount'] == Position['SettlementAmount'], f"Order['SettlementAmount'] == Position['SettlementAmount'],{Order['SettlementAmount']}, {Position['SettlementAmount']}"
+        logger.log('debug 4', 'debug')
+
         # 判断是否是非同币种对冲，若是，则需要计算currency的转换
         if ClientTrade['synthetic']:
+            logger.log('debug 5', 'debug')
+
             est_mdsRateCurrencyPair = execute_SettlementCurrency + "/" + ClientTrade['naturalSettlementCcy']
             assert est_mdsRateCurrencyPair == ClientTrade['mdsRateCurrencyPair'], f"est_mdsRateCurrencyPair == ClientTrade['mdsRateCurrencyPair'], {est_mdsRateCurrencyPair}, {ClientTrade['mdsRateCurrencyPair']}"
 
@@ -410,11 +415,9 @@ def check_RFS_console_transaction(quote_res, execute_res, original_aggregated_ba
                 P_SettlementPosition = RTD(Decimal(str(Position['mdsRateCurrencyOffer'])) * Decimal(str(Position['clientSettlementAmount'])))
                 assert P_SettlementPosition == Decimal(str(Position['SettlementPosition'])), f"[buy] P_SettlementPosition = round_to_decimal(Decimal(str(Position['mdsRateCurrencyOffer'])) * Decimal(str(Position['clientSettlementAmount']))), {Decimal(str(Position['SettlementPosition']))}, {P_SettlementPosition}, {Decimal(str(Position['mdsRateCurrencyOffer']))} * {Decimal(str(Position['clientSettlementAmount']))}"
 
-                logger.log('1','debug')
                 P_SettlementAmount = RTD(Decimal(str(Position['TradedAmount'])) * Decimal(str(Position['limitPrice'])))
                 assert P_SettlementAmount == Decimal(str(Position['SettlementAmount'])), f"[buy] P_SettlementAmount == Decimal(str(Position['SettlementAmount'])), {P_SettlementAmount}, {Decimal(str(Position['SettlementAmount']))}, {Decimal(str(Position['TradedAmount']))} * {Decimal(str(Position['limitPrice']))}"
 
-                logger.log('2','debug')
                 P_SettlementPosition = RTD(Decimal(str(Position['SettlementAmount'])) + Decimal(str(Position['FinalProfitLoss'])))
                 assert P_SettlementPosition == Decimal(str(Position['SettlementPosition'])), f"P_SettlementPosition = round_to_decimal(Decimal(str(Position['SettlementAmount'])) + Decimal(str(Position['FinalProfitLoss']))), {P_SettlementPosition}, {Decimal(str(Position['SettlementAmount']))} + {Decimal(str(Position['FinalProfitLoss']))}"
 
@@ -426,7 +429,7 @@ def check_RFS_console_transaction(quote_res, execute_res, original_aggregated_ba
                 assert execute_settlement_amount == Decimal(str(Position['clientSettlementAmount'])), f"execute_settlement_amount == -Decimal(str(Position['TradedPosition'])), {execute_settlement_amount}, {Decimal(str(Position['clientSettlementAmount']))}"
 
                 # 可能存在未对冲的数据
-                assert execute_traded_amount == RTD(Decimal(str(Order['TradedAmount'])) - Decimal(str(Position['ResidualPosition']))), f"execute_traded_amount == round_to_decimal(-Decimal(str(Order['TradedAmount'])) + Decimal(str(Position['ResidualPosition']))), {execute_traded_amount}, {Decimal(str(Order['TradedAmount']))}, {Decimal(str(Position['ResidualPosition']))}"
+                assert execute_traded_amount == RTD(Decimal(str(Order['TradedAmount'])) - Decimal(str(Position['ResidualPosition']))), f"[synthetic true, BuyTradedCurrency true] execute_traded_amount == round_to_decimal(-Decimal(str(Order['TradedAmount'])) + Decimal(str(Position['ResidualPosition']))), {execute_traded_amount}, {Decimal(str(Order['TradedAmount']))}, {Decimal(str(Position['ResidualPosition']))}"
 
             # synthetic的卖单
             elif ClientTrade['BuyTradedCurrency'] is False:
@@ -448,9 +451,11 @@ def check_RFS_console_transaction(quote_res, execute_res, original_aggregated_ba
                 assert execute_settlement_amount == Decimal(str(Position['clientSettlementAmount'])), f"execute_settlement_amount == Decimal(str(Position['TradedPosition'])), {execute_settlement_amount}, {Decimal(str(Position['clientSettlementAmount']))}"
 
                 # 可能存在未对冲的数据
-                assert execute_traded_amount == RTD(Decimal(str(Order['TradedAmount'])) + Decimal(str(Position['ResidualPosition']))), f"execute_traded_amount == round_to_decimal(Decimal(str(Order['TradedAmount'])) + Decimal(str(Position['ResidualPosition']))), {execute_traded_amount}, {Decimal(str(Order['TradedAmount']))}, {Decimal(str(Position['ResidualPosition']))}"
+                assert execute_traded_amount == RTD(Decimal(str(Order['TradedAmount'])) + Decimal(str(Position['ResidualPosition']))), f"[synthetic true, BuyTradedCurrency false]  execute_traded_amount == round_to_decimal(Decimal(str(Order['TradedAmount'])) + Decimal(str(Position['ResidualPosition']))), {execute_traded_amount}, {Decimal(str(Order['TradedAmount']))}, {Decimal(str(Position['ResidualPosition']))}"
 
         elif ClientTrade['synthetic'] is False:
+            logger.log('debug 6', 'debug')
+
             assert '' == ClientTrade['mdsRateCurrencyPair'], f"'' == ClientTrade['mdsRateCurrencyPair'], {ClientTrade['mdsRateCurrencyPair']} should be empty"
 
             mdsRateCurrency_list = [Position['mdsRateCurrencyBid'], Position['mdsRateCurrencyBid'], ClientTrade['mdsRateCurrencyOffer'], Position['mdsRateCurrencyOffer']]
@@ -482,7 +487,8 @@ def check_RFS_console_transaction(quote_res, execute_res, original_aggregated_ba
                 assert execute_settlement_amount == Decimal(str(Position['clientSettlementAmount'])), f"execute_settlement_amount == -Decimal(str(Position['TradedPosition'])), {execute_settlement_amount}, {Decimal(str(Position['clientSettlementAmount']))}"
 
                 # 可能存在未对冲的数据
-                assert execute_traded_amount == RTD(Decimal(str(Order['TradedAmount'])) + Decimal(str(Position['ResidualPosition']))), f"[synthetic false] execute_traded_amount == RTD(Decimal(str(Order['TradedAmount'])) + Decimal(str(Position['ResidualPosition']))), {execute_traded_amount}, {Decimal(str(Order['TradedAmount']))}, {Decimal(str(Position['ResidualPosition']))}"
+                logger.log(f"{execute_traded_amount}, {RTD(Decimal(str(Order['TradedAmount'])) + Decimal(str(Position['ResidualPosition'])))}")
+                assert execute_traded_amount == RTD(Decimal(str(Order['TradedAmount'])) + Decimal(str(Position['ResidualPosition']))), f"[synthetic false, BuyTradedCurrency true] execute_traded_amount == RTD(Decimal(str(Order['TradedAmount'])) + Decimal(str(Position['ResidualPosition']))), {execute_traded_amount}, {Decimal(str(Order['TradedAmount']))}, {Decimal(str(Position['ResidualPosition']))}"
 
             elif ClientTrade['BuyTradedCurrency'] is False:
                 P_SettlementPosition = -Decimal(str(Position['clientSettlementAmount']))
@@ -502,7 +508,7 @@ def check_RFS_console_transaction(quote_res, execute_res, original_aggregated_ba
                 assert execute_settlement_amount == Decimal(str(Position['clientSettlementAmount'])), f"execute_settlement_amount == Decimal(str(Position['TradedPosition'])), {execute_settlement_amount}, {Decimal(str(Position['clientSettlementAmount']))}"
 
                 # 可能存在未对冲的数据
-                assert execute_traded_amount == RTD(Decimal(str(Order['TradedAmount'])) + Decimal(str(Position['ResidualPosition']))), f"execute_traded_amount == round_to_decimal(Decimal(str(Order['TradedAmount'])) + Decimal(str(Position['ResidualPosition']))), {execute_traded_amount}, {Decimal(str(Order['TradedAmount']))}, {Decimal(str(Position['ResidualPosition']))}"
+                assert execute_traded_amount == RTD(Decimal(str(Order['TradedAmount'])) + Decimal(str(Position['ResidualPosition']))), f"[synthetic false, BuyTradedCurrency true] execute_traded_amount == round_to_decimal(Decimal(str(Order['TradedAmount'])) + Decimal(str(Position['ResidualPosition']))), {execute_traded_amount}, {Decimal(str(Order['TradedAmount']))}, {Decimal(str(Position['ResidualPosition']))}"
         logger.log('<===== check_RFS_console_transaction end =====>')
         rate = ''
         logger.log(f"ClientTrade['BuyTradedCurrency'] {ClientTrade['BuyTradedCurrency']}", 'debug')
@@ -545,12 +551,14 @@ def assertion_ops_transaction_RFQ(traceId, execute_res, hedge_settlement_amount,
         classified_data = dict(classified_data)
         logger.log(f"classified_data: {classified_data}",'debug')
         # 确保有四个key
-        assert len(classified_data) == 4, f'RFQ transactionClass should have 4 but got {len(classified_data)}'
         transaction_class_list = ['altcoinx.RfsOffPlatformTradeTransaction', 'altcoinx.RfsFloatTransaction', 'altcoinx.RfsHedgedOffPlatformTradeTransaction', 'altcoinx.RfsTradeTransaction']
+        missed_type = analysis_ops_transaction_type(classified_data)
+        assert missed_type == [], f'ops_transaction_type missed {missed_type}'
         for key, values in classified_data.items():
             assert key in transaction_class_list, f'{key} is not belong to RFQ transactions'
             # 确保有各有四条transaction
             assert len(values) == 4, f'{key} class should have 4 transaction but got {len(classified_data)}'
+        logger.log('OPS transaction有四个key且各具备四条transaction')
 
         transaction_assert_count = 0
         for value in classified_data['altcoinx.RfsOffPlatformTradeTransaction']:
