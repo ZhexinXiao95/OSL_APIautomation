@@ -336,7 +336,6 @@ def check_RFS_console_transaction(quote_res, execute_res, original_aggregated_ba
         execute_TradedCurrency = execute_res['tradedCurrency']
         execute_settlement_amount = Decimal(str(execute_res['quotedSettlementCurrencyAmount']))
         execute_traded_amount = Decimal(str(execute_res['quotedTradedCurrencyAmount']))
-        logger.log('debug 1', 'debug')
         pair = execute_TradedCurrency + '.' + execute_SettlementCurrency
         pair_list = [Order['CcyPair'], Position['CcyPair']]
         assert all(item == pair for item in pair_list), f'pair_list {pair_list} not match {pair}'
@@ -351,7 +350,6 @@ def check_RFS_console_transaction(quote_res, execute_res, original_aggregated_ba
         assert all(item == execute_settlement_amount for item in settle_amount_list), f'settle_amount_list {settle_amount_list} not match {execute_settlement_amount}'
 
         assert Decimal(str(ClientTrade['TradedCurrencyAmount'])) == Decimal(str(abs(Position['TradedPosition']))), f"Decimal(str(ClientTrade['TradedCurrencyAmount'])) == Decimal(str(abs(Position['TradedPosition']))) {Decimal(str(ClientTrade['TradedCurrencyAmount']))} == {Decimal(str(abs(Position['TradedPosition'])))}"
-        logger.log('debug 2', 'debug')
 
         # 交易数据
         final_traded_amount_list = [Decimal(str(ClientTrade['TradedCurrencyAmount'])), Decimal(str(abs(Position['FinalTradedPosition']))), Decimal(str(abs(Position['TradedPosition'])))]
@@ -375,7 +373,6 @@ def check_RFS_console_transaction(quote_res, execute_res, original_aggregated_ba
         assert "HEDGED" == Position['PositionStatus'], f"{Position['PositionStatus']}"
 
         assert all([ClientTrade['ClientTradeId'] == Order['ClientTradeId'], ClientTrade['ClientTradeId'] == Position['RfsClientTradeId']]), f"ClientTrade['ClientTradeId'], Order['ClientTradeId'], Position['ClientTradeId'],{ClientTrade['ClientTradeId']}, {Order['ClientTradeId']}, {Position['ClientTradeId']}"
-        logger.log('debug 3', 'debug')
 
         assert all([ClientTrade['PositionId'] == Order['PositionID'], ClientTrade['PositionId'] == Position['PositionID']]), f"ClientTrade['PositionId'], Order['PositionID'], Position['PositionID'],{ClientTrade['PositionId']}, {Order['PositionID']}, {Position['PositionID']}"
 
@@ -388,11 +385,9 @@ def check_RFS_console_transaction(quote_res, execute_res, original_aggregated_ba
         assert Order['LimitPrice'] == Position['limitPrice'], f"Order['LimitPrice'] == Position['limitPrice'], {Order['LimitPrice']}, {Position['limitPrice']}"
 
         assert Order['SettlementAmount'] == Position['SettlementAmount'], f"Order['SettlementAmount'] == Position['SettlementAmount'],{Order['SettlementAmount']}, {Position['SettlementAmount']}"
-        logger.log('debug 4', 'debug')
 
         # 判断是否是非同币种对冲，若是，则需要计算currency的转换
         if ClientTrade['synthetic']:
-            logger.log('debug 5', 'debug')
 
             est_mdsRateCurrencyPair = execute_SettlementCurrency + "/" + ClientTrade['naturalSettlementCcy']
             assert est_mdsRateCurrencyPair == ClientTrade['mdsRateCurrencyPair'], f"est_mdsRateCurrencyPair == ClientTrade['mdsRateCurrencyPair'], {est_mdsRateCurrencyPair}, {ClientTrade['mdsRateCurrencyPair']}"
@@ -454,7 +449,6 @@ def check_RFS_console_transaction(quote_res, execute_res, original_aggregated_ba
                 assert execute_traded_amount == RTD(Decimal(str(Order['TradedAmount'])) + Decimal(str(Position['ResidualPosition']))), f"[synthetic true, BuyTradedCurrency false]  execute_traded_amount == round_to_decimal(Decimal(str(Order['TradedAmount'])) + Decimal(str(Position['ResidualPosition']))), {execute_traded_amount}, {Decimal(str(Order['TradedAmount']))}, {Decimal(str(Position['ResidualPosition']))}"
 
         elif ClientTrade['synthetic'] is False:
-            logger.log('debug 6', 'debug')
 
             assert '' == ClientTrade['mdsRateCurrencyPair'], f"'' == ClientTrade['mdsRateCurrencyPair'], {ClientTrade['mdsRateCurrencyPair']} should be empty"
 

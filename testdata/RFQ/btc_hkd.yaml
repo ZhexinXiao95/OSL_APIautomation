@@ -1,0 +1,43 @@
+- case_title: 1.BTC-HKD 0.01 tradedCurrency buy test
+  case_type: Positive
+  quoteRequest:
+    buyTradedCurrency: true
+    tradedCurrency: BTC
+    settlementCurrency: HKD
+    tradedCurrencyAmount: 0.01
+    expected: FULL_QUOTE
+  tradeRequest:
+    expected: EXECUTED
+
+- case_title: 2.BTC-HKD 0.01 tradedCurrency sell test
+  case_type: Positive
+  quoteRequest:
+    buyTradedCurrency: false
+    tradedCurrency: BTC
+    settlementCurrency: HKD
+    tradedCurrencyAmount: 0.01
+    expected: FULL_QUOTE
+  tradeRequest:
+    expected: EXECUTED
+
+- case_title: 3.BTC-HKD 60 settlementCurrency buy test
+  case_type: Positive
+  quoteRequest:
+    buyTradedCurrency: true
+    tradedCurrency: BTC
+    settlementCurrency: HKD
+    settlementCurrencyAmount: 60
+    expected: FULL_QUOTE
+  tradeRequest:
+    expected: EXECUTED
+
+- case_title: 4.BTC-HKD 60 settlementCurrency sell test
+  case_type: Positive
+  quoteRequest:
+    buyTradedCurrency: false
+    tradedCurrency: BTC
+    settlementCurrency: HKD
+    settlementCurrencyAmount: 60
+    expected: FULL_QUOTE
+  tradeRequest:
+    expected: EXECUTED

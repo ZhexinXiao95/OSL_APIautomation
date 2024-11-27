@@ -12,16 +12,10 @@ def execute_trade(param, trace_id):
     return res
 
 if __name__ == '__main__':
-    while True:
-        params = {"quoteRequest":
-        {"buyTradedCurrency": "true",
-        "tradedCurrency": "BTC",
-        "settlementCurrency": "USD",
-        "tradedCurrencyAmount": 0.00001}}
-        res = get_quote(params,'123')
-        print('Quote response',res)
-        quoteId = res['res']['quoteResponse']['quoteId']
-        params = {'tradeRequest': {'quoteId':quoteId}}
-        res = execute_trade(params,'123')
-        print('Execute response', res)
-        print('-'*50)
+    params = {"quoteRequest":
+    {"buyTradedCurrency": "true",
+    "tradedCurrency": "BTC",
+    "settlementCurrency": "USD",
+    "tradedCurrencyAmount": 0.00001}}
+    res = get_quote(params,'123')
+    print('Quote response',res)

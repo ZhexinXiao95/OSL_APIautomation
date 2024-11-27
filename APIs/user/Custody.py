@@ -38,5 +38,5 @@ def get_transaction_list(max=None):
         logger.log(f'get_transaction_list unknow error：{str(ex)}', 'critical')
 
 if __name__ == '__main__':
-    # print(get_account_information(currency='BTC',multiple=False))
-    print(get_transaction_list())
+    print(get_account_information(currency='BTC',multiple=False))
+    # print(get_transaction_list())

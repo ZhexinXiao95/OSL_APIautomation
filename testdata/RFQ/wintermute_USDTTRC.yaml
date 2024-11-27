@@ -1,0 +1,43 @@
+- case_title: 1.BTC-USDTTRC 5 tradedCurrency buy test
+  case_type: Positive
+  quoteRequest:
+    buyTradedCurrency: true
+    tradedCurrency: BTC
+    settlementCurrency: USDTTRC
+    tradedCurrencyAmount: 1
+    expected: FULL_QUOTE
+  tradeRequest:
+    expected: EXECUTED
+
+- case_title: 2.BTC-USDTTRC 5 tradedCurrency sell test
+  case_type: Positive
+  quoteRequest:
+    buyTradedCurrency: false
+    tradedCurrency: BTC
+    settlementCurrency: USDTTRC
+    tradedCurrencyAmount: 1
+    expected: FULL_QUOTE
+  tradeRequest:
+    expected: EXECUTED
+
+- case_title: 3.BTC-USDTTRC 100 settlementCurrency buy test
+  case_type: Positive
+  quoteRequest:
+    buyTradedCurrency: true
+    tradedCurrency: BTC
+    settlementCurrency: USDTTRC
+    settlementCurrencyAmount: 100
+    expected: FULL_QUOTE
+  tradeRequest:
+    expected: EXECUTED
+
+- case_title: 4.BTC-USDTTRC 100 settlementCurrency sell test
+  case_type: Positive
+  quoteRequest:
+    buyTradedCurrency: false
+    tradedCurrency: BTC
+    settlementCurrency: USDTTRC
+    settlementCurrencyAmount: 100
+    expected: FULL_QUOTE
+  tradeRequest:
+    expected: EXECUTED

@@ -3,7 +3,7 @@ reports/allure-report/
 reports/allure-results/
 reports/history_reports/
 reports/history_results/
-
+app_package/
 # 忽略所有日志文件
 *.log
 

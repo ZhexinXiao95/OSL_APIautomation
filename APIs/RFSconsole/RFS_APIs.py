@@ -99,13 +99,13 @@ class RFS_API:
 if __name__ == '__main__':
     RFS = RFS_API('stage')
     print(RFS.rfs_authToken())
-    a = RFS.turn_on_venus('OSL')
-    print(a)
-    print(a['success'])
+    # a = RFS.turn_on_venus('OSL')
+    # print(a)
+    # print(a['success'])
     # print(RFS.status())
     # print(RFS.status_venue())
     # print(RFS.trades_indeterminateOrpending())
-    # print(RFS.aggregated_positions())
+    print(RFS.aggregated_positions())
     # print(RFS.cc_pair_status())
 
 

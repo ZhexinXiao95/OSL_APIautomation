@@ -103,8 +103,20 @@ class OPS_Approval(OPS_API):
         response = make_request('get', path=self.host + path, headers=self.headers_auth)
         return response
 
-    def withdrawal_compliance_approve(self, ccy, paymentId, coinAddress, approval_uuid, approval_type=False,
-                                      multiple=True):
+    def withdrawal_compliance_approve(self, ccy=None, paymentId=None, coinAddress=None, approval_uuid=None, username=None, approval_type=False,
+                                      multiple=True, firstApproval=True):
+        if firstApproval:
+            if username is None:
+                raise ValueError("Either 'username' must be provided.")
+            list_res = self.withdrawal_compliance_approveList(username)
+            ccy = list_res[0]['coinTransaction']['ccy']
+            paymentId = list_res[0]['coinPaymentId']
+            coinAddress = list_res[0]['coinTransaction']['coinAddress']
+            approval_uuid = list_res[0]['coinTransaction']['uuid']
+        else:
+            if ccy is None or paymentId is None or coinAddress is None or approval_uuid is None:
+                raise ValueError("Either 'ccy' or 'paymentId' or 'coinAddress' or 'approval_uuid' must be provided.")
+
         if multiple:
             approval_type_list = ['COIN_PURITY', 'SUSP_CHECK', 'VASP_CHECK', 'WITHDRAWAL_UNLOCK']
         else:
@@ -122,11 +134,13 @@ class OPS_Approval(OPS_API):
                 "uuid": approval_uuid
             }
             response = make_request('post', path=self.host + path, params=data, headers=self.headers_auth)
+            assert response['coinPurity']['state'] == 'APPROVED', 'did not get approved'
 
 
 if __name__ == '__main__':
     # OPS_API().ops_authToken()
     # OPS_Approval().FiatDeposit_approve('6044b033-69a3-4389-a81c-f8aeafcf2960')
-    OPS_Approval().withdrawal_compliance_approve('ETH', '1165880', '0xC122b72D9A09B9297797deB6FaEA192C6Ed8174B',
-                                                 'af28102c-6ae0-4cc5-a6bb-7407f218c42e', multiple=True)
+    # OPS_Approval().withdrawal_compliance_approve('ETH', '1165880', '0xC122b72D9A09B9297797deB6FaEA192C6Ed8174B',
+    #                                              'af28102c-6ae0-4cc5-a6bb-7407f218c42e', multiple=True)
     # OPS_Approval().withdrawal_compliance_approveList('selceo1@snapmail.cc')
+    OPS_Approval().withdrawal_compliance_approve(username="selceo1@snapmail.cc")

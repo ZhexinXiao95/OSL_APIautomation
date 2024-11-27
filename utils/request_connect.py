@@ -53,6 +53,7 @@ def v3_mk_request(method, path, dict={}, trace_id=None, log=True):
         "Content-Type": "application/json"
     }
     response = requests.request(method, base_url + "/" + path, headers=headers, data=body_str)
+    logger.log(response,'debug')
     try:
         if log:
             logger.log(f"Request> [{trace_id}] => " + method + ' ' + path + ' <Param> => ' + str(body))
@@ -66,7 +67,7 @@ def v3_mk_request(method, path, dict={}, trace_id=None, log=True):
         return dict
 
     except Exception as ex:
-        logger.log(f"<{case_title} v3_mk_request unknow error {str(ex)}", 'critical')
+        logger.log(f"<{case_title} {path} v3_mk_request unknow error {str(ex)}", 'critical')
         raise ex
 
 

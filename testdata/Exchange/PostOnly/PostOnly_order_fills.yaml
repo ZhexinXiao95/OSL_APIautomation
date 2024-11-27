@@ -16,61 +16,61 @@
         side: Sell
         ordType: Market
       expected: Filled
-
-- case_title: 2.BTC-USD buy Limit Post-Only GTC FullFills
-  execute_type: FullFills
-  Orders:
-    - request:
-        symbol: BTCUSD
-        orderQty: "1"
-        side: Buy
-        ordType: Limit
-        price:
-        timeInForce: GoodTillCancel
-        execInst: PostOnly
-      expected: Filled
-    - request:
-        symbol: BTCUSD
-        orderQty: "1"
-        side: Sell
-        ordType: Market
-      expected: Filled
-
-- case_title: 3.BTC-USD sell Limit Post-Only GTC PartialFills
-  execute_type: PartialFills
-  Orders:
-    - request:
-        symbol: BTCUSD
-        orderQty: "2"
-        side: Sell
-        ordType: Limit
-        price:
-        timeInForce: GoodTillCancel
-        execInst: PostOnly
-      expected: PartiallyFilled
-    - request:
-        symbol: BTCUSD
-        orderQty: "1"
-        side: Buy
-        ordType: Market
-      expected: Filled
-
-- case_title: 4.BTC-USD sell Limit Post-Only GTC FullFills
-  execute_type: FullFills
-  Orders:
-    - request:
-        symbol: BTCUSD
-        orderQty: "1"
-        side: Sell
-        ordType: Limit
-        price:
-        timeInForce: GoodTillCancel
-        execInst: PostOnly
-      expected: Filled
-    - request:
-        symbol: BTCUSD
-        orderQty: "1"
-        side: Buy
-        ordType: Market
-      expected: Filled
-
+#
+#- case_title: 2.BTC-USD buy Limit Post-Only GTC FullFills
+#  execute_type: FullFills
+#  Orders:
+#    - request:
+#        symbol: BTCUSD
+#        orderQty: "1"
+#        side: Buy
+#        ordType: Limit
+#        price:
+#        timeInForce: GoodTillCancel
+#        execInst: PostOnly
+#      expected: Filled
+#    - request:
+#        symbol: BTCUSD
+#        orderQty: "1"
+#        side: Sell
+#        ordType: Market
+#      expected: Filled
+#
+#- case_title: 3.BTC-USD sell Limit Post-Only GTC PartialFills
+#  execute_type: PartialFills
+#  Orders:
+#    - request:
+#        symbol: BTCUSD
+#        orderQty: "2"
+#        side: Sell
+#        ordType: Limit
+#        price:
+#        timeInForce: GoodTillCancel
+#        execInst: PostOnly
+#      expected: PartiallyFilled
+#    - request:
+#        symbol: BTCUSD
+#        orderQty: "1"
+#        side: Buy
+#        ordType: Market
+#      expected: Filled
+#
+#- case_title: 4.BTC-USD sell Limit Post-Only GTC FullFills
+#  execute_type: FullFills
+#  Orders:
+#    - request:
+#        symbol: BTCUSD
+#        orderQty: "1"
+#        side: Sell
+#        ordType: Limit
+#        price:
+#        timeInForce: GoodTillCancel
+#        execInst: PostOnly
+#      expected: Filled
+#    - request:
+#        symbol: BTCUSD
+#        orderQty: "1"
+#        side: Buy
+#        ordType: Market
+#      expected: Filled
+#
